@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shopping_app/core/constants/icon_path.dart';
 import 'package:shopping_app/core/theme/app_colors.dart';
 
 import 'login_screen.dart';
@@ -27,16 +29,17 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Positioned.fill(child: Container(color: AppColors.gray)),
-        // Center(
-        //   child: ImageHelper.loadFromAsset(
-        //     AssetHelper.icoLogo,
-        //     width: 250,
-        //     height: 250,
-        //     alignment: Alignment.center,
-        //   ),
-        // ),
-        Center(child: Container(color: Colors.red, width: 250, height: 250)),
+        Positioned.fill(child: Container(color: AppColors.lavenderColor)),
+        Center(
+          child: Column(
+            spacing: 10,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(IconPath.iconSplash),
+              Image.asset(IconPath.iconTitleSplash),
+            ],
+          ),
+        ),
       ],
     );
   }

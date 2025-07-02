@@ -10,7 +10,7 @@ class LocalStorageHelper {
   Box<dynamic>? hiveBox;
 
   static initLocalStorageHelper() async {
-    _shared.hiveBox = await Hive.openBox('fire_guard');
+    _shared.hiveBox = await Hive.openBox('shopping_app');
   }
 
   static dynamic getValue(String key) {

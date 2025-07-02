@@ -35,7 +35,7 @@ package: core/constants
 groups:
   - path: assets/icons
     class_name: IconPath
-    types: [.svg] 
+    types: [.svg, .png]
   - path: assets/images
     class_name: ImagePath
     types: [ .png, .jpg, .jpeg, .webp, .webm, .bmp ]

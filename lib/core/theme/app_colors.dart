@@ -92,4 +92,5 @@ class AppColors {
   static const Color shimmerBaseColor = Color(0xFFF1F2F3);
 
   static const Color shimmerHighlightColor = Color(0xFFE3E6E8);
+  static const Color lavenderColor = Color(0xFF9775FA);
 }
