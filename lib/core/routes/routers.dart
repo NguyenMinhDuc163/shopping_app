@@ -1,0 +1,35 @@
+import 'package:flutter/material.dart';
+import 'package:shopping_app/core/public/global_utils.dart';
+import 'package:shopping_app/core/theme/app_text_styles.dart';
+import 'package:shopping_app/core/widgets/template/function_screen_template.dart';
+import 'package:shopping_app/modules/auth/screens/login_screen.dart';
+
+class Routers {
+
+
+  static Map<String, WidgetBuilder> routes = {
+    LoginScreen.routeName: (context) => const LoginScreen(),
+  };
+
+  static Route<dynamic> generateRoute(RouteSettings settings) {
+    GlobalUtils.ROUTES = settings.name;
+    print("Global Routes ------------${settings.name}");
+    switch (settings.name) {
+      case LoginScreen.routeName:
+        return MaterialPageRoute(builder: (_) => LoginScreen());
+      default:
+        return MaterialPageRoute(
+          builder: (_) => FunctionScreenTemplate(
+            title: "Chức năng đang trong quá trình phát triển",
+            isShowBottomButton: false,
+            screen: Center(
+              child: Text(
+                "Chức năng đang trong quá trình phát triển",
+                style: AppTextStyles.text,
+              ),
+            ),
+          ),
+        );
+    }
+  }
+}
