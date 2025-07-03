@@ -1,9 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/core/theme/app_colors.dart';
+import 'package:shopping_app/core/theme/app_dimension.dart';
 import 'package:shopping_app/core/theme/app_pad.dart';
 import 'package:shopping_app/core/theme/app_text_styles.dart';
 import 'package:shopping_app/core/widgets/drawer_widget.dart';
+import 'package:shopping_app/core/widgets/template/button_widget.dart';
 import 'package:shopping_app/core/widgets/template/opacity_widget.dart';
 
 // ignore: must_be_immutable
@@ -19,7 +21,7 @@ class FunctionScreenTemplate extends StatefulWidget {
   bool isShowDrawer, isShowBottomButton, isShowAppBar;
   Widget? leadingWidget;
   List<Widget>? actionsWidget;
-  Function? onClickBottomButton,onBack;
+  Function? onClickBottomButton, onBack;
   FunctionScreenTemplate({
     this.title,
     this.screen,
@@ -36,7 +38,7 @@ class FunctionScreenTemplate extends StatefulWidget {
     this.customBottomNavigationBar,
     this.leadingWidget,
     this.actionsWidget,
-    this.onClickBottomButton
+    this.onClickBottomButton,
   });
 
   @override
@@ -98,29 +100,11 @@ class _FunctionScreenTemplateState extends State<FunctionScreenTemplate>
       drawer: widget.isShowDrawer ? DrawerWidget() : null,
       body: body,
       bottomNavigationBar:
-          widget.isShowBottomButton ? (widget.customBottomNavigationBar ??
-                  bottomNavigationBar(titleButtonBottom: widget.titleButtonBottom,))
+          widget.isShowBottomButton
+              ? (widget.customBottomNavigationBar ??
+                  ButtonWidget(title: widget.titleButtonBottom, onPressed:  widget.onClickBottomButton ?? () {}, ))
               : const SizedBox.shrink(),
       floatingActionButton: widget.floatingActionButton,
-    );
-  }
-
-  Widget bottomNavigationBar({String? titleButtonBottom}) {
-    return ElevatedButton(
-      onPressed: () {
-          widget.onClickBottomButton?.call();
-      },
-      style: ButtonStyle(
-        backgroundColor: WidgetStateProperty.all(AppColors.lavenderColor),
-        padding: WidgetStateProperty.all(AppPad.v24),
-        shape: WidgetStateProperty.all(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.zero,
-            side: BorderSide.none,
-          ),
-        ),
-      ),
-      child: Text(titleButtonBottom ?? "common.continue".tr(), style: AppTextStyles.button),
     );
   }
 
@@ -128,25 +112,42 @@ class _FunctionScreenTemplateState extends State<FunctionScreenTemplate>
     return AppBar(
       backgroundColor: AppColors.white,
       elevation: 0,
-      leading:
-          widget.leadingWidget ??
-          IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () {
-              if (widget.onBack != null) {
-                widget.onBack!();
-              } else {
-                Navigator.of(context).maybePop();
-              }
-            },
-          ),
+      leading: Padding(
+        padding: AppPad.a8,
+        child: CircleAvatar(
+          backgroundColor: AppColors.lightGray,
+          child:
+              widget.leadingWidget ??
+              IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: () {
+                  if (widget.onBack != null) {
+                    widget.onBack!();
+                  } else {
+                    Navigator.of(context).maybePop();
+                  }
+                },
+              ),
+        ),
+      ),
       title:
           widget.titleWidget ??
           (widget.title != null
-              ? Text(widget.title!, style: AppTextStyles.text)
+              ? Text(widget.title!, style: AppTextStyles.textContent1)
               : null),
       centerTitle: true,
-      actions: widget.actionsWidget,
+      actions:
+          widget.actionsWidget
+              ?.map(
+                (e) => Padding(
+                  padding: AppPad.a8,
+                  child: CircleAvatar(
+                    backgroundColor: AppColors.lightGray,
+                    child: e,
+                  ),
+                ),
+              )
+              .toList(),
     );
   }
 }

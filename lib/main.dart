@@ -10,7 +10,7 @@ void main() async {
   await LocalStorageHelper.initLocalStorageHelper();
   await EasyLocalization.ensureInitialized();
 
-  String? savedLocale = LocalStorageHelper.getValue('languageCode');
+  String? savedLocale = await LocalStorageHelper.getValue('languageCode');
   Locale defaultLocale = const Locale('en', 'US');
   if (savedLocale != null) {
     if (savedLocale == 'vi') {
@@ -25,6 +25,7 @@ void main() async {
       supportedLocales: const [Locale('en', 'US'), Locale('vi', 'VN')],
       path: 'assets/translations',
       fallbackLocale: const Locale('en', 'US'),
+      startLocale: defaultLocale,
       child: const App(),
     ),
   );

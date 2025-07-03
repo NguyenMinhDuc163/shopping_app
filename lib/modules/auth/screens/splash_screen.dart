@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shopping_app/core/constants/icon_path.dart';
+import 'package:shopping_app/core/constants/image_path.dart';
 import 'package:shopping_app/core/theme/app_colors.dart';
 
 import 'login_screen.dart';
@@ -35,8 +36,8 @@ class _SplashScreenState extends State<SplashScreen> {
             spacing: 10,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(IconPath.iconSplash),
-              Image.asset(IconPath.iconTitleSplash),
+              Image.asset(ImagePath.imgSplash),
+              Image.asset(ImagePath.imgTitleSplash),
             ],
           ),
         ),
