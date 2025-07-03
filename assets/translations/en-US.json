@@ -1,0 +1,15 @@
+{
+  "common": {
+    "continue": "Continue"
+  },
+  "home_screen": {
+    "title": "Home Screen",
+    "home": "Home",
+    "wishlist": "Wishlist",
+    "cart": "Cart",
+    "wallet": "Wallet"
+  },
+  "login_screen": {
+    "title": "Login Screen"
+  }
+}

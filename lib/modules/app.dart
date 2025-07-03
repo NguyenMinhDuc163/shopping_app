@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:shopping_app/core/routes/routers.dart';
@@ -19,6 +20,9 @@ class App extends StatelessWidget {
         ],
       ),
       debugShowCheckedModeBanner: false,
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
       home: const SplashScreen(),
       routes: Routers.routes,
       onGenerateRoute: Routers.generateRoute,

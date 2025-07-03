@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/core/theme/app_colors.dart';
 import 'package:shopping_app/core/theme/app_pad.dart';
@@ -119,7 +120,7 @@ class _FunctionScreenTemplateState extends State<FunctionScreenTemplate>
           ),
         ),
       ),
-      child: Text(titleButtonBottom ?? "Tiếp tục", style: AppTextStyles.button),
+      child: Text(titleButtonBottom ?? "common.continue".tr(), style: AppTextStyles.button),
     );
   }
 

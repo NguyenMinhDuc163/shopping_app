@@ -41,6 +41,7 @@ dependencies:
   font_awesome_flutter: ^10.8.0
   flutter_launcher_icons: ^0.14.4
   salomon_bottom_bar: ^3.3.2
+  easy_localization: ^3.0.7+1
 
   gap: ^3.0.1
 
@@ -74,6 +75,7 @@ flutter:
   assets:
     - assets/icons/
     - assets/images/
+    - assets/translations/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

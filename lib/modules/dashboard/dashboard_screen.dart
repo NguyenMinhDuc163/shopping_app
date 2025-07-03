@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
@@ -45,22 +46,22 @@ class _DashboardScreenState extends State<DashboardScreen> {
           items: [
             SalomonBottomBarItem(
               icon: SvgPicture.asset(IconPath.iconHome),
-              title: Text("Home"),
+              title: Text("home_screen.home".tr()),
               activeIcon: SizedBox.shrink(),
             ),
             SalomonBottomBarItem(
               icon: SvgPicture.asset(IconPath.iconWishlist),
-              title: Text("Wishlist"),
+              title: Text("home_screen.wishlist".tr()),
               activeIcon: SizedBox.shrink(),
             ),
             SalomonBottomBarItem(
               icon: SvgPicture.asset(IconPath.iconCart),
-              title: Text("Cart"),
+              title: Text("home_screen.cart".tr()),
               activeIcon: SizedBox.shrink(),
             ),
             SalomonBottomBarItem(
               icon: SvgPicture.asset(IconPath.iconWallet),
-              title: Text("Wallet"),
+              title: Text("home_screen.wallet".tr()),
               activeIcon: SizedBox.shrink(),
             ),
           ],
