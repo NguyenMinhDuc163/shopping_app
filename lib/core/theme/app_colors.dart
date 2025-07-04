@@ -4,6 +4,14 @@ import 'dart:ui';
 class AppColors {
   static const Color electricBlue = Color(0xFF04589C);
 
+  static const Color deepBlue = Color(0xFF4267B2);
+
+  static const Color skyBlue = Color(0xFF1DA1F2);
+
+  static const Color crimson = Color(0xFFEA4335);
+
+  static const Color coolGray = Color(0xFF8F959E);
+
   static const Color orange = Color(0xFFFD7E14);
 
   static const Color rustyRed = Color(0xFFDC3545);
@@ -92,4 +100,6 @@ class AppColors {
   static const Color shimmerBaseColor = Color(0xFFF1F2F3);
 
   static const Color shimmerHighlightColor = Color(0xFFE3E6E8);
+  static const Color lavenderColor = Color(0xFF9775FA);
+  static const Color lightGray = Color(0xFFF5F6FA);
 }

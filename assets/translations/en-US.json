@@ -1,0 +1,19 @@
+{
+  "common": {
+    "continue": "Continue"
+  },
+  "home_screen": {
+    "title": "Home Screen",
+    "home": "Home",
+    "wishlist": "Wishlist",
+    "cart": "Cart",
+    "wallet": "Wallet"
+  },
+  "login_screen": {
+    "title": "Login Screen",
+    "get_started": "Let’s Get Started",
+    "already_have_account": "Already have an account? ",
+    "signin": "Signin",
+    "create_account": "Create an Account"
+  }
+}

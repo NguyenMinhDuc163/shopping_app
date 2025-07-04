@@ -1,0 +1,19 @@
+{
+  "common": {
+    "continue": "Tiếp tục"
+  },
+  "home_screen": {
+    "title": "trang chủ",
+    "home": "Trang chủ",
+    "wishlist": "yêu thích",
+    "cart": "Giỏ hàng",
+    "wallet": "Ví"
+  },
+  "login_screen": {
+    "title": "Đăng nhập",
+    "get_started": "Bắt Đầu Nào",
+    "already_have_account": "Đã có tài khoản? ",
+    "signin": "Đăng nhập",
+    "create_account": "Tạo tài khoản"
+  }
+}

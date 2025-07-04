@@ -80,7 +80,6 @@ abstract final class AppTextStyles {
     fontWeight: FontWeight.w500,
   );
 
-  //
 
   static const TextStyle cupertinoActionSheetAction = TextStyle(
     fontFamily: AppConst.robotoFont,
@@ -100,7 +99,33 @@ abstract final class AppTextStyles {
     fontWeight: FontWeight.w400,
   );
 
-  // Intro
+  static const TextStyle textStyleDefaultBold = TextStyle(
+    fontSize: 16,
+    fontFamily: AppConst.robotoFont,
+    fontWeight: FontWeight.bold,
+    color: AppColors.text,
+  );
+
+  static const  TextStyle textStyleDefault = TextStyle(
+    fontSize: 14,
+    fontFamily: AppConst.robotoFont,
+    color: AppColors.text,
+    height: 1.40,
+  );
+
+
+  static TextStyle textHeader1 = textStyleDefaultBold.copyWith(fontSize: 18);
+
+  static TextStyle textHeader2 = textStyleDefaultBold.copyWith(fontSize: 16);
+
+  static TextStyle textHeader3 = textStyleDefaultBold.copyWith(fontSize: 14);
+
+  static TextStyle textContent1 = textStyleDefault.copyWith(fontSize: 16);
+
+  static TextStyle textContent2 = textStyleDefault.copyWith(fontSize: 14);
+
+  static TextStyle textContent3 = textStyleDefault.copyWith(fontSize: 12);
+
 
   static const TextStyle introDescription = text;
 }
