@@ -20,6 +20,8 @@ class AppColors {
 
   static const Color auroMetalAaurus = Color(0xFF6C757d);
 
+  static const Color silverGray = Color(0xFFE7E8EA);
+
   static const Color raisinBlack = Color(0xFF202020);
 
   static const Color darkShadeOfGray = Color.fromRGBO(17, 17, 17, 0.5);
@@ -102,4 +104,5 @@ class AppColors {
   static const Color shimmerHighlightColor = Color(0xFFE3E6E8);
   static const Color lavenderColor = Color(0xFF9775FA);
   static const Color lightGray = Color(0xFFF5F6FA);
+  static const Color limeGreen = Color(0xFF34C358);
 }

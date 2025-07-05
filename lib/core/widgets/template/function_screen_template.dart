@@ -91,20 +91,25 @@ class _FunctionScreenTemplateState extends State<FunctionScreenTemplate>
   }
 
   Widget _buildScaffold({required Widget body, required bool appBar}) {
-    return Scaffold(
-      extendBodyBehindAppBar: widget.background != null,
-      resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset ?? true,
-      backgroundColor:
-          widget.background != null ? Colors.transparent : AppColors.white,
-      appBar: appBar ? appBarWidget() : null,
-      drawer: widget.isShowDrawer ? DrawerWidget() : null,
-      body: body,
-      bottomNavigationBar:
-          widget.isShowBottomButton
-              ? (widget.customBottomNavigationBar ??
-                  ButtonWidget(title: widget.titleButtonBottom, onPressed:  widget.onClickBottomButton ?? () {}, ))
-              : const SizedBox.shrink(),
-      floatingActionButton: widget.floatingActionButton,
+    return GestureDetector(
+      onTap: (){
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        extendBodyBehindAppBar: widget.background != null,
+        resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset ?? true,
+        backgroundColor:
+            widget.background != null ? Colors.transparent : AppColors.white,
+        appBar: appBar ? appBarWidget() : null,
+        drawer: widget.isShowDrawer ? DrawerWidget() : null,
+        body: body,
+        bottomNavigationBar:
+            widget.isShowBottomButton
+                ? (widget.customBottomNavigationBar ??
+                    ButtonWidget(title: widget.titleButtonBottom, onPressed:  widget.onClickBottomButton ?? () {}, ))
+                : const SizedBox.shrink(),
+        floatingActionButton: widget.floatingActionButton,
+      ),
     );
   }
 

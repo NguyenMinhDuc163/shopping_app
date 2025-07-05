@@ -15,5 +15,16 @@
     "already_have_account": "Already have an account? ",
     "signin": "Signin",
     "create_account": "Create an Account"
+  },
+  "sign_up": {
+    "title": "Sign Up",
+    "username": "Username",
+    "remember_me": "Remember me",
+    "password": "Password",
+    "email_address": "Email Address",
+    "enter_username": "Enter username",
+    "enter_password": "Enter password",
+    "enter_email": "Enter email",
+    "strong": "Strong"
   }
 }

@@ -28,11 +28,11 @@ class Validators {
     return null;
   }
 
-  static bool _isValidEmail(String email) {
+  static bool isValidEmail(String email) {
     return AppConst.Pattern.email.hasMatch(email);
   }
 
-  static String? isValidEmail(
+  static String? isValidEmailNotification(
     String? value, {
     required bool isOptional,
   }) {
@@ -44,7 +44,7 @@ class Validators {
       return 'Email không được để trống';
     }
 
-    if (_isValidEmail(value)) return null;
+    if (isValidEmail(value)) return null;
 
     return 'Email không đúng định dạng';
   }
