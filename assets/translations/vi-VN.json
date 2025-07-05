@@ -15,5 +15,16 @@
     "already_have_account": "Đã có tài khoản? ",
     "signin": "Đăng nhập",
     "create_account": "Tạo tài khoản"
+  },
+  "sign_up": {
+    "title": "Đăng ký",
+    "username": "Tên người dùng",
+    "remember_me": "Ghi nhớ tôi",
+    "password": "Mật khẩu",
+    "email_address": "Địa chỉ email",
+    "enter_username": "Nhập username",
+    "enter_password": "Nhập password",
+    "enter_email": "Nhập email",
+    "strong": "Mạnh"
   }
 }

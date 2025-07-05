@@ -3,6 +3,7 @@ import 'package:shopping_app/core/public/global_utils.dart';
 import 'package:shopping_app/core/theme/app_text_styles.dart';
 import 'package:shopping_app/core/widgets/template/function_screen_template.dart';
 import 'package:shopping_app/modules/auth/screens/login_screen.dart';
+import 'package:shopping_app/modules/auth/screens/sign_up_screen.dart';
 import 'package:shopping_app/modules/dashboard/dashboard_screen.dart';
 import 'package:shopping_app/modules/home/home_screen.dart';
 
@@ -23,6 +24,9 @@ class Routers {
         return MaterialPageRoute(builder: (_) => HomeScreen());
       case DashboardScreen.routeName:
         return MaterialPageRoute(builder: (_) => DashboardScreen());
+      case SignUpScreen.routeName:
+        return MaterialPageRoute(builder: (_) => SignUpScreen());
+
       default:
         return MaterialPageRoute(
           builder: (_) => FunctionScreenTemplate(
