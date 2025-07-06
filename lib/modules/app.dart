@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:shopping_app/core/public/navigation_service.dart';
 import 'package:shopping_app/core/routes/routers.dart';
 import 'package:shopping_app/modules/auth/screens/splash_screen.dart';
 
@@ -26,6 +27,7 @@ class App extends StatelessWidget {
       home: const SplashScreen(),
       routes: Routers.routes,
       onGenerateRoute: Routers.generateRoute,
+      navigatorKey: NavigationService.navigatorKey,
     );
   }
 }

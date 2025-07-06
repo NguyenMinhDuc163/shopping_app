@@ -1,5 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -13,8 +12,9 @@ import 'package:shopping_app/core/widgets/app_gap.dart';
 import 'package:shopping_app/core/widgets/template/button_widget.dart';
 import 'package:shopping_app/core/widgets/template/function_screen_template.dart';
 import 'package:shopping_app/modules/auth/screens/sign_up_screen.dart';
-import 'package:shopping_app/modules/dashboard/dashboard_screen.dart';
-import 'package:shopping_app/modules/home/home_screen.dart';
+import 'package:shopping_app/modules/auth/widgets/text_span_widget.dart';
+
+import 'sign_in_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -31,22 +31,16 @@ class LoginScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           spacing: 20,
           children: [
-            Text("login_screen.get_started".tr(), style: AppTextStyles.text.copyWith(fontSize: 28, fontWeight: FontWeight.bold),),
+            Text("login_screen.get_started".tr(), style: AppTextStyles.textHeader1),
             Spacer(),
             ButtonWidget(titleWidget: _buildTitle(title: "Facebook", iconPath: IconPath.iconFacebook), onPressed: () {}, backgroundColor: AppColors.deepBlue, margin: AppPad.h24, height: height_56, boderRadius: BorderRadius.all(AppRadius.c10),),
             ButtonWidget(titleWidget: _buildTitle(title: "Twitter", iconPath: IconPath.iconTwitter), onPressed: () {}, backgroundColor: AppColors.skyBlue, margin: AppPad.h24, height: height_56, boderRadius: BorderRadius.all(AppRadius.c10),),
             ButtonWidget(titleWidget: _buildTitle(title: "Google", iconPath: IconPath.iconGoogle), onPressed: () {}, backgroundColor: AppColors.crimson, margin: AppPad.h24, height: height_56, boderRadius: BorderRadius.all(AppRadius.c10),),
             Spacer(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('login_screen.already_have_account'.tr(), style: AppTextStyles.textContent1.copyWith(color: AppColors.coolGray)),
-                GestureDetector(
-                  onTap: (){
-                    Navigator.pushNamed(context, HomeScreen.routeName);
-                  },
-                    child: Text('login_screen.signin'.tr().tr(), style: AppTextStyles.textContent1.copyWith(fontWeight: FontWeight.bold)))
-              ],
+            TextSpanWidget(
+              normalText: "${'login_screen.already_have_account'.tr()} ",
+              clickableText: 'login_screen.signin'.tr(),
+              onTap: () => Navigator.pushNamed(context, SignInScreen.routeName),
             ),
             AppGap.g2
           ],

@@ -1,0 +1,103 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+import 'package:shopping_app/core/theme/app_colors.dart';
+import 'package:shopping_app/core/theme/app_dimension.dart';
+import 'package:shopping_app/core/theme/app_pad.dart';
+import 'package:shopping_app/core/theme/app_text_styles.dart';
+import 'package:shopping_app/core/widgets/app_gap.dart';
+import 'package:shopping_app/core/widgets/template/function_screen_template.dart';
+import 'package:shopping_app/core/widgets/text_input_custom.dart';
+import 'package:shopping_app/modules/dashboard/dashboard_screen.dart';
+
+import '../widgets/text_span_widget.dart';
+
+class SignInScreen extends StatefulWidget {
+  const SignInScreen({super.key});
+  static const String routeName = '/signInScreen';
+
+  @override
+  State<SignInScreen> createState() => _SignInScreenState();
+}
+
+class _SignInScreenState extends State<SignInScreen> {
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  bool isSwitched = false
+  ;
+  @override
+  Widget build(BuildContext context) {
+    return FunctionScreenTemplate(
+      titleButtonBottom: 'login.login'.tr(),
+      onClickBottomButton: () => Navigator.pushNamed(context, DashboardScreen.routeName),
+      screen: Padding(
+        padding: AppPad.h22v10,
+        child: Column(
+          spacing: height_30,
+          children: [
+            Text("login.welcome".tr(), style: AppTextStyles.textHeader1),
+            Text(
+              "login.enter_data_to_continue".tr(),
+              style: AppTextStyles.textContent1.copyWith(
+                color: AppColors.coolGray,
+              ),
+            ),
+            Spacer(),
+            TextInputCustom(
+              label: 'sign_up.username'.tr(),
+              controller: usernameController,
+              hintText: "sign_up.enter_username".tr(),
+              validator: (text) {
+                return text.length >= 4;
+              },
+            ),
+            TextInputCustom(
+              label: 'sign_up.password'.tr(),
+              controller: passwordController,
+              hintText: "sign_up.enter_password".tr(),
+              suffixIcon: Text(
+                "sign_up.strong".tr(),
+                style: AppTextStyles.textContent3.copyWith(
+                  color: AppColors.limeGreen,
+                ),
+              ),
+              validator: (text) {
+                return text.length >= 8;
+              },
+            ),
+
+            Align(
+              alignment: Alignment.centerRight,
+              child:
+              Text("login.forgot_password".tr(), style: AppTextStyles.textContent1.copyWith(color: Colors.red),),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("sign_up.remember_me".tr(), style: AppTextStyles.textContent2,),
+                Switch(
+                  value: isSwitched,
+                  onChanged: (value) {
+                    setState(() {
+                      isSwitched = value;
+                    });
+                  },
+                  activeColor: Colors.white,
+                  activeTrackColor: Colors.green,
+                  inactiveThumbColor: Colors.white,
+                  inactiveTrackColor: Colors.grey[300],
+                ),
+              ],
+            ),
+            Spacer(),
+            TextSpanWidget(
+              normalText: "${'login.connect_account_confirmation'.tr()} ",
+              clickableText: 'login.terms_and_conditions'.tr(),
+              onTap: () => Navigator.pushNamed(context, SignInScreen.routeName),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

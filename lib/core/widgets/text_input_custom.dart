@@ -10,17 +10,15 @@ class TextInputCustom extends StatefulWidget {
     super.key,
     this.label,
     required this.controller,
-    this.padding,
     this.fillColor = false,
     this.isLineBottom = true,
     this.isPassword = false,
     this.hintText = "",
     this.suffixIcon,
-    this.titleStyle, this.validator,
+    this.titleStyle, this.validator, this.onTapOutside, this.onEditingComplete, this.onChanged,
   });
   final String? label;
   final TextEditingController controller ;
-  final EdgeInsetsGeometry? padding;
 final bool? fillColor;
   final String? hintText;
   final TextStyle? titleStyle;
@@ -28,6 +26,9 @@ final bool? fillColor;
   final bool isLineBottom;
   final bool isPassword;
   final Widget? suffixIcon;
+  final void Function()? onTapOutside;
+  final void Function()? onEditingComplete;
+  final void Function(String)? onChanged;
 
   @override
   State<TextInputCustom> createState() => _TextInputCustomState();
@@ -61,37 +62,40 @@ class _TextInputCustomState extends State<TextInputCustom> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: widget.padding  ?? AppPad.h22v10,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            widget.label ?? "",
-            style:
-            widget.titleStyle ??
-                AppTextStyles.textContent3.copyWith(color: AppColors.coolGray),
-          ),
-          SizedBox(height: height_4,),
-          TextFormField(
-            controller: widget.controller,
-            obscureText: widget.isPassword ? obscureText : false,
-            decoration: InputDecoration(
-              hintText: widget.hintText,
-              hintStyle: AppTextStyles.inputHintText.copyWith(
-                color: AppColors.coolGray,
-              ),
-              border: !widget.isLineBottom ? InputBorder.none :null,
-              filled: widget.fillColor,
-              fillColor: AppColors.lightGray,
-              suffix: _buildSuffixIcon(),
-              focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: isValid ? AppColors.limeGreen : AppColors.silverGray , width: 2),
-              ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          widget.label ?? "",
+          style:
+          widget.titleStyle ??
+              AppTextStyles.textContent3.copyWith(color: AppColors.coolGray),
+        ),
+        SizedBox(height: height_4,),
+        TextFormField(
+          controller: widget.controller,
+          obscureText: widget.isPassword ? obscureText : false,
+          onTapOutside: (widget.onTapOutside != null) ? (_) => widget.onTapOutside?.call() : null,
+          onEditingComplete: (widget.onEditingComplete != null) ? widget.onEditingComplete : null,
+          onChanged: (widget.onChanged != null) ? widget.onChanged : null,
+          decoration: InputDecoration(
+            hintText: widget.hintText,
+            hintStyle: AppTextStyles.inputHintText.copyWith(
+              color: AppColors.coolGray,
+            ),
+            border: !widget.isLineBottom ? InputBorder.none :null,
+            filled: widget.fillColor,
+            fillColor: AppColors.lightGray,
+            suffix: _buildSuffixIcon(),
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: isValid ? AppColors.limeGreen : AppColors.silverGray, width: 1),
+            ),
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: AppColors.silverGray, width: 1),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 

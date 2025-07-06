@@ -26,5 +26,13 @@
     "enter_password": "Enter password",
     "enter_email": "Enter email",
     "strong": "Strong"
+  },
+  "login": {
+    "login": "Login",
+    "welcome": "Welcome",
+    "enter_data_to_continue": "Please enter your data to continue",
+    "forgot_password": "Forgot password?",
+    "connect_account_confirmation": "By connecting your account confirm that you agree with our",
+    "terms_and_conditions": "Term and Condition"
   }
 }

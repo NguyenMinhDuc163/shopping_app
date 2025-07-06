@@ -26,5 +26,13 @@
     "enter_password": "Nhập password",
     "enter_email": "Nhập email",
     "strong": "Mạnh"
+  },
+  "login": {
+    "login": "Đăng nhập",
+    "welcome": "Chào mừng",
+    "enter_data_to_continue": "Vui lòng nhập thông tin để tiếp tục",
+    "forgot_password": "Quên mật khẩu?",
+    "connect_account_confirmation": "Bằng cách kết nối tài khoản, bạn xác nhận rằng bạn đồng ý với",
+    "terms_and_conditions": "Điều khoản và Điều kiện"
   }
 }
