@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:shopping_app/core/widgets/switch_botton_widget.dart';
 import 'package:shopping_app/core/widgets/text_input_custom.dart';
 import 'package:shopping_app/utils/helpers/validators.dart';
 import 'package:shopping_app/init.dart';
@@ -18,12 +19,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController emailController = TextEditingController();
   bool isSwitched = false;
 
-
   @override
   Widget build(BuildContext context) {
     return FunctionScreenTemplate(
       titleButtonBottom: 'sign_up.title'.tr(),
-      onClickBottomButton: (){
+      onClickBottomButton: () {
         Navigator.pushNamed(context, SignInScreen.routeName);
       },
       screen: Center(
@@ -33,10 +33,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             spacing: height_30,
             children: [
-              Text(
-                'sign_up.title'.tr(),
-                style: AppTextStyles.textHeader1,
-              ),
+              Text('sign_up.title'.tr(), style: AppTextStyles.textHeader1),
               Spacer(),
               TextInputCustom(
                 label: 'sign_up.username'.tr(),
@@ -71,19 +68,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("sign_up.remember_me".tr(), style: AppTextStyles.textContent3,),
-                  Switch(
-                    value: isSwitched,
-                    onChanged: (value) {
-                      setState(() {
-                        isSwitched = value;
-                      });
-                    },
-                    activeColor: Colors.white,
-                    activeTrackColor: Colors.green,
-                    inactiveThumbColor: Colors.white,
-                    inactiveTrackColor: Colors.grey[300],
+                  Text(
+                    "sign_up.remember_me".tr(),
+                    style: AppTextStyles.textContent3,
                   ),
+                  SwitchBottomWidget(onChanged: (value) {}),
                 ],
               ),
               Spacer(),

@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:shopping_app/core/widgets/switch_botton_widget.dart';
 import 'package:shopping_app/core/widgets/text_input_custom.dart';
 import 'package:shopping_app/modules/auth/forgot_password/screen/forgot_password_screen.dart';
 import 'package:shopping_app/modules/auth/initial/screen/onboarding_screen.dart';
@@ -72,18 +73,7 @@ class _SignInScreenState extends State<SignInScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text("sign_up.remember_me".tr(), style: AppTextStyles.textContent2,),
-                Switch(
-                  value: isSwitched,
-                  onChanged: (value) {
-                    setState(() {
-                      isSwitched = value;
-                    });
-                  },
-                  activeColor: Colors.white,
-                  activeTrackColor: Colors.green,
-                  inactiveThumbColor: Colors.white,
-                  inactiveTrackColor: Colors.grey[300],
-                ),
+                SwitchBottomWidget(onChanged: (value) {}),
               ],
             ),
             Spacer(),

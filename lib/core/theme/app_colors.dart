@@ -106,6 +106,7 @@ class AppColors {
   static const Color lavenderColor = Color(0xFF9775FA);
   static const Color lightGray = Color(0xFFF5F6FA);
   static const Color limeGreen = Color(0xFF34C358);
+  static const Color offWhite = Color(0xFFF5F5F5);
 
   // gradient
   static const LinearGradient gradientPrimaryColor = LinearGradient(

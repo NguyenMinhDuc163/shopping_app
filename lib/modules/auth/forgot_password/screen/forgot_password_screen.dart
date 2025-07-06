@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shopping_app/core/widgets/app_gap.dart';
 import 'package:shopping_app/core/widgets/text_input_custom.dart';
-import 'package:shopping_app/modules/auth/forgot_password/verify_screen.dart';
+import 'package:shopping_app/modules/auth/forgot_password/screen/verify_screen.dart';
 import 'package:shopping_app/utils/helpers/validators.dart';
 import 'package:shopping_app/init.dart';
 

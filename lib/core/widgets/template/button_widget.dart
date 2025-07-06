@@ -9,7 +9,7 @@ class ButtonWidget extends StatelessWidget {
     this.title,
     this.titleStyle,
     this.titleWidget,
-    required this.onPressed,
+    this.onPressed,
     this.backgroundColor = AppColors.lavenderColor,
     this.boderRadius = BorderRadius.zero,
     this.width = double.infinity,
@@ -22,7 +22,7 @@ class ButtonWidget extends StatelessWidget {
   final Widget? titleWidget;
   final Color backgroundColor;
   final BorderRadiusGeometry boderRadius;
-  final Function onPressed;
+  final Function? onPressed;
   final double width;
   final double height;
   final EdgeInsetsGeometry padding;
@@ -30,7 +30,7 @@ class ButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => onPressed(),
+      onTap: () => onPressed?.call(),
       child: Container(
         padding: padding,
         margin: margin,
@@ -45,6 +45,8 @@ class ButtonWidget extends StatelessWidget {
             titleWidget ??
             Text(
               title ?? "common.continue".tr(),
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
               style:
                   titleStyle ??
                   AppTextStyles.textContent1.copyWith(

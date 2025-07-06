@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:shopping_app/core/widgets/app_gap.dart';
 import 'package:shopping_app/core/widgets/text_input_custom.dart';
-import 'package:shopping_app/modules/auth/screens/sign_in_screen.dart';
 import 'package:shopping_app/init.dart';
+import 'package:shopping_app/modules/auth/auth_flow/sign_in_screen.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
   const ChangePasswordScreen({super.key});

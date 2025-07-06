@@ -1,6 +1,16 @@
 {
   "common": {
-    "continue": "Tiếp tục"
+    "continue": "Tiếp tục",
+    "dark_mode": "Chế độ tối",
+    "account_information": "Thông tin tài khoản",
+    "change_password": "Đổi mật khẩu",
+    "order": "Đơn hàng",
+    "my_cards": "Thẻ của tôi",
+    "wishlist": "Danh sách yêu thích",
+    "settings": "Cài đặt",
+    "logout": "Đăng xuất",
+    "verified_profile": "Hồ sơ đã xác minh",
+    "orders": "Đơn"
   },
   "home_screen": {
     "title": "trang chủ",
