@@ -1,16 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:shopping_app/core/theme/app_colors.dart';
-import 'package:shopping_app/core/theme/app_dimension.dart';
-import 'package:shopping_app/core/theme/app_pad.dart';
-import 'package:shopping_app/core/theme/app_text_styles.dart';
-import 'package:shopping_app/core/widgets/template/function_screen_template.dart';
 import 'package:shopping_app/core/widgets/text_input_custom.dart';
-import 'package:shopping_app/modules/auth/fogot_password/forgot_password_screen.dart';
-import 'package:shopping_app/modules/auth/screens/onboarding_screen.dart';
-import 'package:shopping_app/modules/dashboard/dashboard_screen.dart';
+import 'package:shopping_app/modules/auth/forgot_password/screen/forgot_password_screen.dart';
+import 'package:shopping_app/modules/auth/initial/screen/onboarding_screen.dart';
 
-import '../widgets/text_span_widget.dart';
+import 'package:shopping_app/init.dart';
+import 'package:shopping_app/modules/auth/widgets/text_span_widget.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});

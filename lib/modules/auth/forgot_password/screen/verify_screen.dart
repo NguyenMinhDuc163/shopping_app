@@ -9,7 +9,7 @@ import 'package:shopping_app/core/theme/app_pad.dart';
 import 'package:shopping_app/core/theme/app_text_styles.dart';
 import 'package:shopping_app/core/widgets/app_gap.dart';
 import 'package:shopping_app/core/widgets/template/function_screen_template.dart';
-import 'package:shopping_app/modules/auth/fogot_password/change_password_screen.dart';
+import 'package:shopping_app/modules/auth/forgot_password/change_password_screen.dart';
 import 'package:shopping_app/modules/auth/widgets/countdown_widget.dart';
 
 class VerifyScreen extends StatefulWidget {
