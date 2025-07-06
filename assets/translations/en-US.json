@@ -28,11 +28,24 @@
     "strong": "Strong"
   },
   "login": {
-    "login": "Login",
+    "title": "Login",
     "welcome": "Welcome",
     "enter_data_to_continue": "Please enter your data to continue",
     "forgot_password": "Forgot password?",
     "connect_account_confirmation": "By connecting your account confirm that you agree with our",
     "terms_and_conditions": "Term and Condition"
+  },
+  "forgot_password": {
+    "title": "Forgot Password",
+    "email_address": "Email Address",
+    "enter_email_for_confirmation": "Please write your email to receive a confirmation code to set a new password.",
+    "confirm_mail": "Confirm Mail",
+    "resend_confirmation_code": "resend confirmation code",
+    "new_password": "New Password",
+    "enter_new_password": "Please write your new password.",
+    "reset_password": "Reset Password",
+    "verification_code": "Verification Code",
+    "confirm_code": "Confirm Code",
+    "confirm_password": "Confirm Password"
   }
 }

@@ -4,31 +4,25 @@ import 'package:shopping_app/core/theme/app_colors.dart';
 import 'package:shopping_app/core/theme/app_dimension.dart';
 import 'package:shopping_app/core/theme/app_pad.dart';
 import 'package:shopping_app/core/theme/app_text_styles.dart';
+import 'package:shopping_app/core/widgets/app_gap.dart';
 import 'package:shopping_app/core/widgets/template/function_screen_template.dart';
 import 'package:shopping_app/core/widgets/text_input_custom.dart';
-import 'package:shopping_app/utils/helpers/validators.dart';
+import 'package:shopping_app/modules/auth/screens/sign_in_screen.dart';
 
-import 'sign_in_screen.dart';
-
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
-  static const String routeName = '/signUpScreen';
-
+class ChangePasswordScreen extends StatefulWidget {
+  const ChangePasswordScreen({super.key});
+  static const String routeName = '/changePassword';
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  State<ChangePasswordScreen> createState() => _ChangePasswordScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
-  TextEditingController usernameController = TextEditingController();
+class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   TextEditingController passwordController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  bool isSwitched = false;
-
-
+  TextEditingController confirmPasswordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return FunctionScreenTemplate(
-      titleButtonBottom: 'sign_up.title'.tr(),
+      titleButtonBottom: 'forgot_password.reset_password'.tr(),
       onClickBottomButton: (){
         Navigator.pushNamed(context, SignInScreen.routeName);
       },
@@ -40,18 +34,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
             spacing: height_30,
             children: [
               Text(
-                'sign_up.title'.tr(),
+                'forgot_password.new_password'.tr(),
                 style: AppTextStyles.textHeader1,
               ),
               Spacer(),
-              TextInputCustom(
-                label: 'sign_up.username'.tr(),
-                controller: usernameController,
-                hintText: "sign_up.enter_username".tr(),
-                validator: (text) {
-                  return text.length >= 4;
-                },
-              ),
+
               TextInputCustom(
                 label: 'sign_up.password'.tr(),
                 controller: passwordController,
@@ -67,32 +54,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 },
               ),
               TextInputCustom(
-                label: 'Email'.tr(),
-                controller: emailController,
-                hintText: "sign_up.enter_email".tr(),
+                label: 'forgot_password.confirm_password'.tr(),
+                controller: confirmPasswordController,
+                hintText: "forgot_password.enter_new_password".tr(),
                 validator: (text) {
-                  return Validators.isValidEmail(text);
+                  return text.length >= 4;
                 },
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("sign_up.remember_me".tr(), style: AppTextStyles.textContent3,),
-                  Switch(
-                    value: isSwitched,
-                    onChanged: (value) {
-                      setState(() {
-                        isSwitched = value;
-                      });
-                    },
-                    activeColor: Colors.white,
-                    activeTrackColor: Colors.green,
-                    inactiveThumbColor: Colors.white,
-                    inactiveTrackColor: Colors.grey[300],
-                  ),
-                ],
-              ),
+
               Spacer(),
+              Text(
+                'forgot_password.enter_new_password'.tr(),
+                textAlign: TextAlign.center,
+                style: AppTextStyles.textContent3.copyWith(
+                  color: AppColors.coolGray,
+                ),
+              ),
+              AppGap.g1
             ],
           ),
         ),
