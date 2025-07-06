@@ -1,4 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shopping_app/core/widgets/switch_botton_widget.dart';
+import 'package:shopping_app/core/widgets/template/button_widget.dart';
+import 'package:shopping_app/init.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});
@@ -9,10 +13,24 @@ class DrawerWidget extends StatelessWidget {
       child: Container(
         color: Colors.white,
         child: ListView(
-          padding: EdgeInsets.zero,
+          padding: AppPad.v40,
           children: <Widget>[
+            Padding(
+              padding: AppPad.h20,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: GestureDetector(
+                  onTap: () => Navigator.pop(context),
+                  child: CircleAvatar(
+                    backgroundColor: AppColors.offWhite,
+                    child: SvgPicture.asset(IconPath.iconMenu, ),
+                  ),
+                ),
+              ),
+            ),
+
             Container(
-              height: 200,
+              padding: AppPad.a20,
               decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
@@ -20,19 +38,60 @@ class DrawerWidget extends StatelessWidget {
                   bottomRight: Radius.circular(30),
                 ),
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const SizedBox(height: 20),
-                  _buildDrawerItem(
-                    icon: Icons.home,
-                    title: 'Home',
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
+              child: _buildDrawerHeader(),
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: _buildDrawerItem(
+                    icon: IconPath.iconSun,
+                    title: 'common.dark_mode'.tr(),
+                    onTap: () => Navigator.pop(context),
                   ),
-                ],
-              ),
+                ),
+                Padding(
+                  padding: AppPad.h10,
+                  child: SwitchBottomWidget(onChanged: (value) {}),
+                ),
+              ],
+            ),
+            _buildDrawerItem(
+              icon: IconPath.iconWarring,
+              title: 'common.account_information'.tr(),
+              onTap: () => Navigator.pop(context),
+            ),
+            _buildDrawerItem(
+              icon: IconPath.iconLock,
+              title: 'common.change_password'.tr(),
+              onTap: () => Navigator.pop(context),
+            ),
+            _buildDrawerItem(
+              icon: IconPath.iconBag,
+              title: 'common.order'.tr(),
+              onTap: () => Navigator.pop(context),
+            ),
+            _buildDrawerItem(
+              icon: IconPath.iconWallet,
+              title: 'common.my_cards'.tr(),
+              onTap: () => Navigator.pop(context),
+            ),
+            _buildDrawerItem(
+              icon: IconPath.iconHeart,
+              title: 'common.wishlist'.tr(),
+              onTap: () => Navigator.pop(context),
+            ),
+            _buildDrawerItem(
+              icon: IconPath.iconSetting,
+              title: 'common.settings'.tr(),
+              onTap: () => Navigator.pop(context),
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.2),
+            _buildDrawerItem(
+              icon: IconPath.iconLogout,
+              title: 'common.logout'.tr(),
+              iconColor: Colors.red,
+              textStyle: AppTextStyles.textContent2.copyWith(color: Colors.red),
+              onTap: () => Navigator.pop(context),
             ),
           ],
         ),
@@ -40,25 +99,60 @@ class DrawerWidget extends StatelessWidget {
     );
   }
 
+  Widget _buildDrawerHeader() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      spacing: width_8,
+      children: [
+        CircleAvatar(
+          radius: 25,
+          backgroundColor: Colors.grey[200],
+          child: Icon(Icons.person),
+        ),
+
+        Column(
+          crossAxisAlignment:CrossAxisAlignment.start,
+          children: [
+            Text("Nguyen Duc", style: AppTextStyles.textHeader3),
+            Row(
+              children: [
+                Text(
+                  "common.verified_profile".tr(),
+                  style: AppTextStyles.textContent2.copyWith(
+                    color: AppColors.coolGray,
+                  ),
+                ),
+                SvgPicture.asset(IconPath.iconDone),
+              ],
+            ),
+          ],
+        ),
+        ButtonWidget(
+          title: '3 ${"common.orders".tr()}',
+          width: 50,
+          height: 40,
+          boderRadius: AppBorderRadius.a8,
+          backgroundColor: AppColors.offWhite,
+          titleStyle: AppTextStyles.textContent2.copyWith(
+            color: AppColors.coolGray,
+          ),
+        ),
+      ],
+    );
+  }
+
   Widget _buildDrawerItem({
-    required IconData icon,
+    required String icon,
     required String title,
     required VoidCallback onTap,
-    Color? textColor,
+    TextStyle? textStyle,
     Color? iconColor,
   }) {
     return ListTile(
-      leading: Icon(icon, color: iconColor ?? Colors.grey[700], size: 24),
-      title: Text(
-        title,
-        style: TextStyle(
-          color: textColor ?? Colors.grey[700],
-          fontSize: 16,
-          fontWeight: FontWeight.w500,
-        ),
-      ),
+      leading: SvgPicture.asset(icon, color: iconColor ?? Colors.grey[700]),
+      title: Text(title, style: textStyle ?? AppTextStyles.textContent2),
       onTap: onTap,
-      contentPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
       dense: true,
     );
   }

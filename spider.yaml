@@ -38,4 +38,4 @@ groups:
     types: [.svg, .png]
   - path: assets/images
     class_name: ImagePath
-    types: [ .png, .jpg, .jpeg, .webp, .webm, .bmp ]
+    types: [ .png, .jpg, .jpeg, .webp, .webm, .bmp, .svg ]

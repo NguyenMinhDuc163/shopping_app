@@ -1,10 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shopping_app/core/constants/icon_path.dart';
-import 'package:shopping_app/core/constants/image_path.dart';
-import 'package:shopping_app/core/theme/app_colors.dart';
-
-import 'login_screen.dart';
+import 'package:shopping_app/init.dart';
+import '../../auth_flow/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

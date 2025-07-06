@@ -42,6 +42,7 @@ dependencies:
   flutter_launcher_icons: ^0.14.4
   salomon_bottom_bar: ^3.3.2
   easy_localization: ^3.0.7+1
+  pin_code_fields: ^8.0.1
 
   gap: ^3.0.1
 
@@ -65,6 +66,15 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/img_splash.png"
+  web:
+    generate: true
+    image_path: "assets/images/img_splash.png"
+
 flutter:
 
   # The following line ensures that the Material Icons font is

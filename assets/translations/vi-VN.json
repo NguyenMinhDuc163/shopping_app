@@ -1,6 +1,16 @@
 {
   "common": {
-    "continue": "Tiếp tục"
+    "continue": "Tiếp tục",
+    "dark_mode": "Chế độ tối",
+    "account_information": "Thông tin tài khoản",
+    "change_password": "Đổi mật khẩu",
+    "order": "Đơn hàng",
+    "my_cards": "Thẻ của tôi",
+    "wishlist": "Danh sách yêu thích",
+    "settings": "Cài đặt",
+    "logout": "Đăng xuất",
+    "verified_profile": "Hồ sơ đã xác minh",
+    "orders": "Đơn"
   },
   "home_screen": {
     "title": "trang chủ",
@@ -26,5 +36,33 @@
     "enter_password": "Nhập password",
     "enter_email": "Nhập email",
     "strong": "Mạnh"
+  },
+  "login": {
+    "title": "Đăng nhập",
+    "welcome": "Chào mừng",
+    "enter_data_to_continue": "Vui lòng nhập thông tin để tiếp tục",
+    "forgot_password": "Quên mật khẩu?",
+    "connect_account_confirmation": "Bằng cách kết nối tài khoản, bạn xác nhận rằng bạn đồng ý với",
+    "terms_and_conditions": "Điều khoản và Điều kiện"
+  },
+  "forgot_password": {
+    "title": "Quên mật khẩu",
+    "email_address": "Địa chỉ email",
+    "enter_email_for_confirmation": "Vui lòng nhập email để nhận mã xác nhận nhằm đặt lại mật khẩu.",
+    "confirm_mail": "Xác nhận email",
+    "resend_confirmation_code": "Gửi lại mã xác nhận",
+    "new_password": "Mật khẩu mới",
+    "enter_new_password": "Vui lòng nhập mật khẩu mới.",
+    "reset_password": "Đặt lại mật khẩu",
+    "verification_code": "Mã xác nhận",
+    "confirm_code": "Xác nhận mã",
+    "confirm_password": "Xác nhận mật khẩu"
+  },
+  "onboarding": {
+    "slogan": "Trông đẹp, Cảm thấy tuyệt",
+    "description": "Tạo phong cách cá nhân & độc đáo của bạn và trông tuyệt vời mỗi ngày.",
+    "women": "Nữ",
+    "men": "Nam",
+    "skip": "Bỏ qua"
   }
 }
