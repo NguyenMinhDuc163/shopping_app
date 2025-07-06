@@ -6,6 +6,7 @@ import 'package:shopping_app/modules/auth/fogot_password/change_password_screen.
 import 'package:shopping_app/modules/auth/fogot_password/forgot_password_screen.dart';
 import 'package:shopping_app/modules/auth/fogot_password/verify_screen.dart';
 import 'package:shopping_app/modules/auth/screens/login_screen.dart';
+import 'package:shopping_app/modules/auth/screens/onboarding_screen.dart';
 import 'package:shopping_app/modules/auth/screens/sign_in_screen.dart';
 import 'package:shopping_app/modules/auth/screens/sign_up_screen.dart';
 import 'package:shopping_app/modules/dashboard/dashboard_screen.dart';
@@ -14,6 +15,7 @@ import 'package:shopping_app/modules/home/home_screen.dart';
 class Routers {
   static Map<String, WidgetBuilder> routes = {
     LoginScreen.routeName: (context) => const LoginScreen(),
+    OnboardingScreen.routeName: (context) => const OnboardingScreen(),
   };
 
   static Route<dynamic> generateRoute(RouteSettings settings) {

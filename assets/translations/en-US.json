@@ -47,5 +47,12 @@
     "verification_code": "Verification Code",
     "confirm_code": "Confirm Code",
     "confirm_password": "Confirm Password"
+  },
+  "onboarding": {
+    "slogan": "Look Good, Feel Good",
+    "description": "Create your individual & unique style and look amazing everyday.",
+    "women": "Women",
+    "men": "Men",
+    "skip": "Skip"
   }
 }

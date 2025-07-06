@@ -7,6 +7,7 @@ import 'package:shopping_app/core/theme/app_text_styles.dart';
 import 'package:shopping_app/core/widgets/template/function_screen_template.dart';
 import 'package:shopping_app/core/widgets/text_input_custom.dart';
 import 'package:shopping_app/modules/auth/fogot_password/forgot_password_screen.dart';
+import 'package:shopping_app/modules/auth/screens/onboarding_screen.dart';
 import 'package:shopping_app/modules/dashboard/dashboard_screen.dart';
 
 import '../widgets/text_span_widget.dart';
@@ -28,7 +29,7 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget build(BuildContext context) {
     return FunctionScreenTemplate(
       titleButtonBottom: 'login.title'.tr(),
-      onClickBottomButton: () => Navigator.pushNamed(context, DashboardScreen.routeName),
+      onClickBottomButton: () => Navigator.pushNamed(context, OnboardingScreen.routeName),
       screen: Padding(
         padding: AppPad.h22v10,
         child: Column(

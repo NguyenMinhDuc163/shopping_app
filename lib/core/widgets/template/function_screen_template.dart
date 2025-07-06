@@ -22,7 +22,9 @@ class FunctionScreenTemplate extends StatefulWidget {
   Widget? leadingWidget;
   List<Widget>? actionsWidget;
   Function? onClickBottomButton, onBack;
-  FunctionScreenTemplate({
+  Color? backgroundColor;
+
+  FunctionScreenTemplate({super.key,
     this.title,
     this.screen,
     this.titleButtonBottom,
@@ -39,6 +41,7 @@ class FunctionScreenTemplate extends StatefulWidget {
     this.leadingWidget,
     this.actionsWidget,
     this.onClickBottomButton,
+    this.backgroundColor
   });
 
   @override
@@ -92,21 +95,24 @@ class _FunctionScreenTemplateState extends State<FunctionScreenTemplate>
 
   Widget _buildScaffold({required Widget body, required bool appBar}) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
         extendBodyBehindAppBar: widget.background != null,
         resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset ?? true,
         backgroundColor:
-            widget.background != null ? Colors.transparent : AppColors.white,
+            widget.background != null ? Colors.transparent : widget.backgroundColor ?? AppColors.white,
         appBar: appBar ? appBarWidget() : null,
         drawer: widget.isShowDrawer ? DrawerWidget() : null,
         body: body,
         bottomNavigationBar:
             widget.isShowBottomButton
                 ? (widget.customBottomNavigationBar ??
-                    ButtonWidget(title: widget.titleButtonBottom, onPressed:  widget.onClickBottomButton ?? () {}, ))
+                    ButtonWidget(
+                      title: widget.titleButtonBottom,
+                      onPressed: widget.onClickBottomButton ?? () {},
+                    ))
                 : const SizedBox.shrink(),
         floatingActionButton: widget.floatingActionButton,
       ),
@@ -115,7 +121,7 @@ class _FunctionScreenTemplateState extends State<FunctionScreenTemplate>
 
   PreferredSizeWidget appBarWidget() {
     return AppBar(
-      backgroundColor: AppColors.white,
+      backgroundColor: widget.backgroundColor ?? AppColors.white,
       elevation: 0,
       leading: Padding(
         padding: AppPad.a8,
