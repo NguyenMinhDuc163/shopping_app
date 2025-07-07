@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:shopping_app/core/constants/icon_path.dart';
+import 'package:shopping_app/modules/cart/screen/cart_screen.dart';
 import 'package:shopping_app/modules/home/home_screen.dart';
+import 'package:shopping_app/modules/wallet/screen/wallet_screen.dart';
+import 'package:shopping_app/modules/wishlist/screen/wishlist_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -28,9 +31,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
           index: _currentIndex,
           children: const [
             HomeScreen(),
-            HomeScreen(),
-            HomeScreen(),
-            HomeScreen(),
+            WishlistScreen(),
+            CartScreen(),
+            WalletScreen(),
           ],
         ),
         bottomNavigationBar: SalomonBottomBar(
