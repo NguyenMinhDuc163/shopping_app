@@ -1,4 +1,3 @@
-
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../../init.dart';
 
@@ -10,7 +9,7 @@ class DetailProduct extends StatefulWidget {
 }
 
 class _DetailProductState extends State<DetailProduct> {
-  int selectedSize = 2; // ví dụ mặc định chọn L
+  int selectedSize = 2;
 
   final List<String> sizes = ['S', 'M', 'L', 'XL', '2XL'];
   final List<String> thumbnails = [
@@ -30,92 +29,82 @@ class _DetailProductState extends State<DetailProduct> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Ảnh sản phẩm lớn
             Center(
-              child: Image.asset(
-                ImagePath.productDetail,
-                fit: BoxFit.fill,
-              ),
+              child: Image.asset(ImagePath.productDetail, fit: BoxFit.fill),
             ),
-            // Thông tin sản phẩm
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: AppPad.a16,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Dòng phụ: loại sản phẩm và giá
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         "Men's Printed Pullover Hoodie",
-                        style: TextStyle(color: Colors.grey[600]),
+                        style: AppTextStyles.textContent3.copyWith(
+                          color: AppColors.coolGray,
+                        ),
                       ),
                       Text(
                         "Price",
-                        style: TextStyle(color: Colors.grey[600]),
+                        style: AppTextStyles.textContent3.copyWith(
+                          color: AppColors.coolGray,
+                        ),
                       ),
                     ],
                   ),
-                  // Tên sản phẩm và giá
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         "Nike Club Fleece",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 22,
-                        ),
+                        style: AppTextStyles.textHeader3,
                       ),
-                      Text(
-                        "\$99",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 22,
-                        ),
-                      ),
+                      Text("\$99", style: AppTextStyles.textHeader3),
                     ],
                   ),
                   const SizedBox(height: 12),
-                  // Thumbnails
+
                   SizedBox(
                     height: 60,
                     child: ListView.separated(
                       scrollDirection: Axis.horizontal,
                       itemCount: thumbnails.length,
-                      separatorBuilder: (_, __) => SizedBox(width: 8),
-                      itemBuilder: (context, index) => ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Image.asset(
-                          thumbnails[index],
-                          width: 60,
-                          height: 60,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                      separatorBuilder: (_, __) => SizedBox(width: 10),
+                      itemBuilder:
+                          (context, index) => ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: Image.asset(
+                              thumbnails[index],
+                              width: 60,
+                              height: 60,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
                     ),
                   ),
                   const SizedBox(height: 16),
-                  // Size
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         "Size",
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: AppTextStyles.textContent1.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       Text(
                         "Size Guide",
-                        style: TextStyle(
-                          color: Colors.blue,
-                          fontWeight: FontWeight.w500,
+                        style: AppTextStyles.textContent3.copyWith(
+                          color: AppColors.coolGray,
                         ),
                       ),
                     ],
                   ),
                   const SizedBox(height: 8),
-                  // Size buttons
+
                   Row(
                     children: List.generate(sizes.length, (index) {
                       final isSelected = selectedSize == index;
@@ -132,10 +121,14 @@ class _DetailProductState extends State<DetailProduct> {
                             height: 48,
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
-                              color: isSelected ? Colors.black : Colors.grey[200],
+                              color:
+                                  isSelected ? Colors.black : Colors.grey[200],
                               borderRadius: BorderRadius.circular(12),
                               border: Border.all(
-                                color: isSelected ? Colors.black : Colors.grey[300]!,
+                                color:
+                                    isSelected
+                                        ? Colors.black
+                                        : Colors.grey[300]!,
                                 width: 2,
                               ),
                             ),
@@ -152,30 +145,35 @@ class _DetailProductState extends State<DetailProduct> {
                     }),
                   ),
                   const SizedBox(height: 16),
-                  // Description
+
                   Text(
                     "Description",
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: AppTextStyles.textContent1.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     "The Nike Throwback Pullover Hoodie is made from premium French terry fabric that blends a performance feel with Read More..",
-                    style: TextStyle(color: Colors.grey[700]),
+                    style: AppTextStyles.textContent3.copyWith(
+                      color: AppColors.coolGray,
+                    ),
                   ),
                   const SizedBox(height: 16),
-                  // Reviews
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         "Reviews",
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: AppTextStyles.textContent1.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       Text(
                         "View All",
-                        style: TextStyle(
-                          color: Colors.blue,
-                          fontWeight: FontWeight.w500,
+                        style: AppTextStyles.textContent3.copyWith(
+                          color: AppColors.coolGray,
                         ),
                       ),
                     ],
