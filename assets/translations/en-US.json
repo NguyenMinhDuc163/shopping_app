@@ -64,5 +64,11 @@
     "women": "Women",
     "men": "Men",
     "skip": "Skip"
+  },
+  "wishlist": {
+    "items": "Items",
+    "edit": "Edit",
+    "available_in_stock": "Available in stock",
+    "in_wishlist": "in wishlist"
   }
 }

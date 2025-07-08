@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:shopping_app/core/constants/icon_path.dart';
 import 'package:shopping_app/modules/cart/screen/cart_screen.dart';
-import 'package:shopping_app/modules/home/home_screen.dart';
+import 'package:shopping_app/modules/home/screen/home_screen.dart';
 import 'package:shopping_app/modules/wallet/screen/wallet_screen.dart';
 import 'package:shopping_app/modules/wishlist/screen/wishlist_screen.dart';
 

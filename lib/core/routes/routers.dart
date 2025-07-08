@@ -10,7 +10,8 @@ import 'package:shopping_app/modules/auth/forgot_password/screen/verify_screen.d
 import 'package:shopping_app/modules/auth/auth_flow/login_screen.dart';
 import 'package:shopping_app/modules/auth/initial/screen/onboarding_screen.dart';
 import 'package:shopping_app/modules/dashboard/dashboard_screen.dart';
-import 'package:shopping_app/modules/home/home_screen.dart';
+import 'package:shopping_app/modules/home/screen/home_screen.dart';
+import 'package:shopping_app/modules/product/screen/detail_product.dart';
 
 class Routers {
   static Map<String, WidgetBuilder> routes = {
@@ -38,6 +39,8 @@ class Routers {
         return MaterialPageRoute(builder: (_) => VerifyScreen());
       case ChangePasswordScreen.routeName:
         return MaterialPageRoute(builder: (_) => ChangePasswordScreen());
+      case DetailProduct.routeName:
+        return MaterialPageRoute(builder: (_) => DetailProduct());
       default:
         return MaterialPageRoute(
           builder:

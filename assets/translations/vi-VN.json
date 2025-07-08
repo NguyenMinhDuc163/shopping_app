@@ -64,5 +64,11 @@
     "women": "Nữ",
     "men": "Nam",
     "skip": "Bỏ qua"
+  },
+  "wishlist": {
+    "items": "Mục",
+    "edit": "Chỉnh sửa",
+    "available_in_stock": "Có sẵn trong kho",
+    "in_wishlist": "Trong danh sách yêu thích"
   }
 }
