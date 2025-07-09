@@ -43,6 +43,7 @@ dependencies:
   salomon_bottom_bar: ^3.3.2
   easy_localization: ^3.0.7+1
   pin_code_fields: ^8.0.1
+  u_credit_card: ^1.4.0
 
   gap: ^3.0.1
 

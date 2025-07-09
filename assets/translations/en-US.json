@@ -72,6 +72,7 @@
     "in_wishlist": "in wishlist"
   },
   "payment": {
+    "title": "Payment",
     "name": "Name",
     "country": "Country",
     "city": "City",
@@ -89,5 +90,14 @@
     "order_confirmation_message": "Your order has been confirmed, we will send you confirmation email shortly.",
     "go_to_orders": "Go to Orders",
     "continue_shopping": "Continue Shopping"
+  },
+  "cart": {
+    "title": "Cart",
+    "delivery_address": "Delivery Address",
+    "payment_method": "Payment Method",
+    "order_info": "Order Info",
+    "subtotal": "Subtotal",
+    "delivery_charge": "Delivery Charge",
+    "total": "Total"
   }
 }

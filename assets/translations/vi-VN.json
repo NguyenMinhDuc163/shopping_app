@@ -72,6 +72,7 @@
     "in_wishlist": "Trong danh sách yêu thích"
   },
   "payment": {
+    "title": "Thanh toán",
     "name": "Tên",
     "country": "Quốc gia",
     "city": "Thành phố",
@@ -89,5 +90,14 @@
     "order_confirmation_message": "Đơn hàng của bạn đã được xác nhận, chúng tôi sẽ sớm gửi email xác nhận cho bạn.",
     "go_to_orders": "Đi đến Đơn hàng",
     "continue_shopping": "Tiếp tục mua sắm"
+  },
+  "cart": {
+    "title": "Giỏ hàng",
+    "delivery_address": "Địa chỉ giao hàng",
+    "payment_method": "Phương thức thanh toán",
+    "order_info": "Thông tin đơn hàng",
+    "subtotal": "Tổng phụ",
+    "delivery_charge": "Phí giao hàng",
+    "total": "Tổng cộng"
   }
 }
