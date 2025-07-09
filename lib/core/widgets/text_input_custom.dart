@@ -19,6 +19,7 @@ class TextInputCustom extends StatefulWidget {
     this.onTapOutside,
     this.onEditingComplete,
     this.onChanged,
+    this.borderRadius,
   });
   final String? label;
   final TextEditingController controller;
@@ -29,6 +30,7 @@ class TextInputCustom extends StatefulWidget {
   final bool isLineBottom;
   final bool isPassword;
   final Widget? suffixIcon;
+  final BorderRadius? borderRadius;
   final void Function()? onTapOutside;
   final void Function()? onEditingComplete;
   final void Function(String)? onChanged;
@@ -66,6 +68,7 @@ class _TextInputCustomState extends State<TextInputCustom> {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: 6,
       children: [
         Text(
           widget.label ?? "",
@@ -73,7 +76,6 @@ class _TextInputCustomState extends State<TextInputCustom> {
               widget.titleStyle ??
               AppTextStyles.textContent3.copyWith(color: AppColors.coolGray),
         ),
-        SizedBox(height: height_4),
         TextFormField(
           controller: widget.controller,
           obscureText: widget.isPassword ? obscureText : false,
@@ -91,7 +93,12 @@ class _TextInputCustomState extends State<TextInputCustom> {
             hintStyle: AppTextStyles.inputHintText.copyWith(
               color: AppColors.coolGray,
             ),
-            border: !widget.isLineBottom ? InputBorder.none : null,
+            border:
+                !widget.isLineBottom
+                    ? InputBorder.none
+                    : OutlineInputBorder(
+                      borderRadius: widget.borderRadius ?? BorderRadius.zero,
+                    ),
             filled: widget.fillColor,
             fillColor: AppColors.lightGray,
             suffix: _buildSuffixIcon(),
@@ -100,9 +107,11 @@ class _TextInputCustomState extends State<TextInputCustom> {
                 color: isValid ? AppColors.limeGreen : AppColors.silverGray,
                 width: 1,
               ),
+              borderRadius: widget.borderRadius ?? BorderRadius.zero,
             ),
             enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: AppColors.silverGray, width: 1),
+              borderRadius: widget.borderRadius ?? BorderRadius.zero,
             ),
           ),
         ),

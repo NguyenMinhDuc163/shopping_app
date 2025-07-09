@@ -70,5 +70,24 @@
     "edit": "Chỉnh sửa",
     "available_in_stock": "Có sẵn trong kho",
     "in_wishlist": "Trong danh sách yêu thích"
+  },
+  "payment": {
+    "name": "Tên",
+    "country": "Quốc gia",
+    "city": "Thành phố",
+    "phone_number": "Số điện thoại",
+    "address": "Địa chỉ",
+    "save_as_primary_address": "Lưu làm địa chỉ chính",
+    "card_owner": "Chủ thẻ",
+    "card_number": "Số thẻ",
+    "save_card_info": "Lưu thông tin thẻ",
+    "save_address": "Lưu địa chỉ",
+    "save_card": "Lưu thẻ",
+    "add_new_card": "Thêm thẻ mới",
+    "add_card": "Thêm thẻ",
+    "order_confirmed": "Đơn hàng đã được xác nhận!",
+    "order_confirmation_message": "Đơn hàng của bạn đã được xác nhận, chúng tôi sẽ sớm gửi email xác nhận cho bạn.",
+    "go_to_orders": "Đi đến Đơn hàng",
+    "continue_shopping": "Tiếp tục mua sắm"
   }
 }

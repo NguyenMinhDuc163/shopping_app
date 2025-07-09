@@ -70,5 +70,24 @@
     "edit": "Edit",
     "available_in_stock": "Available in stock",
     "in_wishlist": "in wishlist"
+  },
+  "payment": {
+    "name": "Name",
+    "country": "Country",
+    "city": "City",
+    "phone_number": "Phone Number",
+    "address": "Address",
+    "save_as_primary_address": "Save as primary address",
+    "add_new_card": "Add new card",
+    "card_owner": "Card Owner",
+    "card_number": "Card Number",
+    "save_card_info": "Save card info",
+    "save_address": "Save Address",
+    "save_card": "Save Card",
+    "add_card": "Add Card",
+    "order_confirmed": "Order Confirmed!",
+    "order_confirmation_message": "Your order has been confirmed, we will send you confirmation email shortly.",
+    "go_to_orders": "Go to Orders",
+    "continue_shopping": "Continue Shopping"
   }
 }

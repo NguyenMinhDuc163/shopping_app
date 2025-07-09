@@ -11,6 +11,10 @@ import 'package:shopping_app/modules/auth/auth_flow/login_screen.dart';
 import 'package:shopping_app/modules/auth/initial/screen/onboarding_screen.dart';
 import 'package:shopping_app/modules/dashboard/dashboard_screen.dart';
 import 'package:shopping_app/modules/home/screen/home_screen.dart';
+import 'package:shopping_app/modules/payment/screen/address_form_screen.dart';
+import 'package:shopping_app/modules/payment/screen/confirm_screen.dart';
+import 'package:shopping_app/modules/payment/screen/new_card_screen.dart';
+import 'package:shopping_app/modules/payment/screen/payment_method_screen.dart';
 import 'package:shopping_app/modules/product/screen/detail_product.dart';
 
 class Routers {
@@ -41,6 +45,14 @@ class Routers {
         return MaterialPageRoute(builder: (_) => ChangePasswordScreen());
       case DetailProduct.routeName:
         return MaterialPageRoute(builder: (_) => DetailProduct());
+      case AddressFormScreen.routeName:
+        return MaterialPageRoute(builder: (_) => AddressFormScreen());
+      case ConfirmScreen.routeName:
+        return MaterialPageRoute(builder: (_) => ConfirmScreen());
+      case NewCardScreen.routeName:
+        return MaterialPageRoute(builder: (_) => NewCardScreen());
+      case PaymentMethodScreen.routeName:
+        return MaterialPageRoute(builder: (_) => PaymentMethodScreen());
       default:
         return MaterialPageRoute(
           builder:
