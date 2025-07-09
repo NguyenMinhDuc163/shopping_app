@@ -1,4 +1,4 @@
-import 'package:flutter_svg/flutter_svg.dart';
+
 
 import '../../../init.dart';
 
@@ -10,12 +10,9 @@ class WalletScreen extends StatefulWidget {
 }
 
 class _WalletScreenState extends State<WalletScreen> {
+
   @override
   Widget build(BuildContext context) {
-    return FunctionScreenTemplate(
-      isShowBottomButton: false,
-      isShowDrawer: true,
-      actionsWidget: [SvgPicture.asset(IconPath.iconBag)],
-    );
+    return FunctionScreenTemplate();
   }
 }

@@ -8,48 +8,87 @@ import 'package:shopping_app/modules/auth/auth_flow/sign_up_screen.dart';
 import 'package:shopping_app/modules/auth/widgets/text_span_widget.dart';
 
 import 'package:shopping_app/init.dart';
-
+import 'package:shopping_app/modules/payment/screen/address_form_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
   static const String routeName = '/LoginScreen';
 
-    @override
-    Widget build(BuildContext context) {
-      return FunctionScreenTemplate(
-        onClickBottomButton: (){
-          Navigator.pushNamed(context, SignUpScreen.routeName);
-        },
-          titleButtonBottom: "login_screen.create_account".tr(),
-        screen: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          spacing: 20,
-          children: [
-            Text("login_screen.get_started".tr(), style: AppTextStyles.textHeader1),
-            Spacer(),
-            ButtonWidget(titleWidget: _buildTitle(title: "Facebook", iconPath: IconPath.iconFacebook), onPressed: () {}, backgroundColor: AppColors.deepBlue, margin: AppPad.h24, height: height_56, boderRadius: BorderRadius.all(AppRadius.c10),),
-            ButtonWidget(titleWidget: _buildTitle(title: "Twitter", iconPath: IconPath.iconTwitter), onPressed: () {}, backgroundColor: AppColors.skyBlue, margin: AppPad.h24, height: height_56, boderRadius: BorderRadius.all(AppRadius.c10),),
-            ButtonWidget(titleWidget: _buildTitle(title: "Google", iconPath: IconPath.iconGoogle), onPressed: () {}, backgroundColor: AppColors.crimson, margin: AppPad.h24, height: height_56, boderRadius: BorderRadius.all(AppRadius.c10),),
-            Spacer(),
-            TextSpanWidget(
-              normalText: "${'login_screen.already_have_account'.tr()} ",
-              clickableText: 'login_screen.signin'.tr(),
-              onTap: () => Navigator.pushNamed(context, SignInScreen.routeName),
-            ),
-            AppGap.g2
-          ],
-        )
-      );
-    }
-
-    Widget _buildTitle({required String title,required String iconPath}){
-      return Row(
-        spacing: width_8,
-        mainAxisAlignment: MainAxisAlignment.center,
+  @override
+  Widget build(BuildContext context) {
+    return FunctionScreenTemplate(
+      onClickBottomButton: () {
+        Navigator.pushNamed(context, SignUpScreen.routeName);
+      },
+      titleButtonBottom: "login_screen.create_account".tr(),
+      screen: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        spacing: 20,
         children: [
-          SvgPicture.asset(iconPath),
-          Text(title, style: AppTextStyles.textContent1.copyWith(color: AppColors.white, fontWeight: FontWeight.bold),)
+          Text(
+            "login_screen.get_started".tr(),
+            style: AppTextStyles.textHeader1,
+          ),
+          Spacer(),
+          ButtonWidget(
+            titleWidget: _buildTitle(
+              title: "Facebook",
+              iconPath: IconPath.iconFacebook,
+            ),
+            onPressed: () => Navigator.pushNamed(context, AddressFormScreen.routeName),
+            backgroundColor: AppColors.deepBlue,
+            margin: AppPad.h24,
+            height: height_56,
+            boderRadius: BorderRadius.all(AppRadius.c10),
+          ),
+          ButtonWidget(
+            titleWidget: _buildTitle(
+              title: "Twitter",
+              iconPath: IconPath.iconTwitter,
+            ),
+            onPressed: () {},
+            backgroundColor: AppColors.skyBlue,
+            margin: AppPad.h24,
+            height: height_56,
+            boderRadius: BorderRadius.all(AppRadius.c10),
+          ),
+          ButtonWidget(
+            titleWidget: _buildTitle(
+              title: "Google",
+              iconPath: IconPath.iconGoogle,
+            ),
+            onPressed: () {},
+            backgroundColor: AppColors.crimson,
+            margin: AppPad.h24,
+            height: height_56,
+            boderRadius: BorderRadius.all(AppRadius.c10),
+          ),
+          Spacer(),
+          TextSpanWidget(
+            normalText: "${'login_screen.already_have_account'.tr()} ",
+            clickableText: 'login_screen.signin'.tr(),
+            onTap: () => Navigator.pushNamed(context, SignInScreen.routeName),
+          ),
+          AppGap.g2,
         ],
-      );
-    }
+      ),
+    );
   }
+
+  Widget _buildTitle({required String title, required String iconPath}) {
+    return Row(
+      spacing: width_8,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SvgPicture.asset(iconPath),
+        Text(
+          title,
+          style: AppTextStyles.textContent1.copyWith(
+            color: AppColors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
+    );
+  }
+}
