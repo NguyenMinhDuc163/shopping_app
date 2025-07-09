@@ -16,6 +16,7 @@ class ButtonWidget extends StatelessWidget {
     this.height = 80,
     this.margin = EdgeInsets.zero,
     this.padding = EdgeInsets.zero,
+    this.borderColor,
   });
   final String? title;
   final TextStyle? titleStyle;
@@ -27,6 +28,7 @@ class ButtonWidget extends StatelessWidget {
   final double height;
   final EdgeInsetsGeometry padding;
   final EdgeInsetsGeometry margin;
+  final Color? borderColor;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -40,6 +42,7 @@ class ButtonWidget extends StatelessWidget {
         decoration: BoxDecoration(
           color: backgroundColor,
           borderRadius: boderRadius,
+          border: borderColor != null ? Border.all(color: borderColor!) : null,
         ),
         child:
             titleWidget ??

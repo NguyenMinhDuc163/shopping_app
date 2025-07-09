@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shopping_app/core/constants/mock_data.dart';
 import 'package:shopping_app/core/widgets/template/button_widget.dart';
+import 'package:shopping_app/modules/cart/screen/cart_screen.dart';
 import 'package:shopping_app/modules/home/widget/search_bar_delegate.dart';
 import '../../../init.dart';
 
@@ -26,7 +27,12 @@ class _WishlistScreenState extends State<WishlistScreen> {
         isShowBottomButton: false,
         isShowAppBar: false,
         isShowDrawer: true,
-        actionsWidget: [SvgPicture.asset(IconPath.iconBag)],
+        actionsWidget: [
+          GestureDetector(
+            onTap: () => Navigator.pushNamed(context, CartScreen.routeName),
+            child: SvgPicture.asset(IconPath.iconBag),
+          ),
+        ],
         screen: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(

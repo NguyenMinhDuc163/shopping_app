@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:shopping_app/core/widgets/switch_botton_widget.dart';
-import 'package:shopping_app/core/widgets/template/button_widget.dart';
 import 'package:shopping_app/core/widgets/text_input_custom.dart';
+import 'package:shopping_app/modules/payment/screen/payment_method_screen.dart';
 
 import '../../../init.dart';
 
@@ -22,6 +22,8 @@ class _AddressFormScreenState extends State<AddressFormScreen> {
   Widget build(BuildContext context) {
     return FunctionScreenTemplate(
       titleButtonBottom: "payment.save_address".tr(),
+      title: "payment.address".tr(),
+      onClickBottomButton: () => Navigator.pushNamed(context, PaymentMethodScreen.routeName),
       screen: Padding(
         padding: AppPad.h22v15,
         child: Column(
@@ -32,7 +34,7 @@ class _AddressFormScreenState extends State<AddressFormScreen> {
               fillColor: true,
               label: 'payment.name'.tr(),
               hintText: "Hemendra Mali",
-              titleStyle: AppTextStyles.textHeader3,
+              titleStyle: AppTextStyles.textContent1.copyWith(fontWeight: FontWeight.bold),
               borderRadius: AppBorderRadius.a8,
             ),
             Row(
@@ -45,7 +47,7 @@ class _AddressFormScreenState extends State<AddressFormScreen> {
                     fillColor: true,
                     label: 'payment.country'.tr(),
                     hintText: "India",
-                    titleStyle: AppTextStyles.textHeader3,
+                    titleStyle: AppTextStyles.textContent1.copyWith(fontWeight: FontWeight.bold),
                     borderRadius: AppBorderRadius.a8,
                   ),
                 ),
@@ -55,7 +57,7 @@ class _AddressFormScreenState extends State<AddressFormScreen> {
                     fillColor: true,
                     label: 'payment.city'.tr(),
                     hintText: "Bangalore",
-                    titleStyle: AppTextStyles.textHeader3,
+                    titleStyle: AppTextStyles.textContent1.copyWith(fontWeight: FontWeight.bold),
                     borderRadius: AppBorderRadius.a8,
                   ),
                 ),
@@ -66,7 +68,7 @@ class _AddressFormScreenState extends State<AddressFormScreen> {
               fillColor: true,
               label: 'payment.phone_number'.tr(),
               hintText: "+91-800 301 0108",
-              titleStyle: AppTextStyles.textHeader3,
+              titleStyle: AppTextStyles.textContent1.copyWith(fontWeight: FontWeight.bold),
               borderRadius: AppBorderRadius.a8,
             ),
             TextInputCustom(
@@ -74,7 +76,7 @@ class _AddressFormScreenState extends State<AddressFormScreen> {
               fillColor: true,
               label: 'payment.address'.tr(),
               hintText: "43, Electronics City Phase 1, Electronic City",
-              titleStyle: AppTextStyles.textHeader3,
+              titleStyle: AppTextStyles.textContent1.copyWith(fontWeight: FontWeight.bold),
               borderRadius: AppBorderRadius.a8,
             ),
             Row(

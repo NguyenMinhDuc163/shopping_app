@@ -1,6 +1,7 @@
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shopping_app/core/constants/mock_data.dart';
 import 'package:shopping_app/init.dart';
+import 'package:shopping_app/modules/cart/screen/cart_screen.dart';
 import 'package:shopping_app/modules/home/widget/search_bar_delegate.dart';
 import 'package:shopping_app/modules/product/screen/detail_product.dart';
 
@@ -20,7 +21,12 @@ class _HomeScreenState extends State<HomeScreen> {
       isShowBottomButton: false,
       isShowAppBar: true,
       isShowDrawer: true,
-      actionsWidget: [SvgPicture.asset(IconPath.iconBag)],
+      actionsWidget: [
+        GestureDetector(
+          onTap: () => Navigator.pushNamed(context, CartScreen.routeName),
+          child: SvgPicture.asset(IconPath.iconBag),
+        ),
+      ],
       screen: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
@@ -129,11 +135,14 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: AppPad.a12,
             sliver: SliverGrid(
               delegate: SliverChildBuilderDelegate((context, index) {
-                final product = MockData.products[index % MockData.products.length];
+                final product =
+                    MockData.products[index % MockData.products.length];
                 final isFavorite = favoriteIndexes.contains(index);
 
                 return GestureDetector(
-                  onTap: () =>  Navigator.pushNamed(context, DetailProduct.routeName),
+                  onTap:
+                      () =>
+                          Navigator.pushNamed(context, DetailProduct.routeName),
                   child: Container(
                     margin: AppPad.a8,
                     decoration: BoxDecoration(

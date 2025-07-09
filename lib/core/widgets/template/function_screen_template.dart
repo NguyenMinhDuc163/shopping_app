@@ -157,7 +157,7 @@ class _FunctionScreenTemplateState extends State<FunctionScreenTemplate>
       title:
           widget.titleWidget ??
           (widget.title != null
-              ? Text(widget.title!, style: AppTextStyles.textContent1)
+              ? Text(widget.title!, style: AppTextStyles.textHeader3)
               : null),
       centerTitle: true,
       actions:
