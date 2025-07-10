@@ -99,5 +99,21 @@
     "subtotal": "Subtotal",
     "delivery_charge": "Delivery Charge",
     "total": "Total"
+  },
+  "review": {
+    "title": "Reviews",
+    "view_all": "View All",
+    "description": "Description",
+    "size_guide": "Size Guide",
+    "size": "Size",
+    "price": "Price",
+    "rating": "rating",
+    "add_review": "Add Review",
+    "type_your_name": "Type your name",
+    "name": "Name",
+    "how_was_your_experience": "How was your experience ?",
+    "describe_your_experience": "Describe your experience?",
+    "star": "Star",
+    "submit_review": "Submit Review"
   }
 }

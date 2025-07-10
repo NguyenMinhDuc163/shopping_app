@@ -20,10 +20,12 @@ class TextInputCustom extends StatefulWidget {
     this.onEditingComplete,
     this.onChanged,
     this.borderRadius,
+    this.maxLines,
   });
   final String? label;
   final TextEditingController controller;
   final bool? fillColor;
+  final int? maxLines;
   final String? hintText;
   final TextStyle? titleStyle;
   final bool Function(String)? validator;
@@ -79,6 +81,7 @@ class _TextInputCustomState extends State<TextInputCustom> {
         TextFormField(
           controller: widget.controller,
           obscureText: widget.isPassword ? obscureText : false,
+          maxLines: widget.maxLines,
           onTapOutside:
               (widget.onTapOutside != null)
                   ? (_) => widget.onTapOutside?.call()

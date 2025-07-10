@@ -1,5 +1,6 @@
 import 'package:shopping_app/modules/cart/model/product_cart_model.dart';
 import 'package:shopping_app/modules/payment/model/credit_card_model.dart';
+import 'package:shopping_app/modules/reviews/model/review_model.dart';
 
 import '../../init.dart';
 
@@ -68,6 +69,37 @@ class MockData {
       imagePath: 'assets/images/img_mock_2.png',
       price: 45,
       tax: 4.0,
+    ),
+  ];
+
+  static  List<ReviewModel> reviews = [
+    ReviewModel(
+      name: "Jenny Wilson",
+      avatarUrl: "",
+      rating: 4.8,
+      date: "13 Sep, 2020",
+      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque malesuada eget vitae amet...",
+    ),
+    ReviewModel(
+      name: "Jenny Wilson",
+      avatarUrl: "",
+      rating: 4.8,
+      date: "13 Sep, 2020",
+      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque malesuada eget vitae amet...",
+    ),
+    ReviewModel(
+      name: "Jenny Wilson",
+      avatarUrl: "",
+      rating: 4.8,
+      date: "13 Sep, 2020",
+      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque malesuada eget vitae amet...",
+    ),
+    ReviewModel(
+      name: "Jenny Wilson",
+      avatarUrl: "",
+      rating: 4.8,
+      date: "13 Sep, 2020",
+      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque malesuada eget vitae amet...",
     ),
   ];
 }

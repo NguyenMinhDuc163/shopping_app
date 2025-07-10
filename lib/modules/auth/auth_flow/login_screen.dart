@@ -8,6 +8,7 @@ import 'package:shopping_app/modules/auth/auth_flow/sign_up_screen.dart';
 import 'package:shopping_app/modules/auth/widgets/text_span_widget.dart';
 
 import 'package:shopping_app/init.dart';
+import 'package:shopping_app/modules/dashboard/dashboard_screen.dart';
 import 'package:shopping_app/modules/payment/screen/address_form_screen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -35,7 +36,7 @@ class LoginScreen extends StatelessWidget {
               title: "Facebook",
               iconPath: IconPath.iconFacebook,
             ),
-            onPressed: () => Navigator.pushNamed(context, AddressFormScreen.routeName),
+            onPressed: () => Navigator.pushNamed(context, DashboardScreen.routeName),
             backgroundColor: AppColors.deepBlue,
             margin: AppPad.h24,
             height: height_56,
