@@ -53,7 +53,7 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
       - name: Build Web with base href set to root
-        run: flutter build web --release --base-href="/" -t lib/main_preview.dart
+        run: flutter build web --release --base-href="/shopping_app/" -t lib/main_preview.dart
       - name: Upload Web Build
         uses: actions/upload-artifact@v4
         with:
