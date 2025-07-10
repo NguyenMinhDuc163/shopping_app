@@ -1,0 +1,80 @@
+name: Flutter Build and Deploy Web
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  FLUTTER_VERSION: ${{ secrets.FLUTTER_VERSION }}
+  TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+  TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+  GH_PAGES_DEPLOY_TOKEN: ${{ secrets.GH_PAGES_DEPLOY_TOKEN }}
+  WEB_URL: ${{ secrets.WEB_URL }}
+
+jobs:
+  notify-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Get Commit Info
+        run: |
+          COMMIT_HASH=$(git rev-parse --short HEAD)
+          COMMIT_MESSAGE=$(git log -1 --pretty=%B)
+          COMMIT_AUTHOR=$(git log -1 --pretty="%an")
+          COMMIT_DATE=$(git log -1 --pretty="%cd" --date=iso)
+          MESSAGE="🛠 *New Build Triggered*%0A"
+          MESSAGE+="%0A"
+          MESSAGE+="👤 *Author:* \`$COMMIT_AUTHOR\`%0A"
+          MESSAGE+="📅 *Date:* \`$COMMIT_DATE\`%0A"
+          MESSAGE+="🔢 *Commit:* \`$COMMIT_HASH\`%0A"
+          MESSAGE+="📝 *Message:* \`$COMMIT_MESSAGE\`%0A"
+          curl -X POST "https://api.telegram.org/bot${{ env.TELEGRAM_BOT_TOKEN }}/sendMessage" \
+               -d "chat_id=${{ env.TELEGRAM_CHAT_ID }}" \
+               -d "text=$MESSAGE" \
+               -d "parse_mode=MarkdownV2"
+
+  build-web:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+      - name: Create .env file
+        run: echo "${{ secrets.ENV_FILE_CONTENTS }}" > .env
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Build Web with base href set to root
+        run: flutter build web --release --base-href="/" -t lib/main_preview.dart
+      - name: Upload Web Build
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-build
+          path: build/web
+      - name: Deploy to GitHub Pages
+        if: success()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.GH_PAGES_DEPLOY_TOKEN }}
+          publish_dir: build/web
+          publish_branch: gh-pages
+          force_orphan: true
+      - name: Send Web Build URL to Telegram
+        run: |
+          TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
+          ESCAPED_WEB_URL=$(echo "${{ env.WEB_URL }}" | sed 's/\./\\./g')
+          MESSAGE="🚀 *Web Build Completed*%0A"
+          MESSAGE+="📅 *Date:* \`$TIMESTAMP\`%0A"
+          MESSAGE+="🌍 *URL:* \[Click here\]\($ESCAPED_WEB_URL\)"
+          curl -X POST "https://api.telegram.org/bot${{ env.TELEGRAM_BOT_TOKEN }}/sendMessage" \
+               --data-urlencode "chat_id=${{ env.TELEGRAM_CHAT_ID }}" \
+               --data-urlencode "text=$MESSAGE" \
+               --data-urlencode "parse_mode=MarkdownV2"
