@@ -17,6 +17,8 @@ import 'package:shopping_app/modules/payment/screen/confirm_screen.dart';
 import 'package:shopping_app/modules/payment/screen/new_card_screen.dart';
 import 'package:shopping_app/modules/payment/screen/payment_method_screen.dart';
 import 'package:shopping_app/modules/product/screen/detail_product.dart';
+import 'package:shopping_app/modules/reviews/screen/add_review_screen.dart';
+import 'package:shopping_app/modules/reviews/screen/review_screen.dart';
 
 class Routers {
   static Map<String, WidgetBuilder> routes = {
@@ -56,6 +58,10 @@ class Routers {
         return MaterialPageRoute(builder: (_) => PaymentMethodScreen());
       case CartScreen.routeName:
         return MaterialPageRoute(builder: (_) => CartScreen());
+      case ReviewScreen.routeName:
+        return MaterialPageRoute(builder: (_) => ReviewScreen());
+      case AddReviewScreen.routeName:
+        return MaterialPageRoute(builder: (_) => AddReviewScreen());
       default:
         return MaterialPageRoute(
           builder:

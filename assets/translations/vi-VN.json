@@ -99,5 +99,21 @@
     "subtotal": "Tổng phụ",
     "delivery_charge": "Phí giao hàng",
     "total": "Tổng cộng"
+  },
+  "review": {
+    "title": "Đánh giá",
+    "view_all": "Xem tất cả",
+    "description": "Mô tả",
+    "size_guide": "Hướng dẫn kích thước",
+    "size": "Kích thước",
+    "price": "Giá",
+    "rating": "Xếp hạng",
+    "add_review": "Thêm đánh giá",
+    "type_your_name": "Nhập tên của bạn",
+    "name": "Tên",
+    "how_was_your_experience": "Trải nghiệm của bạn thế nào?",
+    "describe_your_experience": "Mô tả trải nghiệm của bạn?",
+    "star": "Sao",
+    "submit_review": "Gửi đánh giá"
   }
 }

@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shopping_app/modules/reviews/screen/review_screen.dart';
 import '../../../init.dart';
 
 class DetailProduct extends StatefulWidget {
@@ -90,13 +92,13 @@ class _DetailProductState extends State<DetailProduct> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Size",
+                        "review.size".tr(),
                         style: AppTextStyles.textContent1.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       Text(
-                        "Size Guide",
+                        "review.size_guide".tr(),
                         style: AppTextStyles.textContent3.copyWith(
                           color: AppColors.coolGray,
                         ),
@@ -147,7 +149,7 @@ class _DetailProductState extends State<DetailProduct> {
                   const SizedBox(height: 16),
 
                   Text(
-                    "Description",
+                    "review.description".tr(),
                     style: AppTextStyles.textContent1.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -165,15 +167,18 @@ class _DetailProductState extends State<DetailProduct> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Reviews",
+                        "review.title".tr(),
                         style: AppTextStyles.textContent1.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Text(
-                        "View All",
-                        style: AppTextStyles.textContent3.copyWith(
-                          color: AppColors.coolGray,
+                      GestureDetector(
+                        onTap: () => Navigator.pushNamed(context, ReviewScreen.routeName,),
+                        child: Text(
+                          "review.view_all".tr(),
+                          style: AppTextStyles.textContent3.copyWith(
+                            color: AppColors.coolGray,
+                          ),
                         ),
                       ),
                     ],

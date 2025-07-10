@@ -110,6 +110,7 @@ class AppColors {
   static const Color offWhite = Color(0xFFF5F5F5);
   static const Color colorFEFEFE = Color(0xFFFEFEFE);
   static const Color colorDEDEDE = Color(0xFFDEDEDE);
+  static const Color colorFF7043 = Color(0xFFFF7043);
 
   // gradient
   static const LinearGradient gradientPrimaryColor = LinearGradient(
