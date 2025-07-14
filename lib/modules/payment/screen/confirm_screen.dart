@@ -49,7 +49,7 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
                     ),
                     backgroundColor: AppColors.offWhite,
                     boderRadius: AppBorderRadius.a12,
-                    height: 60,
+                    padding: AppPad.v14,
                   ),
                 ],
               ),

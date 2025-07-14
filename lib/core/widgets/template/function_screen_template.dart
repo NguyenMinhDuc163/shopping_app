@@ -107,15 +107,20 @@ class _FunctionScreenTemplateState extends State<FunctionScreenTemplate>
                 ? Colors.transparent
                 : widget.backgroundColor ?? AppColors.white,
         appBar: appBar ? appBarWidget() : null,
-        drawer: widget.isShowDrawer ? DrawerWidget() : null,
         body: body,
         bottomNavigationBar:
             widget.isShowBottomButton
-                ? (widget.customBottomNavigationBar ??
-                    ButtonWidget(
-                      title: widget.titleButtonBottom,
-                      onPressed: widget.onClickBottomButton ?? () {},
-                    ))
+                ? Column(
+              mainAxisSize: MainAxisSize.min,
+                  children: [
+                    (widget.customBottomNavigationBar ??
+                        ButtonWidget(
+                          title: widget.titleButtonBottom,
+                          padding: AppPad.v24,
+                          onPressed: widget.onClickBottomButton ?? () {},
+                        )),
+                  ],
+                )
                 : const SizedBox.shrink(),
         floatingActionButton: widget.floatingActionButton,
       ),
@@ -133,15 +138,12 @@ class _FunctionScreenTemplateState extends State<FunctionScreenTemplate>
           child:
               widget.leadingWidget ??
               (widget.isShowDrawer
-                  ? Builder(
-                    builder:
-                        (context) => IconButton(
-                          icon: SvgPicture.asset(IconPath.iconMenu),
-                          onPressed: () {
-                            Scaffold.of(context).openDrawer();
-                          },
-                        ),
-                  )
+                  ? IconButton(
+                icon: SvgPicture.asset(IconPath.iconMenu),
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+              )
                   : IconButton(
                     icon: const Icon(Icons.arrow_back),
                     onPressed: () {

@@ -22,56 +22,56 @@ class LoginScreen extends StatelessWidget {
         Navigator.pushNamed(context, SignUpScreen.routeName);
       },
       titleButtonBottom: "login_screen.create_account".tr(),
-      screen: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        spacing: 20,
-        children: [
-          Text(
-            "login_screen.get_started".tr(),
-            style: AppTextStyles.textHeader1,
-          ),
-          Spacer(),
-          ButtonWidget(
-            titleWidget: _buildTitle(
-              title: "Facebook",
-              iconPath: IconPath.iconFacebook,
+      screen: Padding(
+        padding: AppPad.h22v10,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          spacing: 12,
+          children: [
+            Text(
+              "login_screen.get_started".tr(),
+              style: AppTextStyles.textHeader1,
             ),
-            onPressed: () => Navigator.pushNamed(context, DashboardScreen.routeName),
-            backgroundColor: AppColors.deepBlue,
-            margin: AppPad.h24,
-            height: height_56,
-            boderRadius: BorderRadius.all(AppRadius.c10),
-          ),
-          ButtonWidget(
-            titleWidget: _buildTitle(
-              title: "Twitter",
-              iconPath: IconPath.iconTwitter,
+            Spacer(),
+            ButtonWidget(
+              titleWidget: _buildTitle(
+                title: "Facebook",
+                iconPath: IconPath.iconFacebook,
+              ),
+              onPressed: () => Navigator.pushNamed(context, DashboardScreen.routeName),
+              backgroundColor: AppColors.deepBlue,
+              padding: AppPad.v14,
+              boderRadius: BorderRadius.all(AppRadius.c10),
             ),
-            onPressed: () {},
-            backgroundColor: AppColors.skyBlue,
-            margin: AppPad.h24,
-            height: height_56,
-            boderRadius: BorderRadius.all(AppRadius.c10),
-          ),
-          ButtonWidget(
-            titleWidget: _buildTitle(
-              title: "Google",
-              iconPath: IconPath.iconGoogle,
+            ButtonWidget(
+              titleWidget: _buildTitle(
+                title: "Twitter",
+                iconPath: IconPath.iconTwitter,
+              ),
+              onPressed: () {},
+              backgroundColor: AppColors.skyBlue,
+              padding: AppPad.v14,
+              boderRadius: BorderRadius.all(AppRadius.c10),
             ),
-            onPressed: () {},
-            backgroundColor: AppColors.crimson,
-            margin: AppPad.h24,
-            height: height_56,
-            boderRadius: BorderRadius.all(AppRadius.c10),
-          ),
-          Spacer(),
-          TextSpanWidget(
-            normalText: "${'login_screen.already_have_account'.tr()} ",
-            clickableText: 'login_screen.signin'.tr(),
-            onTap: () => Navigator.pushNamed(context, SignInScreen.routeName),
-          ),
-          AppGap.g2,
-        ],
+            ButtonWidget(
+              titleWidget: _buildTitle(
+                title: "Google",
+                iconPath: IconPath.iconGoogle,
+              ),
+              onPressed: () {},
+              backgroundColor: AppColors.crimson,
+              padding: AppPad.v14,
+              boderRadius: BorderRadius.all(AppRadius.c10),
+            ),
+            Spacer(),
+            TextSpanWidget(
+              normalText: "${'login_screen.already_have_account'.tr()} ",
+              clickableText: 'login_screen.signin'.tr(),
+              onTap: () => Navigator.pushNamed(context, SignInScreen.routeName),
+            ),
+            AppGap.g2,
+          ],
+        ),
       ),
     );
   }

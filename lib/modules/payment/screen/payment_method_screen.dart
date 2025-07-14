@@ -62,10 +62,10 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                 ),
                 AppGap.h1,
                 ButtonWidget(
-                  height: 60,
                   backgroundColor: AppColors.colorF6F2FF,
                   borderColor: AppColors.lavenderColor,
                   boderRadius: AppBorderRadius.a12,
+                  padding: AppPad.v14,
                   titleWidget: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     spacing: 8,

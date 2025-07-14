@@ -38,7 +38,7 @@ class _NewCardScreenState extends State<NewCardScreen> {
                   child: ButtonWidget(
                     titleWidget: Image.asset(IconPath.iconMaster),
                     backgroundColor: AppColors.lightGray,
-                    height: 60,
+                    padding: AppPad.v14,
                     boderRadius: AppBorderRadius.a12,
                   ),
                 ),
@@ -46,7 +46,7 @@ class _NewCardScreenState extends State<NewCardScreen> {
                   child: ButtonWidget(
                     titleWidget: Image.asset(IconPath.iconPaypal),
                     backgroundColor: AppColors.lightGray,
-                    height: 60,
+                    padding: AppPad.v14,
                     boderRadius: AppBorderRadius.a12,
                   ),
                 ),
@@ -54,8 +54,8 @@ class _NewCardScreenState extends State<NewCardScreen> {
                   child: ButtonWidget(
                     titleWidget: Image.asset(IconPath.iconBank),
                     backgroundColor: AppColors.lightGray,
-                    height: 60,
                     boderRadius: AppBorderRadius.a12,
+                    padding: AppPad.v14,
                   ),
                 ),
               ],
