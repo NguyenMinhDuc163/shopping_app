@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:shopping_app/core/theme/app_text_theme.dart';
 import 'package:shopping_app/core/widgets/switch_botton_widget.dart';
 import 'package:shopping_app/core/widgets/text_input_custom.dart';
 import 'package:shopping_app/modules/auth/forgot_password/screen/forgot_password_screen.dart';
@@ -18,13 +19,22 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreenState extends State<SignInScreen> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  bool isSwitched = false
-  ;
+  bool isSwitched = false;
+
+
+  @override
+  void dispose() {
+    usernameController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return FunctionScreenTemplate(
       titleButtonBottom: 'login.title'.tr(),
-      onClickBottomButton: () => Navigator.pushNamed(context, OnboardingScreen.routeName),
+      onClickBottomButton:
+          () => Navigator.pushNamed(context, OnboardingScreen.routeName),
       screen: Padding(
         padding: AppPad.h22v10,
         child: Column(
@@ -33,9 +43,10 @@ class _SignInScreenState extends State<SignInScreen> {
             Text("login.welcome".tr(), style: AppTextStyles.textHeader1),
             Text(
               "login.enter_data_to_continue".tr(),
-              style: AppTextStyles.textContent1.copyWith(
-                color: AppColors.coolGray,
-              ),
+              // style: AppTextTheme.base.s12.copyWith(color: Colors.red),
+                style: AppTextStyles.textContent1.copyWith(
+                  color: AppColors.coolGray,
+                )
             ),
             Spacer(),
             TextInputCustom(
@@ -62,17 +73,26 @@ class _SignInScreenState extends State<SignInScreen> {
             ),
 
             GestureDetector(
-              onTap: () => Navigator.pushNamed(context, ForgotPasswordScreen.routeName),
+              onTap:
+                  () => Navigator.pushNamed(
+                    context,
+                    ForgotPasswordScreen.routeName,
+                  ),
               child: Align(
                 alignment: Alignment.centerRight,
-                child:
-                Text("login.forgot_password".tr(), style: AppTextStyles.textContent1.copyWith(color: Colors.red),),
+                child: Text(
+                  "login.forgot_password".tr(),
+                  style: AppTextStyles.textContent1.copyWith(color: Colors.red),
+                ),
               ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("sign_up.remember_me".tr(), style: AppTextStyles.textContent2,),
+                Text(
+                  "sign_up.remember_me".tr(),
+                  style: AppTextStyles.textContent2,
+                ),
                 SwitchBottomWidget(onChanged: (value) {}),
               ],
             ),

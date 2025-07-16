@@ -20,6 +20,7 @@ import 'package:shopping_app/modules/product/screen/detail_product.dart';
 import 'package:shopping_app/modules/reviews/screen/add_review_screen.dart';
 import 'package:shopping_app/modules/reviews/screen/review_screen.dart';
 
+//part of in dart
 class Routers {
   static Map<String, WidgetBuilder> routes = {
     LoginScreen.routeName: (context) => const LoginScreen(),
@@ -28,6 +29,7 @@ class Routers {
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     GlobalUtils.ROUTES = settings.name;
+    // log back
     print("Global Routes ------------${settings.name}");
     switch (settings.name) {
       case LoginScreen.routeName:

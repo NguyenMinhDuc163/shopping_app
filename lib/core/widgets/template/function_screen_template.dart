@@ -1,14 +1,12 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shopping_app/core/constants/icon_path.dart';
 import 'package:shopping_app/core/theme/app_colors.dart';
-import 'package:shopping_app/core/theme/app_dimension.dart';
 import 'package:shopping_app/core/theme/app_pad.dart';
 import 'package:shopping_app/core/theme/app_text_styles.dart';
-import 'package:shopping_app/core/widgets/drawer_widget.dart';
 import 'package:shopping_app/core/widgets/template/button_widget.dart';
 import 'package:shopping_app/core/widgets/template/opacity_widget.dart';
+import 'package:shopping_app/core/widgets/will_unfocus_form_scope.dart';
 
 // ignore: must_be_immutable
 class FunctionScreenTemplate extends StatefulWidget {
@@ -18,7 +16,7 @@ class FunctionScreenTemplate extends StatefulWidget {
       floatingActionButton,
       background,
       customBottomNavigationBar;
-  bool? resizeToAvoidBottomInset;
+  bool resizeToAvoidBottomInset;
   bool isShowDrawer, isShowBottomButton, isShowAppBar;
   Widget? leadingWidget;
   List<Widget>? actionsWidget;
@@ -32,7 +30,7 @@ class FunctionScreenTemplate extends StatefulWidget {
     this.titleButtonBottom,
     this.isShowBottomButton = true,
     this.onBack,
-    this.resizeToAvoidBottomInset,
+    this.resizeToAvoidBottomInset = true,
     this.titleWidget,
     this.floatingActionButton,
     this.isShowAppBar = true,
@@ -95,34 +93,34 @@ class _FunctionScreenTemplateState extends State<FunctionScreenTemplate>
   }
 
   Widget _buildScaffold({required Widget body, required bool appBar}) {
-    return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).unfocus();
-      },
-      child: Scaffold(
-        extendBodyBehindAppBar: widget.background != null,
-        resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset ?? true,
-        backgroundColor:
-            widget.background != null
-                ? Colors.transparent
-                : widget.backgroundColor ?? AppColors.white,
-        appBar: appBar ? appBarWidget() : null,
-        body: body,
-        bottomNavigationBar:
-            widget.isShowBottomButton
-                ? Column(
+    return WillUnfocusFormScope(
+      child: SafeArea(
+        top: false,
+        child: Scaffold(
+          extendBodyBehindAppBar: widget.background != null,
+          resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset ,
+          backgroundColor:
+              widget.background != null
+                  ? Colors.transparent
+                  : widget.backgroundColor ?? AppColors.white,
+          appBar: appBar ? appBarWidget() : null,
+          body: body,
+          bottomNavigationBar: Visibility(
+            visible: widget.isShowBottomButton,
+            child: Column(
               mainAxisSize: MainAxisSize.min,
-                  children: [
-                    (widget.customBottomNavigationBar ??
-                        ButtonWidget(
-                          title: widget.titleButtonBottom,
-                          padding: AppPad.v24,
-                          onPressed: widget.onClickBottomButton ?? () {},
-                        )),
-                  ],
-                )
-                : const SizedBox.shrink(),
-        floatingActionButton: widget.floatingActionButton,
+              children: [
+                (widget.customBottomNavigationBar ??
+                    ButtonWidget(
+                      title: widget.titleButtonBottom,
+                      padding: AppPad.v24,
+                      onPressed: widget.onClickBottomButton ?? () {},
+                    )),
+              ],
+            ),
+          ),
+          floatingActionButton: widget.floatingActionButton,
+        ),
       ),
     );
   }
@@ -139,11 +137,11 @@ class _FunctionScreenTemplateState extends State<FunctionScreenTemplate>
               widget.leadingWidget ??
               (widget.isShowDrawer
                   ? IconButton(
-                icon: SvgPicture.asset(IconPath.iconMenu),
-                onPressed: () {
-                  Scaffold.of(context).openDrawer();
-                },
-              )
+                    icon: SvgPicture.asset(IconPath.iconMenu),
+                    onPressed: () {
+                      Scaffold.of(context).openDrawer();
+                    },
+                  )
                   : IconButton(
                     icon: const Icon(Icons.arrow_back),
                     onPressed: () {
