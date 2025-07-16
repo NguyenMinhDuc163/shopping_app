@@ -114,19 +114,19 @@ abstract final class AppTextStyles {
   );
 
 
-  static TextStyle textHeader1 = textStyleDefaultBold.copyWith(fontSize: 28);
+  static final TextStyle textHeader1 = textStyleDefaultBold.copyWith(fontSize: 28);
 
-  static TextStyle textHeader2 = textStyleDefaultBold.copyWith(fontSize: 25);
+  static final TextStyle textHeader2 = textStyleDefaultBold.copyWith(fontSize: 25);
 
-  static TextStyle textHeader3 = textStyleDefaultBold.copyWith(fontSize: 20);
+  static final  TextStyle textHeader3 = textStyleDefaultBold.copyWith(fontSize: 20);
 
-  static TextStyle textContent1 = textStyleDefault.copyWith(fontSize: 17);
+  static final TextStyle textContent1 = textStyleDefault.copyWith(fontSize: 17);
 
-  static TextStyle textContent2 = textStyleDefault.copyWith(fontSize: 15);
+  static final  TextStyle textContent2 = textStyleDefault.copyWith(fontSize: 15);
 
-  static TextStyle textContent3 = textStyleDefault.copyWith(fontSize: 13);
+  static final TextStyle textContent3 = textStyleDefault.copyWith(fontSize: 13);
 
-  static TextStyle textContent4 = textStyleDefault.copyWith(fontSize: 11);
+  static final TextStyle textContent4 = textStyleDefault.copyWith(fontSize: 11);
 
 
   static const TextStyle introDescription = text;

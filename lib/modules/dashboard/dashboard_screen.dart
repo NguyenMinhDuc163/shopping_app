@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:shopping_app/core/constants/icon_path.dart';
+import 'package:shopping_app/core/widgets/drawer_widget.dart';
 import 'package:shopping_app/modules/cart/screen/cart_screen.dart';
 import 'package:shopping_app/modules/home/screen/home_screen.dart';
 import 'package:shopping_app/modules/wallet/screen/wallet_screen.dart';
@@ -27,6 +28,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       },
       child: Scaffold(
         backgroundColor: Colors.white,
+        drawer: DrawerWidget() ,
         body: IndexedStack(
           index: _currentIndex,
           children: const [

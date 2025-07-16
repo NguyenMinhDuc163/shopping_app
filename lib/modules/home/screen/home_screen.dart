@@ -1,5 +1,6 @@
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shopping_app/core/constants/mock_data.dart';
+import 'package:shopping_app/core/widgets/sliver_pad_to_box.dart';
 import 'package:shopping_app/init.dart';
 import 'package:shopping_app/modules/cart/screen/cart_screen.dart';
 import 'package:shopping_app/modules/home/widget/search_bar_delegate.dart';
@@ -114,21 +115,19 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
 
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: AppPad.a16,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'New Arrival',
-                    style: AppTextStyles.textContent1.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+          SliverPadToBox(
+            padding: AppPad.a16, // tinh lai padding
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'New Arrival',
+                  style: AppTextStyles.textContent1.copyWith(
+                    fontWeight: FontWeight.bold,
                   ),
-                  Text('View All', style: TextStyle(color: Colors.grey)),
-                ],
-              ),
+                ),
+                InkWell(child: Text('View All', style: TextStyle(color: Colors.grey))),
+              ],
             ),
           ),
           SliverPadding(
@@ -168,6 +167,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 height: 150,
                                 width: double.infinity,
                                 fit: BoxFit.cover,
+                                alignment: Alignment.topCenter,
                               ),
                             ),
                             Positioned(

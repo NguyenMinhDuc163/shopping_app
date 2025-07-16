@@ -129,9 +129,8 @@ class DrawerWidget extends StatelessWidget {
         ),
         ButtonWidget(
           title: "common.orders".tr(),
-          width: 50,
-          height: 40,
           boderRadius: AppBorderRadius.a8,
+          padding: AppPad.h10v8,
           backgroundColor: AppColors.offWhite,
           titleStyle: AppTextStyles.textContent3.copyWith(
             color: AppColors.coolGray,

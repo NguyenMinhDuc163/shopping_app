@@ -10,7 +10,7 @@ class TextSpanWidget extends StatelessWidget {
     required this.normalText,
     required this.clickableText,
     required this.onTap,
-    this.padding,
+    this.padding = AppPad.h20v10,
     this.normalTextStyle,
     this.clickableTextStyle,
   });
@@ -18,14 +18,14 @@ class TextSpanWidget extends StatelessWidget {
   final String normalText;
   final String clickableText;
   final VoidCallback onTap;
-  final EdgeInsetsGeometry? padding;
+  final EdgeInsetsGeometry padding;
   final TextStyle? normalTextStyle;
   final TextStyle? clickableTextStyle;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: padding ?? AppPad.h20v10,
+      padding: padding,
       child: Text.rich(
         TextSpan(
           children: [

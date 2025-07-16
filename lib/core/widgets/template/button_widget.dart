@@ -12,8 +12,6 @@ class ButtonWidget extends StatelessWidget {
     this.onPressed,
     this.backgroundColor = AppColors.lavenderColor,
     this.boderRadius = BorderRadius.zero,
-    this.width = double.infinity,
-    this.height = 80,
     this.margin = EdgeInsets.zero,
     this.padding = EdgeInsets.zero,
     this.borderColor,
@@ -24,8 +22,6 @@ class ButtonWidget extends StatelessWidget {
   final Color backgroundColor;
   final BorderRadiusGeometry boderRadius;
   final Function? onPressed;
-  final double width;
-  final double height;
   final EdgeInsetsGeometry padding;
   final EdgeInsetsGeometry margin;
   final Color? borderColor;
@@ -37,8 +33,6 @@ class ButtonWidget extends StatelessWidget {
         padding: padding,
         margin: margin,
         alignment: Alignment.center,
-        height: height,
-        width: width,
         decoration: BoxDecoration(
           color: backgroundColor,
           borderRadius: boderRadius,

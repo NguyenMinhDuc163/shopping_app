@@ -66,7 +66,7 @@ class OnboardingScreen extends StatelessWidget {
               Expanded(
                 child: ButtonWidget(
                   title: "onboarding.women".tr(),
-                  height: height_64,
+                  padding: AppPad.v14,
                   boderRadius: AppBorderRadius.a14,
                   backgroundColor: AppColors.lightGray,
                   titleStyle: AppTextStyles.textContent1.copyWith(
@@ -78,7 +78,7 @@ class OnboardingScreen extends StatelessWidget {
               Expanded(
                 child: ButtonWidget(
                   title: "onboarding.men".tr(),
-                  height: height_64,
+                  padding: AppPad.v14,
                   boderRadius: AppBorderRadius.a14,
                   titleStyle: AppTextStyles.textContent1.copyWith(
                     color: AppColors.white,
