@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shopping_app/core/widgets/app_gap.dart';
 import 'package:shopping_app/core/widgets/template/button_widget.dart';
 import 'package:shopping_app/init.dart';
 import 'package:shopping_app/modules/auth/auth_flow/sign_in_screen.dart';

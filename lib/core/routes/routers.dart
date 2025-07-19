@@ -29,43 +29,92 @@ class Routers {
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     GlobalUtils.ROUTES = settings.name;
-    // log back
-    print("Global Routes ------------${settings.name}");
+    // // log back
+    // print("Global Routes ------------${settings.name}");
     switch (settings.name) {
       case LoginScreen.routeName:
-        return MaterialPageRoute(builder: (_) => LoginScreen());
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => LoginScreen(),
+        );
       case HomeScreen.routeName:
-        return MaterialPageRoute(builder: (_) => HomeScreen());
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => HomeScreen(),
+        );
       case DashboardScreen.routeName:
-        return MaterialPageRoute(builder: (_) => DashboardScreen());
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => DashboardScreen(),
+        );
       case SignUpScreen.routeName:
-        return MaterialPageRoute(builder: (_) => SignUpScreen());
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => SignUpScreen(),
+        );
       case SignInScreen.routeName:
-        return MaterialPageRoute(builder: (_) => SignInScreen());
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => SignInScreen(),
+        );
       case ForgotPasswordScreen.routeName:
-        return MaterialPageRoute(builder: (_) => ForgotPasswordScreen());
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => ForgotPasswordScreen(),
+        );
       case VerifyScreen.routeName:
-        return MaterialPageRoute(builder: (_) => VerifyScreen());
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => VerifyScreen(),
+        );
       case ChangePasswordScreen.routeName:
-        return MaterialPageRoute(builder: (_) => ChangePasswordScreen());
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => ChangePasswordScreen(),
+        );
       case DetailProduct.routeName:
-        return MaterialPageRoute(builder: (_) => DetailProduct());
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => DetailProduct(),
+        );
       case AddressFormScreen.routeName:
-        return MaterialPageRoute(builder: (_) => AddressFormScreen());
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => AddressFormScreen(),
+        );
       case ConfirmScreen.routeName:
-        return MaterialPageRoute(builder: (_) => ConfirmScreen());
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => ConfirmScreen(),
+        );
       case NewCardScreen.routeName:
-        return MaterialPageRoute(builder: (_) => NewCardScreen());
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => NewCardScreen(),
+        );
       case PaymentMethodScreen.routeName:
-        return MaterialPageRoute(builder: (_) => PaymentMethodScreen());
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => PaymentMethodScreen(),
+        );
       case CartScreen.routeName:
-        return MaterialPageRoute(builder: (_) => CartScreen());
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => CartScreen(),
+        );
       case ReviewScreen.routeName:
-        return MaterialPageRoute(builder: (_) => ReviewScreen());
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => ReviewScreen(),
+        );
       case AddReviewScreen.routeName:
-        return MaterialPageRoute(builder: (_) => AddReviewScreen());
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => AddReviewScreen(),
+        );
       default:
         return MaterialPageRoute(
+          settings: settings,
           builder:
               (_) => FunctionScreenTemplate(
                 title: "Chức năng đang trong quá trình phát triển",
