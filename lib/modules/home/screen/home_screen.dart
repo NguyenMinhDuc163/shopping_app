@@ -15,7 +15,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final Set<int> favoriteIndexes = {};
-
+  // TODO Task 2: SliverToBoxAdapter + padding => ?
+  // TODO Task 3: neu noi dung ben trong nho hon thi no se co len nhung tong the khong thay doi
   @override
   Widget build(BuildContext context) {
     return FunctionScreenTemplate(
@@ -30,49 +31,49 @@ class _HomeScreenState extends State<HomeScreen> {
       ],
       screen: CustomScrollView(
         slivers: [
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: AppPad.h22v15,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    'Nguyen Duc',
-                    style: AppTextStyles.textHeader2.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+          SliverPadToBox(
+            padding: AppPad.h22v15,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'Nguyen Duc',
+                  style: AppTextStyles.textHeader2.copyWith(
+                    fontWeight: FontWeight.bold,
                   ),
-                  SizedBox(height: 4),
-                  Text(
-                    'Welcome to Laza.',
-                    style: AppTextStyles.textContent3.copyWith(
-                      color: AppColors.coolGray,
-                    ),
+                ),
+                SizedBox(height: 4),
+                Text(
+                  'Welcome to Laza.',
+                  style: AppTextStyles.textContent3.copyWith(
+                    color: AppColors.coolGray,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
           SliverPersistentHeader(pinned: true, delegate: SearchBarDelegate()),
+
+          SliverPadToBox(
+            padding: AppPad.h22v15,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Choose Brand',
+                  style: AppTextStyles.textContent1.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text('View All', style: TextStyle(color: Colors.grey)),
+              ],
+            ),
+          ),
+
           SliverToBoxAdapter(
             child: Column(
               children: [
-                Padding(
-                  padding: AppPad.h22v15,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Choose Brand',
-                        style: AppTextStyles.textContent1.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text('View All', style: TextStyle(color: Colors.grey)),
-                    ],
-                  ),
-                ),
                 SizedBox(
                   height: 60,
                   child: ListView.separated(
@@ -130,18 +131,16 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
+
           SliverPadding(
             padding: AppPad.a12,
             sliver: SliverGrid(
               delegate: SliverChildBuilderDelegate((context, index) {
-                final product =
-                    MockData.products[index % MockData.products.length];
+                final product = MockData.products[index % MockData.products.length];
                 final isFavorite = favoriteIndexes.contains(index);
 
                 return GestureDetector(
-                  onTap:
-                      () =>
-                          Navigator.pushNamed(context, DetailProduct.routeName),
+                  onTap: () => Navigator.pushNamed(context, DetailProduct.routeName),
                   child: Container(
                     margin: AppPad.a8,
                     decoration: BoxDecoration(
@@ -219,7 +218,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 );
-              }, childCount: 8),
+              }, childCount: MockData.products.length * 3),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 mainAxisSpacing: 8,

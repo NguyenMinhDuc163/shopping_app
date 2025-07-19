@@ -29,8 +29,8 @@ class Routers {
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     GlobalUtils.ROUTES = settings.name;
-    // // log back
-    // print("Global Routes ------------${settings.name}");
+    // TODO Task 1: hiển thị log khi chuyển màn
+
     switch (settings.name) {
       case LoginScreen.routeName:
         return MaterialPageRoute(

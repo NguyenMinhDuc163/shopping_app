@@ -21,7 +21,6 @@ class _DetailProductState extends State<DetailProduct> {
     ImagePath.productPreview4,
   ];
 
-  // neu noi dung ben trong nho hon thi no se co len nhung tong the khong thay doi
   @override
   Widget build(BuildContext context) {
     return FunctionScreenTemplate(
