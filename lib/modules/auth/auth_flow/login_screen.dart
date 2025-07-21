@@ -5,7 +5,7 @@ import 'package:shopping_app/init.dart';
 import 'package:shopping_app/modules/auth/auth_flow/sign_in_screen.dart';
 import 'package:shopping_app/modules/auth/auth_flow/sign_up_screen.dart';
 import 'package:shopping_app/modules/auth/widgets/text_span_widget.dart';
-import 'package:shopping_app/modules/dashboard/dashboard_screen.dart';
+import 'package:shopping_app/modules/dashboard/screen/dashboard_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});

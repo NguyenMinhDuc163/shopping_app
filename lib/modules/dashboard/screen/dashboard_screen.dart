@@ -5,6 +5,7 @@ import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:shopping_app/core/constants/icon_path.dart';
 import 'package:shopping_app/core/widgets/drawer_widget.dart';
 import 'package:shopping_app/modules/cart/screen/cart_screen.dart';
+import 'package:shopping_app/modules/dashboard/model/tab_item.dart';
 import 'package:shopping_app/modules/home/screen/home_screen.dart';
 import 'package:shopping_app/modules/wallet/screen/wallet_screen.dart';
 import 'package:shopping_app/modules/wishlist/screen/wishlist_screen.dart';
@@ -16,6 +17,13 @@ class DashboardScreen extends StatefulWidget {
   @override
   State<DashboardScreen> createState() => _DashboardScreenState();
 }
+
+final List<TabItem> _tabs = [
+  TabItem(widget: HomeScreen(), route: HomeScreen.routeName),
+  TabItem(widget: WishlistScreen(), route: WishlistScreen.routeName),
+  TabItem(widget: CartScreen(), route: CartScreen.routeName),
+  TabItem(widget: WalletScreen(), route: WalletScreen.routeName),
+];
 
 class _DashboardScreenState extends State<DashboardScreen> {
   int _currentIndex = 0;
@@ -31,12 +39,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         drawer: DrawerWidget() ,
         body: IndexedStack(
           index: _currentIndex,
-          children: const [
-            HomeScreen(),
-            WishlistScreen(),
-            CartScreen(),
-            WalletScreen(),
-          ],
+          children: _tabs.map((tab) => tab.widget).toList(),
         ),
         bottomNavigationBar: SalomonBottomBar(
           currentIndex: _currentIndex,
@@ -47,6 +50,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             setState(() {
               _currentIndex = index;
             });
+            print('====>: ${_tabs[index].route}');
           },
           items: [
             SalomonBottomBarItem(

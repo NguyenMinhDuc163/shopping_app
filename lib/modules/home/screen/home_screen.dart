@@ -5,6 +5,7 @@ import 'package:shopping_app/init.dart';
 import 'package:shopping_app/modules/cart/screen/cart_screen.dart';
 import 'package:shopping_app/modules/home/widget/search_bar_delegate.dart';
 import 'package:shopping_app/modules/product/screen/detail_product.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -127,20 +128,28 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                InkWell(child: Text('View All', style: TextStyle(color: Colors.grey))),
+                InkWell(
+                  child: Text('View All', style: TextStyle(color: Colors.grey)),
+                ),
               ],
             ),
           ),
 
           SliverPadding(
             padding: AppPad.a12,
-            sliver: SliverGrid(
-              delegate: SliverChildBuilderDelegate((context, index) {
-                final product = MockData.products[index % MockData.products.length];
+            sliver: SliverMasonryGrid.count(
+              crossAxisCount: 2,
+              mainAxisSpacing: 8,
+              crossAxisSpacing: 8,
+              itemBuilder: (context, index) {
+                final product =
+                MockData.products[index % MockData.products.length];
                 final isFavorite = favoriteIndexes.contains(index);
 
                 return GestureDetector(
-                  onTap: () => Navigator.pushNamed(context, DetailProduct.routeName),
+                  onTap:
+                      () =>
+                      Navigator.pushNamed(context, DetailProduct.routeName),
                   child: Container(
                     margin: AppPad.a8,
                     decoration: BoxDecoration(
@@ -218,13 +227,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 );
-              }, childCount: MockData.products.length * 3),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 8,
-                crossAxisSpacing: 8,
-                childAspectRatio: 0.7,
-              ),
+              },
+              childCount: MockData.products.length,
             ),
           ),
         ],

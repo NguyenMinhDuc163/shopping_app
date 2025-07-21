@@ -15,17 +15,14 @@ class MockData {
   ];
 
   static const products = [
-    {
-      'image': ImagePath.imgMock1,
-      'name': 'Nike Sportswear Club Fleece',
-      'price': '\$99',
-    },
-    {
-      'image': ImagePath.imgMock2,
-      'name': 'Trail Running Jacket Nike Windrunner',
-      'price': '\$80',
-    },
+    {'image': ImagePath.imgMock1, 'name': 'Nike Sportswear Club Fleece', 'price': '\$99',},
+    {'image': ImagePath.imgMock2, 'name': '', 'price': '',},
     {'image': ImagePath.imgMock3, 'name': 'Nike Hoodie', 'price': '\$60'},
+    {'image': ImagePath.imgMock4, 'name': 'Nike Sweater', 'price': '\$50'},
+    {'image': ImagePath.imgMock4, 'name': 'Nike Sweater', 'price': '\$50'},
+    {'image': ImagePath.imgMock4, 'name': 'Nike Sweater', 'price': '\$50'},
+    {'image': ImagePath.imgMock4, 'name': 'Nike Sweater', 'price': '\$50'},
+    {'image': ImagePath.imgMock4, 'name': 'Nike Sweater', 'price': '\$50'},
     {'image': ImagePath.imgMock4, 'name': 'Nike Sweater', 'price': '\$50'},
   ];
 

@@ -10,7 +10,7 @@ import 'package:shopping_app/modules/auth/forgot_password/screen/verify_screen.d
 import 'package:shopping_app/modules/auth/auth_flow/login_screen.dart';
 import 'package:shopping_app/modules/auth/initial/screen/onboarding_screen.dart';
 import 'package:shopping_app/modules/cart/screen/cart_screen.dart';
-import 'package:shopping_app/modules/dashboard/dashboard_screen.dart';
+import 'package:shopping_app/modules/dashboard/screen/dashboard_screen.dart';
 import 'package:shopping_app/modules/home/screen/home_screen.dart';
 import 'package:shopping_app/modules/payment/screen/address_form_screen.dart';
 import 'package:shopping_app/modules/payment/screen/confirm_screen.dart';

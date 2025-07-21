@@ -5,7 +5,7 @@ import 'package:shopping_app/core/theme/app_pad.dart';
 import 'package:shopping_app/core/theme/app_text_styles.dart';
 import 'package:shopping_app/core/widgets/template/function_screen_template.dart';
 import 'package:shopping_app/core/widgets/text_input_custom.dart';
-import 'package:shopping_app/modules/dashboard/dashboard_screen.dart';
+import 'package:shopping_app/modules/dashboard/screen/dashboard_screen.dart';
 
 class AddReviewScreen extends StatefulWidget {
   const AddReviewScreen({super.key});
