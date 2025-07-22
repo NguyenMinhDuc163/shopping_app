@@ -5,6 +5,7 @@ import 'package:shopping_app/init.dart';
 import 'package:shopping_app/modules/cart/screen/cart_screen.dart';
 import 'package:shopping_app/modules/home/widget/search_bar_delegate.dart';
 import 'package:shopping_app/modules/product/screen/detail_product.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,7 +16,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final Set<int> favoriteIndexes = {};
-
+  // TODO Task 2: SliverToBoxAdapter + padding => ?
+  // TODO Task 3: neu noi dung ben trong nho hon thi no se co len nhung tong the khong thay doi
   @override
   Widget build(BuildContext context) {
     return FunctionScreenTemplate(
@@ -30,49 +32,49 @@ class _HomeScreenState extends State<HomeScreen> {
       ],
       screen: CustomScrollView(
         slivers: [
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: AppPad.h22v15,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    'Nguyen Duc',
-                    style: AppTextStyles.textHeader2.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+          SliverPadToBox(
+            padding: AppPad.h22v15,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'Nguyen Duc',
+                  style: AppTextStyles.textHeader2.copyWith(
+                    fontWeight: FontWeight.bold,
                   ),
-                  SizedBox(height: 4),
-                  Text(
-                    'Welcome to Laza.',
-                    style: AppTextStyles.textContent3.copyWith(
-                      color: AppColors.coolGray,
-                    ),
+                ),
+                SizedBox(height: 4),
+                Text(
+                  'Welcome to Laza.',
+                  style: AppTextStyles.textContent3.copyWith(
+                    color: AppColors.coolGray,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
           SliverPersistentHeader(pinned: true, delegate: SearchBarDelegate()),
+
+          SliverPadToBox(
+            padding: AppPad.h22v15,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Choose Brand',
+                  style: AppTextStyles.textContent1.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text('View All', style: TextStyle(color: Colors.grey)),
+              ],
+            ),
+          ),
+
           SliverToBoxAdapter(
             child: Column(
               children: [
-                Padding(
-                  padding: AppPad.h22v15,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Choose Brand',
-                        style: AppTextStyles.textContent1.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text('View All', style: TextStyle(color: Colors.grey)),
-                    ],
-                  ),
-                ),
                 SizedBox(
                   height: 60,
                   child: ListView.separated(
@@ -126,22 +128,28 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                InkWell(child: Text('View All', style: TextStyle(color: Colors.grey))),
+                InkWell(
+                  child: Text('View All', style: TextStyle(color: Colors.grey)),
+                ),
               ],
             ),
           ),
+
           SliverPadding(
             padding: AppPad.a12,
-            sliver: SliverGrid(
-              delegate: SliverChildBuilderDelegate((context, index) {
+            sliver: SliverMasonryGrid.count(
+              crossAxisCount: 2,
+              mainAxisSpacing: 8,
+              crossAxisSpacing: 8,
+              itemBuilder: (context, index) {
                 final product =
-                    MockData.products[index % MockData.products.length];
+                MockData.products[index % MockData.products.length];
                 final isFavorite = favoriteIndexes.contains(index);
 
                 return GestureDetector(
                   onTap:
                       () =>
-                          Navigator.pushNamed(context, DetailProduct.routeName),
+                      Navigator.pushNamed(context, DetailProduct.routeName),
                   child: Container(
                     margin: AppPad.a8,
                     decoration: BoxDecoration(
@@ -219,13 +227,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 );
-              }, childCount: 8),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 8,
-                crossAxisSpacing: 8,
-                childAspectRatio: 0.7,
-              ),
+              },
+              childCount: MockData.products.length,
             ),
           ),
         ],

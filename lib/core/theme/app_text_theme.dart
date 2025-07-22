@@ -7,10 +7,15 @@ class AppTextTheme {
     fontFamily: AppConst.robotoFont,
     leadingDistribution: TextLeadingDistribution.even,
   );
+
   static final AppBaseText base = AppBaseText(defaultTextStyle, {
-    12: 22,
-    13: 23,
+    /// size / lineHeight
+    17: 110,
+    13: 110,
+    11: 110,
     14: 24,
+    15:110,
+    28:110,
   });
 }
 

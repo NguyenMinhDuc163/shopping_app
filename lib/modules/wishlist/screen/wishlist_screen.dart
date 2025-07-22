@@ -1,15 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shopping_app/core/constants/mock_data.dart';
 import 'package:shopping_app/core/widgets/template/button_widget.dart';
 import 'package:shopping_app/modules/cart/screen/cart_screen.dart';
-import 'package:shopping_app/modules/home/widget/search_bar_delegate.dart';
+
 import '../../../init.dart';
 
 class WishlistScreen extends StatefulWidget {
   const WishlistScreen({super.key});
-
+  static const String routeName = '/wishlistScreen';
   @override
   State<WishlistScreen> createState() => _WishlistScreenState();
 }

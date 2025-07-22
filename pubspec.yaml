@@ -45,6 +45,7 @@ dependencies:
   pin_code_fields: ^8.0.1
   u_credit_card: ^1.4.0
   keyboard_dismisser: ^3.0.0
+  flutter_staggered_grid_view: ^0.7.0
 
   gap: ^3.0.1
 

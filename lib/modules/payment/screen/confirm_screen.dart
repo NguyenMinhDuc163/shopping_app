@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:shopping_app/core/widgets/app_gap.dart';
 import 'package:shopping_app/core/widgets/template/button_widget.dart';
-import 'package:shopping_app/modules/dashboard/dashboard_screen.dart';
+import 'package:shopping_app/modules/dashboard/screen/dashboard_screen.dart';
 
 import '../../../init.dart';
 

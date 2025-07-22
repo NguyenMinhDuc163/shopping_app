@@ -64,6 +64,7 @@ class MyApp extends StatelessWidget {
       onGenerateRoute: Routers.generateRoute,
       routes: Routers.routes,
       navigatorKey: NavigationService.navigatorKey,
+      navigatorObservers: [NavigationService.routeObserver],
       home: const SplashScreen(),
     );
   }
