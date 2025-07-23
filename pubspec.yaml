@@ -46,6 +46,7 @@ dependencies:
   u_credit_card: ^1.4.0
   keyboard_dismisser: ^3.0.0
   flutter_staggered_grid_view: ^0.7.0
+  dynamic_height_grid: ^1.0.1
 
   gap: ^3.0.1
 

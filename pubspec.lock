@@ -129,6 +129,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.6"
+  dynamic_height_grid:
+    dependency: "direct main"
+    description:
+      name: dynamic_height_grid
+      sha256: "9a3929814bd6b4b871a12e86d94e664f6132d00d00fafb8514682a78aa13dc27"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   easy_localization:
     dependency: "direct main"
     description:

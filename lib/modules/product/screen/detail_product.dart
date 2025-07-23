@@ -21,6 +21,13 @@ class _DetailProductState extends State<DetailProduct> {
     ImagePath.productPreview4,
   ];
 
+  // TODO task 1: detail lam lai nhu thiet ke, chon size, color
+  // TODO task 2: click brand => ds sp theo brand
+  // TODO task 3: 2 nut scroll len no cung di theo, va dang bi de le anh
+  // TODO task 4: logo duoi anh sp => brand
+  // TODO task 5; tach các widget co du lieu ra
+  // TODO task 6: man review => danh gia => star
+
   @override
   Widget build(BuildContext context) {
     return FunctionScreenTemplate(
@@ -173,7 +180,11 @@ class _DetailProductState extends State<DetailProduct> {
                         ),
                       ),
                       GestureDetector(
-                        onTap: () => Navigator.pushNamed(context, ReviewScreen.routeName,),
+                        onTap:
+                            () => Navigator.pushNamed(
+                              context,
+                              ReviewScreen.routeName,
+                            ),
                         child: Text(
                           "review.view_all".tr(),
                           style: AppTextStyles.textContent3.copyWith(
