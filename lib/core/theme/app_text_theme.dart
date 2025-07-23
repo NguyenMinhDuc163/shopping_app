@@ -9,7 +9,7 @@ class AppTextTheme {
   );
 
   static final AppBaseText base = AppBaseText(defaultTextStyle, {
-    /// size / lineHeight
+    /// lineHeight / size
     17: 110,
     13: 110,
     11: 110,
