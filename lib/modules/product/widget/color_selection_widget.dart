@@ -1,41 +1,56 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/core/theme/app_colors.dart';
 
+import 'package:shopping_app/modules/product/model/product_model.dart';
+
 class ColorSelectionWidget extends StatefulWidget {
-  const ColorSelectionWidget({super.key});
+  final Function(int)? onColorChanged;
+  final List<ColorModel>? colors;
+  final List<ColorModel>? availableColors;
+  final int? initialSelectedIndex;
+  final Function(int)? isColorAvailable;
+
+  const ColorSelectionWidget({
+    super.key,
+    this.onColorChanged,
+    this.colors,
+    this.availableColors,
+    this.initialSelectedIndex,
+    this.isColorAvailable,
+  });
 
   @override
   State<ColorSelectionWidget> createState() => _ColorSelectionWidgetState();
 }
 
 class _ColorSelectionWidgetState extends State<ColorSelectionWidget> {
-  int selectedColor = 1;
+  late int selectedColor;
 
-  final List<Color> colors = [
-    Color(0xFF6786FE),
-    Color(0xFFD8D8D8),
-    Color(0xFFE9D4DD),
-    Color(0xFFDEDEDE),
-    Color(0xFFC2E3CF),
-    Color(0xFF000000),
-  ];
+  @override
+  void initState() {
+    super.initState();
+    selectedColor = widget.initialSelectedIndex ?? 0;
+  }
 
-  final List<Color> availableColors = [
-    Color(0xFF6786FE),
-    Color(0xFFD8D8D8),
-    Color(0xFFE9D4DD),
-    Color(0xFFDEDEDE),
-    Color(0xFF000000),
-  ];
+  @override
+  void didUpdateWidget(ColorSelectionWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.initialSelectedIndex != null &&
+        widget.initialSelectedIndex != selectedColor) {
+      setState(() {
+        selectedColor = widget.initialSelectedIndex!;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
-        children: List.generate(colors.length, (index) {
+        children: List.generate(widget.colors?.length ?? 0, (index) {
           final isSelected = selectedColor == index;
-          final isAvailable = availableColors.contains(colors[index]);
+          final isAvailable = widget.isColorAvailable?.call(index) ?? true;
 
           return Padding(
             padding: const EdgeInsets.only(right: 8.0),
@@ -46,6 +61,7 @@ class _ColorSelectionWidgetState extends State<ColorSelectionWidget> {
                         setState(() {
                           selectedColor = index;
                         });
+                        widget.onColorChanged?.call(index);
                       }
                       : null,
               child: Container(
@@ -78,8 +94,9 @@ class _ColorSelectionWidgetState extends State<ColorSelectionWidget> {
                   decoration: BoxDecoration(
                     color:
                         isAvailable
-                            ? colors[index]
-                            : colors[index].withOpacity(0.8),
+                            ? (widget.colors?[index]?.color ?? Colors.grey)
+                            : (widget.colors?[index]?.color.withOpacity(0.8) ??
+                                Colors.grey),
                     borderRadius: BorderRadius.circular(8),
                   ),
                 ),

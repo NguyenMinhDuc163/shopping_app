@@ -1,13 +1,20 @@
 import '../../../init.dart';
 
 class RowHeaderWidget extends StatelessWidget {
-  const RowHeaderWidget({super.key, this.value = "", this.title = "", this.onTap});
+  const RowHeaderWidget({
+    super.key,
+    this.value = "",
+    this.title = "",
+    this.onTap,
+    this.valueStyle,
+  });
   final String title;
   final String value;
+  final TextStyle? valueStyle;
   final Function()? onTap;
   @override
   Widget build(BuildContext context) {
-    return                   Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
@@ -16,15 +23,18 @@ class RowHeaderWidget extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        GestureDetector(
-          onTap: () => onTap?.call(),
-          child: Text(
-            value,
-            style: AppTextStyles.textContent3.copyWith(
-              color: AppColors.coolGray,
+        if (value.isNotEmpty)
+          GestureDetector(
+            onTap: () => onTap?.call(),
+            child: Text(
+              value,
+              style:
+                  valueStyle ??
+                  AppTextStyles.textContent3.copyWith(
+                    color: AppColors.coolGray,
+                  ),
             ),
           ),
-        ),
       ],
     );
   }
