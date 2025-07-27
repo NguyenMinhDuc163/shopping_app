@@ -115,5 +115,10 @@
     "describe_your_experience": "Describe your experience?",
     "star": "Star",
     "submit_review": "Submit Review"
+  },
+  "detail_product": {
+    "color": "Color",
+    "in_stock": "{number} in stock",
+    "only_left": "Only {number} left"
   }
 }

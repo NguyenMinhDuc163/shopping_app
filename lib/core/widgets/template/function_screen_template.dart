@@ -98,7 +98,7 @@ class _FunctionScreenTemplateState extends State<FunctionScreenTemplate>
         top: false,
         child: Scaffold(
           extendBodyBehindAppBar: widget.background != null,
-          resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset ,
+          resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset,
           backgroundColor:
               widget.background != null
                   ? Colors.transparent

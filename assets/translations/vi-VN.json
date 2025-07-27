@@ -115,5 +115,10 @@
     "describe_your_experience": "Mô tả trải nghiệm của bạn?",
     "star": "Sao",
     "submit_review": "Gửi đánh giá"
+  },
+  "detail_product": {
+    "color": "Màu sắc",
+    "in_stock": "{number} trong kho",
+    "only_left": "Chỉ còn {number} sản phẩm"
   }
 }

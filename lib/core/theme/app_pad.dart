@@ -87,6 +87,7 @@ abstract final class AppPad {
   static const EdgeInsets h26v14 = EdgeInsets.symmetric(horizontal: 26, vertical: 14);
   static const EdgeInsets h30v16 = EdgeInsets.symmetric(horizontal: 30, vertical: 16);
   static const EdgeInsets h10v40 = EdgeInsets.symmetric(horizontal: 10, vertical: 40);
+  static const EdgeInsets h16v40 = EdgeInsets.symmetric(horizontal: 16, vertical: 40);
 
   static const EdgeInsets h16b24 = EdgeInsets.only(left: 16, right: 16, bottom: 24);
 
