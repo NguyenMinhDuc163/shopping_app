@@ -1,9 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shopping_app/core/constants/mock_data.dart';
+import 'package:shopping_app/core/values/order_by.dart';
 import 'package:shopping_app/core/widgets/app_gap.dart';
 import 'package:shopping_app/core/widgets/template/button_widget.dart';
 import 'filter_bottom_sheet.dart';
+import 'sort_bottom_sheet.dart';
 import '../../../init.dart';
 
 class SliverBrainHeaderWidget extends StatefulWidget {
@@ -15,7 +17,26 @@ class SliverBrainHeaderWidget extends StatefulWidget {
 }
 
 class _SliverBrainHeaderWidgetState extends State<SliverBrainHeaderWidget> {
-  String? currentSort = 'price_low_to_high';
+  SortType? currentSort = SortType.nameAsc;
+  double? minPrice;
+  double? maxPrice;
+
+  void _showSortBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder:
+          (context) => SortBottomSheet(
+            currentSort: currentSort,
+            onSortChanged: (SortType sortType) {
+              setState(() {
+                currentSort = sortType;
+              });
+            },
+          ),
+    );
+  }
 
   void _showFilterBottomSheet(BuildContext context) {
     showModalBottomSheet(
@@ -24,13 +45,13 @@ class _SliverBrainHeaderWidgetState extends State<SliverBrainHeaderWidget> {
       backgroundColor: Colors.transparent,
       builder:
           (context) => FilterBottomSheet(
-            currentSort: currentSort,
-            onSortChanged: (String sortType) {
+            minPrice: minPrice,
+            maxPrice: maxPrice,
+            onPriceRangeChanged: (double min, double max) {
               setState(() {
-                currentSort = sortType;
+                minPrice = min > 0 ? min : null;
+                maxPrice = max > 0 ? max : null;
               });
-              // TODO: Implement sorting logic here
-              print('Sort changed to: $sortType');
             },
           ),
     );
@@ -53,7 +74,7 @@ class _SliverBrainHeaderWidgetState extends State<SliverBrainHeaderWidget> {
                   ),
                 ),
                 Text(
-                  "Available in stock".tr(),
+                  "wishlist.available_in_stock".tr(),
                   style: AppTextStyles.textContent3.copyWith(
                     color: Colors.grey,
                   ),
@@ -82,7 +103,7 @@ class _SliverBrainHeaderWidgetState extends State<SliverBrainHeaderWidget> {
                   SvgPicture.asset(IconPath.iconSort, width: 16, height: 16),
                   SizedBox(width: 4),
                   Text(
-                    'Sort'.tr(),
+                    'brand_screen.sort'.tr(),
                     style: AppTextStyles.textContent2.copyWith(
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
@@ -93,7 +114,9 @@ class _SliverBrainHeaderWidgetState extends State<SliverBrainHeaderWidget> {
               backgroundColor: AppColors.lightGray,
               boderRadius: AppBorderRadius.a8,
               padding: AppPad.h8v4,
-              onPressed: () {},
+              onPressed: () {
+                _showSortBottomSheet(context);
+              },
             ),
           ],
         ),

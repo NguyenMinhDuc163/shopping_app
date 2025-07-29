@@ -6,6 +6,7 @@ import 'package:shopping_app/core/theme/app_text_styles.dart';
 import 'package:shopping_app/core/widgets/template/function_screen_template.dart';
 import 'package:shopping_app/core/widgets/text_input_custom.dart';
 import 'package:shopping_app/modules/dashboard/screen/dashboard_screen.dart';
+import 'package:shopping_app/modules/reviews/widget/stars_widget.dart';
 
 class AddReviewScreen extends StatefulWidget {
   const AddReviewScreen({super.key});
@@ -24,7 +25,8 @@ class _AddReviewScreenState extends State<AddReviewScreen> {
     return FunctionScreenTemplate(
       title: 'review.title'.tr(),
       titleButtonBottom: "review.submit_review".tr(),
-      onClickBottomButton: ()=> Navigator.pushNamed(context, DashboardScreen.routeName),
+      onClickBottomButton:
+          () => Navigator.pushNamed(context, DashboardScreen.routeName),
       screen: Padding(
         padding: AppPad.h24v10,
         child: Column(
@@ -58,27 +60,27 @@ class _AddReviewScreenState extends State<AddReviewScreen> {
                   "review.star".tr(),
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                 ),
-                Row(
-                  children: [
-                    Text("0.0"),
-                    Expanded(
-                      child: Slider(
-                        value: _starValue,
-                        min: 0.0,
-                        max: 5.0,
-                        divisions: 10,
-                        label: _starValue.toStringAsFixed(1),
-                        activeColor: AppColors.lavenderColor,
-                        inactiveColor: AppColors.lightGray,
-                        onChanged: (value) {
-                          setState(() {
-                            _starValue = value;
-                          });
-                        },
-                      ),
+                const SizedBox(height: 16),
+                Center(
+                  child: SelectableStarsWidget(
+                    initialRating: _starValue,
+                    starSize: 48.0,
+                    onRatingChanged: (rating) {
+                      setState(() {
+                        _starValue = rating;
+                      });
+                    },
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Center(
+                  child: Text(
+                    "${_starValue.toInt()}/5",
+                    style: AppTextStyles.textContent1.copyWith(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
                     ),
-                    Text("5.0"),
-                  ],
+                  ),
                 ),
               ],
             ),

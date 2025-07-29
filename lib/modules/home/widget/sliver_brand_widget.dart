@@ -16,10 +16,10 @@ class _SliverBrandWidgetState extends State<SliverBrandWidget> {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: SizedBox(
-        height: 60,
+        height: 50,
         child: ListView.separated(
           scrollDirection: Axis.horizontal,
-          padding: AppPad.h16,
+          padding: AppPad.h12,
           itemCount: MockData.brands.length,
           separatorBuilder: (context, index) => SizedBox(width: 12),
           itemBuilder: (context, index) {
@@ -27,15 +27,15 @@ class _SliverBrandWidgetState extends State<SliverBrandWidget> {
             return GestureDetector(
               onTap: () => Navigator.pushNamed(context, BrainScreen.routeName, arguments: brand),
               child: Container(
-                padding: AppPad.h16v8,
+                padding: AppPad.h12v8,
                 decoration: BoxDecoration(
                   color: Colors.grey[100],
-                  borderRadius: AppBorderRadius.a16,
+                  borderRadius: AppBorderRadius.a10,
                 ),
                 child: Row(
                   children: [
                     Container(
-                      padding: AppPad.a14,
+                      padding: AppPad.a10,
                       decoration: BoxDecoration(
                         borderRadius: AppBorderRadius.a12,
                         color: Colors.white,

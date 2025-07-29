@@ -120,5 +120,19 @@
     "color": "Màu sắc",
     "in_stock": "{number} trong kho",
     "only_left": "Chỉ còn {number} sản phẩm"
+  },
+  "brand_screen": {
+    "sort": "Sắp xếp",
+    "price_low_to_high": "Giá từ thấp đến cao",
+    "price_high_to_low": "Giá từ cao đến thấp",
+    "by_product_name_asc": "Theo tên sản phẩm (A-Z)",
+    "filter": "Lọc",
+    "reset": "Đặt lại",
+    "price_range": "Khoảng giá",
+    "from": "Từ",
+    "to": "Đến",
+    "available_in_stock": "Có sẵn trong kho",
+    "cancel": "Hủy",
+    "confirm": "Xác nhận"
   }
 }

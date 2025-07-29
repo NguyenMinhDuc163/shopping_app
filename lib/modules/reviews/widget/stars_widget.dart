@@ -21,3 +21,54 @@ class StarsWidget extends StatelessWidget {
     );
   }
 }
+
+class SelectableStarsWidget extends StatefulWidget {
+  const SelectableStarsWidget({
+    super.key,
+    required this.onRatingChanged,
+    this.initialRating = 0.0,
+    this.starSize = 32.0,
+  });
+
+  final Function(double) onRatingChanged;
+  final double initialRating;
+  final double starSize;
+
+  @override
+  State<SelectableStarsWidget> createState() => _SelectableStarsWidgetState();
+}
+
+class _SelectableStarsWidgetState extends State<SelectableStarsWidget> {
+  late double _currentRating;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentRating = widget.initialRating;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: List.generate(5, (index) {
+        return GestureDetector(
+          onTap: () {
+            setState(() {
+              _currentRating = index + 1.0;
+            });
+            widget.onRatingChanged(_currentRating);
+          },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4.0),
+            child: Icon(
+              index < _currentRating ? Icons.star : Icons.star_border,
+              color: Colors.orange,
+              size: widget.starSize,
+            ),
+          ),
+        );
+      }),
+    );
+  }
+}

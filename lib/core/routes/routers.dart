@@ -74,6 +74,7 @@ class Routers {
           builder: (_) => ChangePasswordScreen(),
         );
       case DetailProduct.routeName:
+        String? imageUrl = settings.arguments as String?;
         return MaterialPageRoute(
           settings: settings,
           builder: (_) => DetailProduct(),

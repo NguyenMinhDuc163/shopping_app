@@ -17,24 +17,24 @@ import '../../../init.dart';
 class DetailProduct extends StatefulWidget {
   const DetailProduct({super.key});
   static const String routeName = '/detailProduct';
+
   @override
   State<DetailProduct> createState() => _DetailProductState();
 }
 
 class _DetailProductState extends State<DetailProduct> {
-  // TODO task 1: detail lam lai nhu thiet ke, chon size, color
-  // TODO task 2: click brand => ds sp theo brand
+  /// TODO task 1: detail lam lai nhu thiet ke, chon size, color
+  /// TODO task 2: click brand => ds sp theo brand
   /// TODO task 3: 2 nut scroll len no cung di theo, va dang bi de le anh
-  // TODO task 4: logo duoi anh sp => brand
+  /// TODO task 4: logo duoi anh sp => brand
   /// TODO task 5; tach các widget co du lieu ra
-  // TODO task 6: man review => danh gia => star
-  /// TODO task 7: price va gia tiem cam trai
+  /// TODO task 6: man review => danh gia => star
+  /// TODO task 7: price va gia tien cam trai
 
   int selectedSizeIndex = 0;
   int selectedColorIndex = 0;
 
   late ProductModel product;
-
   @override
   void initState() {
     super.initState();
@@ -129,15 +129,15 @@ class _DetailProductState extends State<DetailProduct> {
                     child: Container(
                       width: 80,
                       height: 80,
-                      alignment: Alignment.topCenter,
+                      padding: AppPad.a12,
                       decoration: BoxDecoration(
                         color: AppColors.colorD9E3DC,
                         shape: BoxShape.circle,
                       ),
                       child: SvgPicture.asset(
-                        IconPath.iconNikeBrand,
-                        width: 60,
-                        height: 60,
+                        IconPath.iconNike,
+                        width: 30,
+                        height: 30,
                       ),
                     ),
                   ),

@@ -128,5 +128,19 @@
     "color": "Color",
     "in_stock": "{number} in stock",
     "only_left": "Only {number} left"
+  },
+  "brand_screen": {
+    "sort": "Sort",
+    "price_low_to_high": "Price from low to high",
+    "price_high_to_low": "Price from high to low",
+    "by_product_name_asc": "By product name (A-Z)",
+    "filter": "Filter",
+    "reset": "Reset",
+    "price_range": "Price Range",
+    "from": "From",
+    "to": "To",
+    "available_in_stock": "Available in stock",
+    "cancel": "Cancel",
+    "confirm": "Confirm"
   }
 }
