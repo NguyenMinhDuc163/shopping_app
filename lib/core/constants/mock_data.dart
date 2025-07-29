@@ -81,7 +81,7 @@ class MockData {
       rating: 4.8,
       date: "13 Sep, 2020",
       content:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque malesuada eget vitae amet...",
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque malesuada eget vitae amet Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque malesuada eget vitae amet Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque malesuada eget vitae amet...",
     ),
     ReviewModel(
       name: "Jenny Wilson",
@@ -111,11 +111,14 @@ class MockData {
 
   static ProductModel get mockProduct => ProductModel(
     id: '1',
-    name: 'Nike Sportswear Club Fleece',
+    name: 'Nike Club Fleece',
     imagePath: ImagePath.productDetail,
-    price: 99.0,
+    price: 87.12,
+    originalPrice: 99.0,
+    discountPercentage: 12,
     brand: 'Nike',
-    description: 'Comfortable and stylish sportswear',
+    description: 'The Nike Throwback Pullover Hoodie is made from premium French terry fabric that blends a performance feel with The Nike Throwback Pullover Hoodie is made from premium French terry fabric that blends a performance feel with The Nike Throwback Pullover Hoodie is made from premium French terry fabric that blends a performance feel with',
+    subTitle: "Men's Printed Pullover Hoodie",
     sizes: ['S', 'M', 'L', 'XL', '2XL'],
     colors: [
       ColorModel(id: 1, hex: '#6786FE', name: 'Blue'),

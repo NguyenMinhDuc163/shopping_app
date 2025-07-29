@@ -9,6 +9,8 @@ import 'package:shopping_app/modules/product/widget/product_info_widget.dart';
 import 'package:shopping_app/modules/product/widget/product_thumbnails_widget.dart';
 import 'package:shopping_app/modules/product/widget/row_header_widget.dart';
 import 'package:shopping_app/modules/product/widget/size_selection_widget.dart';
+import 'package:shopping_app/modules/reviews/screen/review_screen.dart';
+import 'package:shopping_app/modules/reviews/widget/review_item_widget.dart';
 
 import '../../../init.dart';
 
@@ -80,13 +82,9 @@ class _DetailProductState extends State<DetailProduct> {
     if (quantity > 5) {
       return null;
     } else if (quantity == 5) {
-      return AppTextStyles.textContent3.copyWith(
-        color: AppColors.coolGray,
-      );
+      return AppTextStyles.textContent3.copyWith(color: AppColors.coolGray);
     } else {
-      return AppTextStyles.textContent3.copyWith(
-        color: AppColors.error,
-      );
+      return AppTextStyles.textContent3.copyWith(color: AppColors.error);
     }
   }
 
@@ -123,10 +121,31 @@ class _DetailProductState extends State<DetailProduct> {
                   width: double.infinity,
                   fit: BoxFit.cover,
                 ),
+                Positioned(
+                  bottom: -30,
+                  left: 0,
+                  right: 0,
+                  child: Center(
+                    child: Container(
+                      width: 80,
+                      height: 80,
+                      alignment: Alignment.topCenter,
+                      decoration: BoxDecoration(
+                        color: AppColors.colorD9E3DC,
+                        shape: BoxShape.circle,
+                      ),
+                      child: SvgPicture.asset(
+                        IconPath.iconNikeBrand,
+                        width: 60,
+                        height: 60,
+                      ),
+                    ),
+                  ),
+                ),
                 AppbarProductWidget(),
               ],
             ),
-            ProductInfoWidget(),
+            ProductInfoWidget(product: product),
             Padding(
               padding: AppPad.h16,
               child: Column(
@@ -158,12 +177,17 @@ class _DetailProductState extends State<DetailProduct> {
                     initialSelectedIndex: selectedColorIndex,
                     isColorAvailable: _isColorAvailable,
                   ),
-                  DescriptionWidget(),
+                  DescriptionWidget(product: product),
 
                   RowHeaderWidget(
                     title: "review.title".tr(),
                     value: "review.view_all".tr(),
+                    onTap: () => Navigator.pushNamed(context, ReviewScreen.routeName),
                   ),
+
+                  Padding(
+                      padding: EdgeInsets.only(bottom: 10),
+                      child: ReviewItemWidget(reviewModel: MockData.reviews[0],))
                 ],
               ),
             ),

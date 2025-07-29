@@ -91,6 +91,14 @@
     "go_to_orders": "Go to Orders",
     "continue_shopping": "Continue Shopping"
   },
+  "filter": {
+    "sort": "Sort",
+    "price_low_to_high": "Price from low to high",
+    "price_high_to_low": "Price from high to low",
+    "name_a_to_z": "By product name (A-Z)",
+    "cancel": "Cancel",
+    "confirm": "Confirm"
+  },
   "cart": {
     "title": "Cart",
     "delivery_address": "Delivery Address",

@@ -19,7 +19,7 @@ class _ProductThumbnailsWidgetState extends State<ProductThumbnailsWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 77,
+      height: 60,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: thumbnails.length,

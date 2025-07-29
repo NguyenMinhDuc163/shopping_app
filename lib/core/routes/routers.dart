@@ -9,6 +9,7 @@ import 'package:shopping_app/modules/auth/forgot_password/screen/forgot_password
 import 'package:shopping_app/modules/auth/forgot_password/screen/verify_screen.dart';
 import 'package:shopping_app/modules/auth/auth_flow/login_screen.dart';
 import 'package:shopping_app/modules/auth/initial/screen/onboarding_screen.dart';
+import 'package:shopping_app/modules/brand/screen/brain_screen.dart';
 import 'package:shopping_app/modules/cart/screen/cart_screen.dart';
 import 'package:shopping_app/modules/dashboard/screen/dashboard_screen.dart';
 import 'package:shopping_app/modules/home/screen/home_screen.dart';
@@ -111,6 +112,12 @@ class Routers {
         return MaterialPageRoute(
           settings: settings,
           builder: (_) => AddReviewScreen(),
+        );
+      case BrainScreen.routeName:
+        Map<String, dynamic> brand = settings.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) => BrainScreen(brand: brand,),
         );
       default:
         return MaterialPageRoute(

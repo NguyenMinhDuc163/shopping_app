@@ -32,7 +32,10 @@ class ProductModel {
   final String name;
   final String imagePath;
   final double price;
+  final double? originalPrice;
+  final int? discountPercentage;
   final String brand;
+  final String subTitle;
   final String description;
   final List<String> sizes;
   final List<ColorModel> colors;
@@ -43,11 +46,14 @@ class ProductModel {
     required this.name,
     required this.imagePath,
     required this.price,
+    this.originalPrice,
+    this.discountPercentage,
     required this.brand,
     required this.description,
     required this.sizes,
     required this.colors,
     required this.inventory,
+    required this.subTitle,
   });
 
   int getQuantityForSizeAndColor(String size, int colorId) {
@@ -64,6 +70,4 @@ class ProductModel {
     final colorId = colors[colorIndex].id;
     return getQuantityForSizeAndColor(size, colorId);
   }
-
-
 }
