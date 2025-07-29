@@ -11,7 +11,7 @@ class ColorModel {
 
   Color _hexToColor(String hex) {
     hex = hex.replaceAll('#', '');
-    return Color(int.parse('FF${hex}', radix: 16));
+    return Color(int.parse('FF$hex', radix: 16));
   }
 }
 
@@ -56,18 +56,18 @@ class ProductModel {
     required this.subTitle,
   });
 
-  int getQuantityForSizeAndColor(String size, int colorId) {
-    final item = inventory.firstWhere(
-      (item) => item.size == size && item.colorId == colorId,
-      orElse: () => InventoryItem(size: size, colorId: colorId, quantity: 0),
-    );
-    return item.quantity;
-  }
 
-  int getQuantityForSizeAndColorIndex(int sizeIndex, int colorIndex) {
+  int getQuantity(int sizeIndex, int colorIndex) {
     if (sizeIndex >= sizes.length || colorIndex >= colors.length) return 0;
     final size = sizes[sizeIndex];
     final colorId = colors[colorIndex].id;
-    return getQuantityForSizeAndColor(size, colorId);
+
+    for (final item in inventory) {
+      if (item.size == size && item.colorId == colorId) {
+        return item.quantity;
+      }
+    }
+
+    return 0;
   }
 }

@@ -54,10 +54,7 @@ class _DetailProductState extends State<DetailProduct> {
   }
 
   int _getCurrentQuantity() {
-    return product.getQuantityForSizeAndColorIndex(
-      selectedSizeIndex,
-      selectedColorIndex,
-    );
+    return product.getQuantity(selectedSizeIndex, selectedColorIndex,);
   }
 
   String _getQuantityText() {
@@ -66,13 +63,9 @@ class _DetailProductState extends State<DetailProduct> {
     if (quantity > 5) {
       return "";
     } else if (quantity == 5) {
-      return "detail_product.in_stock".tr(
-        namedArgs: {'number': quantity.toString()},
-      );
+      return "detail_product.in_stock".tr(namedArgs: {'number': quantity.toString()});
     } else {
-      return "detail_product.only_left".tr(
-        namedArgs: {'number': quantity.toString()},
-      );
+      return "detail_product.only_left".tr(namedArgs: {'number': quantity.toString()});
     }
   }
 
@@ -89,19 +82,11 @@ class _DetailProductState extends State<DetailProduct> {
   }
 
   bool _isSizeAvailable(int sizeIndex) {
-    return product.getQuantityForSizeAndColorIndex(
-          sizeIndex,
-          selectedColorIndex,
-        ) >
-        0;
+    return product.getQuantity(sizeIndex, selectedColorIndex,) > 0;
   }
 
   bool _isColorAvailable(int colorIndex) {
-    return product.getQuantityForSizeAndColorIndex(
-          selectedSizeIndex,
-          colorIndex,
-        ) >
-        0;
+    return product.getQuantity(selectedSizeIndex, colorIndex,) > 0;
   }
 
   @override

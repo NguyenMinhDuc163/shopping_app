@@ -52,8 +52,7 @@ class _SizeSelectionWidgetState extends State<SizeSelectionWidget> {
           return Padding(
             padding: const EdgeInsets.only(right: 8.0),
             child: GestureDetector(
-              onTap:
-                  isAvailable
+              onTap: isAvailable
                       ? () {
                         setState(() {
                           selectedSize = index;

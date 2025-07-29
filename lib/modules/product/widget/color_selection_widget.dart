@@ -94,8 +94,8 @@ class _ColorSelectionWidgetState extends State<ColorSelectionWidget> {
                   decoration: BoxDecoration(
                     color:
                         isAvailable
-                            ? (widget.colors?[index]?.color ?? Colors.grey)
-                            : (widget.colors?[index]?.color.withOpacity(0.8) ??
+                            ? (widget.colors?[index].color ?? Colors.grey)
+                            : (widget.colors?[index].color.withOpacity(0.8) ??
                                 Colors.grey),
                     borderRadius: BorderRadius.circular(8),
                   ),
