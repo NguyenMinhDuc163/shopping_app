@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:shopping_app/modules/cart/model/product_cart_model.dart';
 import 'package:shopping_app/modules/payment/model/credit_card_model.dart';
+import 'package:shopping_app/modules/product/model/product_model.dart';
 import 'package:shopping_app/modules/reviews/model/review_model.dart';
 
 import '../../init.dart';
@@ -15,8 +17,12 @@ class MockData {
   ];
 
   static const products = [
-    {'image': ImagePath.imgMock1, 'name': 'Nike Sportswear Club Fleece', 'price': '\$99',},
-    {'image': ImagePath.imgMock2, 'name': '', 'price': '',},
+    {
+      'image': ImagePath.imgMock1,
+      'name': 'Nike Sportswear Club Fleece',
+      'price': '\$99',
+    },
+    {'image': ImagePath.imgMock2, 'name': '', 'price': ''},
     {'image': ImagePath.imgMock3, 'name': 'Nike Hoodie', 'price': '\$60'},
     {'image': ImagePath.imgMock4, 'name': 'Nike Sweater', 'price': '\$50'},
     {'image': ImagePath.imgMock4, 'name': 'Nike Sweater', 'price': '\$50'},
@@ -53,7 +59,6 @@ class MockData {
     ),
   ];
 
-
   static List<ProductCartModel> cartProduct = [
     ProductCartModel(
       name: "Men's Tie-Dye T-Shirt\nNike Sportswear",
@@ -69,34 +74,95 @@ class MockData {
     ),
   ];
 
-  static  List<ReviewModel> reviews = [
+  static List<ReviewModel> reviews = [
     ReviewModel(
       name: "Jenny Wilson",
       avatarUrl: "",
       rating: 4.8,
       date: "13 Sep, 2020",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque malesuada eget vitae amet...",
+      content:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque malesuada eget vitae amet Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque malesuada eget vitae amet Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque malesuada eget vitae amet...",
     ),
     ReviewModel(
       name: "Jenny Wilson",
       avatarUrl: "",
       rating: 4.8,
       date: "13 Sep, 2020",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque malesuada eget vitae amet...",
+      content:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque malesuada eget vitae amet...",
     ),
     ReviewModel(
       name: "Jenny Wilson",
       avatarUrl: "",
       rating: 4.8,
       date: "13 Sep, 2020",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque malesuada eget vitae amet...",
+      content:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque malesuada eget vitae amet...",
     ),
     ReviewModel(
       name: "Jenny Wilson",
       avatarUrl: "",
       rating: 4.8,
       date: "13 Sep, 2020",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque malesuada eget vitae amet...",
+      content:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque malesuada eget vitae amet...",
     ),
   ];
+
+  static ProductModel get mockProduct => ProductModel(
+    id: '1',
+    name: 'Nike Club Fleece',
+    imagePath: ImagePath.productDetail,
+    price: 87.12,
+    originalPrice: 99.0,
+    discountPercentage: 12,
+    brand: 'Nike',
+    description: 'The Nike Throwback Pullover Hoodie is made from premium French terry fabric that blends a performance feel with The Nike Throwback Pullover Hoodie is made from premium French terry fabric that blends a performance feel with The Nike Throwback Pullover Hoodie is made from premium French terry fabric that blends a performance feel with',
+    subTitle: "Men's Printed Pullover Hoodie",
+    sizes: ['S', 'M', 'L', 'XL', '2XL'],
+    colors: [
+      ColorModel(id: 1, hex: '#6786FE', name: 'Blue'),
+      ColorModel(id: 2, hex: '#D8D8D8', name: 'Light Gray'),
+      ColorModel(id: 3, hex: '#E9D4DD', name: 'Light Pink'),
+      ColorModel(id: 4, hex: '#DEDEDE', name: 'Gray'),
+      ColorModel(id: 5, hex: '#C2E3CF', name: 'Light Green'),
+      ColorModel(id: 6, hex: '#000000', name: 'Black'),
+    ],
+    inventory: [
+      InventoryItem(size: 'S', colorId: 1, quantity: 10),
+      InventoryItem(size: 'S', colorId: 2, quantity: 10),
+      InventoryItem(size: 'S', colorId: 3, quantity: 10),
+      InventoryItem(size: 'S', colorId: 4, quantity: 10),
+      InventoryItem(size: 'S', colorId: 5, quantity: 10),
+      InventoryItem(size: 'S', colorId: 6, quantity: 10),
+
+      InventoryItem(size: 'M', colorId: 1, quantity: 0),
+      InventoryItem(size: 'M', colorId: 2, quantity: 8),
+      InventoryItem(size: 'M', colorId: 3, quantity: 0),
+      InventoryItem(size: 'M', colorId: 4, quantity: 8),
+      InventoryItem(size: 'M', colorId: 5, quantity: 5),
+      InventoryItem(size: 'M', colorId: 6, quantity: 8),
+
+      InventoryItem(size: 'L', colorId: 1, quantity: 6),
+      InventoryItem(size: 'L', colorId: 2, quantity: 6),
+      InventoryItem(size: 'L', colorId: 3, quantity: 6),
+      InventoryItem(size: 'L', colorId: 4, quantity: 6),
+      InventoryItem(size: 'L', colorId: 5, quantity: 6),
+      InventoryItem(size: 'L', colorId: 6, quantity: 6),
+
+      InventoryItem(size: 'XL', colorId: 1, quantity: 4),
+      InventoryItem(size: 'XL', colorId: 2, quantity: 4),
+      InventoryItem(size: 'XL', colorId: 3, quantity: 4),
+      InventoryItem(size: 'XL', colorId: 4, quantity: 4),
+      InventoryItem(size: 'XL', colorId: 5, quantity: 4),
+      InventoryItem(size: 'XL', colorId: 6, quantity: 4),
+
+      InventoryItem(size: '2XL', colorId: 1, quantity: 0),
+      InventoryItem(size: '2XL', colorId: 2, quantity: 2),
+      InventoryItem(size: '2XL', colorId: 3, quantity: 2),
+      InventoryItem(size: '2XL', colorId: 4, quantity: 2),
+      InventoryItem(size: '2XL', colorId: 5, quantity: 2),
+      InventoryItem(size: '2XL', colorId: 6, quantity: 2),
+    ],
+  );
 }

@@ -37,8 +37,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget{
                         (context) => IconButton(
                           icon: SvgPicture.asset(IconPath.iconMenu),
                           onPressed: () {
-                            NavigationService.scaffoldKey.currentState?.openDrawer();
-                            // Scaffold.of(context).openDrawer();
+                            Scaffold.of(context).openDrawer();();
                           },
                         ),
                   )

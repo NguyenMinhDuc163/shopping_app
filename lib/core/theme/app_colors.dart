@@ -111,6 +111,9 @@ class AppColors {
   static const Color colorFEFEFE = Color(0xFFFEFEFE);
   static const Color colorDEDEDE = Color(0xFFDEDEDE);
   static const Color colorFF7043 = Color(0xFFFF7043);
+  static const Color colorC64B4D = Color(0xFFC64B4D);
+  static const Color colorD9E3DC = Color(0xFFD9E3DC);
+  static const Color color00FFEA = Color(0xFF00FFEA);
 
   // gradient
   static const LinearGradient gradientPrimaryColor = LinearGradient(

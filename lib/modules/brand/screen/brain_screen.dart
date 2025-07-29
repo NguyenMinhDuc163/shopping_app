@@ -1,29 +1,35 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shopping_app/core/constants/mock_data.dart';
-import 'package:shopping_app/core/widgets/template/button_widget.dart';
+import 'package:shopping_app/modules/brand/widget/sliver_brand_header_widget.dart';
 import 'package:shopping_app/modules/cart/screen/cart_screen.dart';
 import 'package:shopping_app/modules/home/widget/new_arrival_widget.dart';
-import 'package:shopping_app/modules/wishlist/widget/sliver_item_widget.dart';
 
 import '../../../init.dart';
 
-class WishlistScreen extends StatefulWidget {
-  const WishlistScreen({super.key});
-  static const String routeName = '/wishlistScreen';
+class BrainScreen extends StatefulWidget {
+  const BrainScreen({super.key, required this.brand});
+  static const String routeName = '/brainScreen';
+
+  final Map<String, dynamic> brand;
   @override
-  State<WishlistScreen> createState() => _WishlistScreenState();
+  State<BrainScreen> createState() => _BrainScreenState();
 }
 
-class _WishlistScreenState extends State<WishlistScreen> {
-  final Set<int> favoriteIndexes = {};
+class _BrainScreenState extends State<BrainScreen> {
   @override
   Widget build(BuildContext context) {
     return FunctionScreenTemplate(
       isShowBottomButton: false,
-      isShowDrawer: true,
       actionsWidget: [SvgPicture.asset(IconPath.iconBag)],
-      titleWidget: Text('common.wishlist'.tr(), style: AppTextStyles.textHeader3,),
+      titleWidget: Container(
+        padding: AppPad.a8,
+        decoration: BoxDecoration(
+          color: AppColors.lightGray,
+          borderRadius: AppBorderRadius.a12,
+        ),
+        width: 75,
+        height: 45,
+        child: SvgPicture.asset(widget.brand['icon']),
+      ),
       screen: FunctionScreenTemplate(
         isShowBottomButton: false,
         isShowAppBar: false,
@@ -35,12 +41,10 @@ class _WishlistScreenState extends State<WishlistScreen> {
           ),
         ],
         screen: CustomScrollView(
-          slivers: [
-            SliverItemWidget(),
-            NewArrivalWidget()
-          ],
+          slivers: [SliverBrainHeaderWidget(), NewArrivalWidget()],
         ),
       ),
     );
+    ;
   }
 }

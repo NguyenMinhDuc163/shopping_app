@@ -3,6 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shopping_app/core/constants/mock_data.dart';
 import 'package:shopping_app/core/widgets/app_gap.dart';
 import 'package:shopping_app/modules/reviews/screen/add_review_screen.dart';
+import 'package:shopping_app/modules/reviews/widget/review_item_widget.dart';
+import 'package:shopping_app/modules/reviews/widget/stars_widget.dart';
 
 import '../../../init.dart';
 
@@ -45,7 +47,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            buildStars(4.8),
+                            StarsWidget(rating: 4.8,),
                           ],
                         ),
                       ],
@@ -84,66 +86,14 @@ class _ReviewScreenState extends State<ReviewScreen> {
               itemCount: MockData.reviews.length,
               itemBuilder: (context, index) {
                 final review = MockData.reviews[index];
-                return Column(
-                  children: [
-                    ListTile(
-                      leading: CircleAvatar(
-                        backgroundImage:
-                            review.avatarUrl.isNotEmpty
-                                ? NetworkImage(review.avatarUrl)
-                                : null,
-                        child:
-                            review.avatarUrl.isEmpty
-                                ? Icon(Icons.person)
-                                : null,
-                      ),
-                      title: Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              review.name,
-                              style: AppTextStyles.textContent2.copyWith(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                          Text(
-                            review.rating.toString(),
-                            style: AppTextStyles.textContent2.copyWith(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          AppGap.w6,
-                          Text(
-                            "rating",
-                            style: AppTextStyles.textContent3.copyWith(
-                              color: AppColors.coolGray,
-                            ),
-                          ),
-                        ],
-                      ),
-                      subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        spacing: 4,
-                        children: [
-                          Row(
-                            spacing: 8,
-                            children: [
-                              Text(
-                                review.date,
-                                style: AppTextStyles.textContent3.copyWith(
-                                  color: AppColors.coolGray,
-                                ),
-                              ),
-                              buildStars(review.rating),
-                            ],
-                          ),
-                          Text(review.content),
-                        ],
-                      ),
-                    ),
-                    if (index != MockData.reviews.length - 1) AppGap.h10,
-                  ],
+                return Padding(
+                  padding: AppPad.h16v8,
+                  child: Column(
+                    children: [
+                      ReviewItemWidget(reviewModel: review,),
+                      if (index != MockData.reviews.length - 1) AppGap.h10,
+                    ],
+                  ),
                 );
               },
             ),
@@ -153,20 +103,5 @@ class _ReviewScreenState extends State<ReviewScreen> {
     );
   }
 
-  Widget buildStars(double rating) {
-    int fullStars = rating.floor();
-    bool hasHalfStar = (rating - fullStars) >= 0.5;
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: List.generate(5, (index) {
-        if (index < fullStars) {
-          return Icon(Icons.star, color: Colors.orange, size: 16);
-        } else if (index == fullStars && hasHalfStar) {
-          return Icon(Icons.star_half, color: Colors.orange, size: 16);
-        } else {
-          return Icon(Icons.star_border, color: Colors.orange, size: 16);
-        }
-      }),
-    );
-  }
+
 }
