@@ -1,17 +1,14 @@
-import 'dart:collection';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shopping_app/core/constants/mock_data.dart';
 import 'package:shopping_app/modules/product/model/product_model.dart';
 import 'package:shopping_app/modules/product/widget/appbar_product_widget.dart';
-import 'package:shopping_app/modules/product/widget/color_selection_widget.dart';
 import 'package:shopping_app/modules/product/widget/description_widget.dart';
 import 'package:shopping_app/modules/product/widget/product_image.dart';
 import 'package:shopping_app/modules/product/widget/product_info_widget.dart';
 import 'package:shopping_app/modules/product/widget/product_thumbnails_widget.dart';
 import 'package:shopping_app/modules/product/widget/row_header_widget.dart';
-import 'package:shopping_app/modules/product/widget/size_selection_widget.dart';
+import 'package:shopping_app/modules/product/widget/selection_widget.dart';
 import 'package:shopping_app/modules/reviews/screen/review_screen.dart';
 import 'package:shopping_app/modules/reviews/widget/review_item_widget.dart';
 
@@ -35,7 +32,7 @@ class _DetailProductState extends State<DetailProduct> {
 
   /// TODO custom paint,blur
   //TODO xy ly khi het S, color het hang
-  /// TODO toi uu truy van bang Map
+  // TODO toi uu truy van bang Map
   /// TODO sử dụng ValueNotifier
   /// TODO dung generic
   // TODO them icon o color
@@ -49,15 +46,14 @@ class _DetailProductState extends State<DetailProduct> {
     super.initState();
     product = MockData.mockProduct;
     _setDefaultSizeColor();
-
   }
 
-  void _setDefaultSizeColor(){
+  void _setDefaultSizeColor() {
     bool foundColor = false;
 
     for (int colorIndex = 0; colorIndex < product.colors.length; colorIndex++) {
       for (int sizeIndex = 0; sizeIndex < product.sizes.length; sizeIndex++) {
-        int quantity = product.getQuantity(sizeIndex, colorIndex,);
+        int quantity = product.getQuantity(sizeIndex, colorIndex);
         if (quantity > 0) {
           selectedColorIndex = colorIndex;
           selectedSizeIndex = sizeIndex;
@@ -145,25 +141,43 @@ class _DetailProductState extends State<DetailProduct> {
                     value: "review.size_guide".tr(),
                   ),
 
-                  SizeSelectionWidget(
-                    onSizeChanged: _onSizeChanged,
-                    sizes: product.sizes,
-                    availableSizes: product.sizes,
+                  SelectionWidget<String>(
+                    items: product.sizes,
+                    onSelectionChanged: _onSizeChanged,
                     initialSelectedIndex: selectedSizeIndex,
-                    isSizeAvailable: _isSizeAvailable,
+                    isItemAvailable: _isSizeAvailable,
+                    itemBuilder: (size, isSelected, isAvailable) {
+                      return Text(
+                        size,
+                        style: TextStyle(
+                          color: isAvailable ? Colors.black : Colors.grey,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      );
+                    },
                   ),
+
                   RowHeaderWidget(
                     title: "detail_product.color".tr(),
                     value: _getQuantityText(),
                     valueStyle: _getQuantityTextStyle(),
                     isShowIcon: true,
-                  ),
-                  ColorSelectionWidget(
-                    onColorChanged: _onColorChanged,
-                    colors: product.colors,
-                    availableColors: product.colors,
+                  )
+                  ,
+                  SelectionWidget<ColorModel>(
+                    items: product.colors,
+                    onSelectionChanged: _onColorChanged,
                     initialSelectedIndex: selectedColorIndex,
-                    isColorAvailable: _isColorAvailable,
+                    isItemAvailable: _isColorAvailable,
+                    itemBuilder: (color, isSelected, isAvailable) {
+                      return Container(
+                        margin: isSelected ? const EdgeInsets.all(2) : EdgeInsets.zero,
+                        decoration: BoxDecoration(
+                          color: isAvailable ? (color.color) : (color.color.withOpacity(0.8)),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      );
+                    },
                   ),
                   DescriptionWidget(product: product),
 
@@ -171,10 +185,7 @@ class _DetailProductState extends State<DetailProduct> {
                     title: "review.title".tr(),
                     value: "review.view_all".tr(),
                     onTap:
-                        () => Navigator.pushNamed(
-                          context,
-                          ReviewScreen.routeName,
-                        ),
+                        () => Navigator.pushNamed(context, ReviewScreen.routeName,),
                   ),
 
                   Padding(
