@@ -1,3 +1,5 @@
+import 'package:flutter_svg/flutter_svg.dart';
+
 import '../../../init.dart';
 
 class RowHeaderWidget extends StatelessWidget {
@@ -7,10 +9,12 @@ class RowHeaderWidget extends StatelessWidget {
     this.title = "",
     this.onTap,
     this.valueStyle,
+    this.isShowIcon = false,
   });
   final String title;
   final String value;
   final TextStyle? valueStyle;
+  final bool isShowIcon;
   final Function()? onTap;
   @override
   Widget build(BuildContext context) {
@@ -26,13 +30,27 @@ class RowHeaderWidget extends StatelessWidget {
         if (value.isNotEmpty)
           GestureDetector(
             onTap: () => onTap?.call(),
-            child: Text(
-              value,
-              style:
-                  valueStyle ??
-                  AppTextStyles.textContent3.copyWith(
-                    color: AppColors.coolGray,
+            child: Row(
+              spacing: 5,
+              children: [
+                Visibility(
+                  visible: isShowIcon,
+                  child: SvgPicture.asset(
+                    IconPath.iconWarring,
+                    color: valueStyle?.color ?? AppColors.coolGray,
+                    width: 15,
+                    height: 15,
                   ),
+                ),
+                Text(
+                  value,
+                  style:
+                      valueStyle ??
+                      AppTextStyles.textContent3.copyWith(
+                        color: AppColors.coolGray,
+                      ),
+                ),
+              ],
             ),
           ),
       ],

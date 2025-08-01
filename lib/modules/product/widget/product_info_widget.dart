@@ -15,22 +15,27 @@ class ProductInfoWidget extends StatelessWidget {
       padding: AppPad.a16,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                product?.subTitle ?? "Brand",
-                style: AppTextStyles.textContent3.copyWith(
-                  color: AppColors.coolGray,
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  product?.subTitle ?? "Brand",
+                  style: AppTextStyles.textContent3.copyWith(
+                    color: AppColors.coolGray,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                product?.name ?? "Product Name",
-                style: AppTextStyles.textHeader3,
-              ),
-            ],
+                const SizedBox(height: 4),
+                Text(
+                  product?.name ?? "Product Name",
+                  style: AppTextStyles.textHeader3,
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
           ),
 
           Column(

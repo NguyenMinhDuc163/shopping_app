@@ -7,26 +7,28 @@ class AppbarProductWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: AppPad.h16v40,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          CircleAvatar(
-            backgroundColor: AppColors.white,
-            child: IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: () => Navigator.of(context).maybePop(),
+    return SafeArea(
+      child: Padding(
+        padding: AppPad.h16,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            CircleAvatar(
+              backgroundColor: AppColors.white,
+              child: IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: () => Navigator.of(context).maybePop(),
+              ),
             ),
-          ),
-          CircleAvatar(
-            backgroundColor: AppColors.white,
-            child: IconButton(
-              icon: SvgPicture.asset(IconPath.iconBag),
-              onPressed: () {},
+            CircleAvatar(
+              backgroundColor: AppColors.white,
+              child: IconButton(
+                icon: SvgPicture.asset(IconPath.iconBag),
+                onPressed: () {},
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
