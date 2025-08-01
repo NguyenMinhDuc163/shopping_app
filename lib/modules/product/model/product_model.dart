@@ -41,6 +41,9 @@ class ProductModel {
   final List<ColorModel> colors;
   final List<InventoryItem> inventory;
 
+  // Map để tối ưu truy vấn quantity: key = "size_colorId", value = quantity
+  late final Map<String, int> _quantityMap;
+
   ProductModel({
     required this.id,
     required this.name,
@@ -54,19 +57,20 @@ class ProductModel {
     required this.colors,
     required this.inventory,
     required this.subTitle,
-  });
-
+  }) {
+    _quantityMap = {};
+    for (final item in inventory) {
+      final key = "${item.size}_${item.colorId}";
+      _quantityMap[key] = item.quantity;
+    }
+  }
 
   int getQuantity(int sizeIndex, int colorIndex) {
     if (sizeIndex >= sizes.length || colorIndex >= colors.length) return 0;
     final size = sizes[sizeIndex];
     final colorId = colors[colorIndex].id;
 
-    for (final item in inventory) {
-      if (item.size == size && item.colorId == colorId) {
-        return item.quantity;
-      }
-    }
-    return 0;
+    final key = "${size}_$colorId";
+    return _quantityMap[key] ?? 0;
   }
 }

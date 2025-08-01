@@ -129,14 +129,14 @@ class MockData {
       ColorModel(id: 6, hex: '#000000', name: 'Black'),
     ],
     inventory: [
-      InventoryItem(size: 'S', colorId: 1, quantity: 10),
+      InventoryItem(size: 'S', colorId: 1, quantity: 0),
       InventoryItem(size: 'S', colorId: 2, quantity: 10),
       InventoryItem(size: 'S', colorId: 3, quantity: 10),
       InventoryItem(size: 'S', colorId: 4, quantity: 10),
       InventoryItem(size: 'S', colorId: 5, quantity: 10),
       InventoryItem(size: 'S', colorId: 6, quantity: 10),
 
-      InventoryItem(size: 'M', colorId: 1, quantity: 0),
+      InventoryItem(size: 'M', colorId: 1, quantity: 10),
       InventoryItem(size: 'M', colorId: 2, quantity: 8),
       InventoryItem(size: 'M', colorId: 3, quantity: 0),
       InventoryItem(size: 'M', colorId: 4, quantity: 8),

@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shopping_app/core/constants/mock_data.dart';
@@ -32,11 +34,11 @@ class _DetailProductState extends State<DetailProduct> {
   /// TODO task 6: detail lam lai nhu thiet ke, chon size, color
 
   /// TODO custom paint,blur
-  /// TODO xy ly khi het S, color het hang
+  //TODO xy ly khi het S, color het hang
   /// TODO toi uu truy van bang Map
   /// TODO sử dụng ValueNotifier
   /// TODO dung generic
-  /// TODO them icon o color
+  // TODO them icon o color
 
   int selectedSizeIndex = 0;
   int selectedColorIndex = 0;
@@ -46,6 +48,25 @@ class _DetailProductState extends State<DetailProduct> {
   void initState() {
     super.initState();
     product = MockData.mockProduct;
+    _setDefaultSizeColor();
+
+  }
+
+  void _setDefaultSizeColor(){
+    bool foundColor = false;
+
+    for (int colorIndex = 0; colorIndex < product.colors.length; colorIndex++) {
+      for (int sizeIndex = 0; sizeIndex < product.sizes.length; sizeIndex++) {
+        int quantity = product.getQuantity(sizeIndex, colorIndex,);
+        if (quantity > 0) {
+          selectedColorIndex = colorIndex;
+          selectedSizeIndex = sizeIndex;
+          foundColor = true;
+          break;
+        }
+      }
+      if (foundColor) break;
+    }
   }
 
   void _onSizeChanged(int sizeIndex) {
@@ -61,7 +82,7 @@ class _DetailProductState extends State<DetailProduct> {
   }
 
   int _getCurrentQuantity() {
-    return product.getQuantity(selectedSizeIndex, selectedColorIndex,);
+    return product.getQuantity(selectedSizeIndex, selectedColorIndex);
   }
 
   String _getQuantityText() {
@@ -70,9 +91,13 @@ class _DetailProductState extends State<DetailProduct> {
     if (quantity > 5) {
       return "";
     } else if (quantity == 5) {
-      return "detail_product.in_stock".tr(namedArgs: {'number': quantity.toString()});
+      return "detail_product.in_stock".tr(
+        namedArgs: {'number': quantity.toString()},
+      );
     } else {
-      return "detail_product.only_left".tr(namedArgs: {'number': quantity.toString()});
+      return "detail_product.only_left".tr(
+        namedArgs: {'number': quantity.toString()},
+      );
     }
   }
 
@@ -89,11 +114,11 @@ class _DetailProductState extends State<DetailProduct> {
   }
 
   bool _isSizeAvailable(int sizeIndex) {
-    return product.getQuantity(sizeIndex, selectedColorIndex,) > 0;
+    return product.getQuantity(sizeIndex, selectedColorIndex) > 0;
   }
 
   bool _isColorAvailable(int colorIndex) {
-    return product.getQuantity(selectedSizeIndex, colorIndex,) > 0;
+    return product.getQuantity(selectedSizeIndex, colorIndex) > 0;
   }
 
   @override
@@ -106,9 +131,7 @@ class _DetailProductState extends State<DetailProduct> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ProductImage(stackChildren: [
-              AppbarProductWidget(),
-            ],),
+            ProductImage(stackChildren: [AppbarProductWidget()]),
             ProductInfoWidget(product: product),
             Padding(
               padding: AppPad.h16,
@@ -133,6 +156,7 @@ class _DetailProductState extends State<DetailProduct> {
                     title: "detail_product.color".tr(),
                     value: _getQuantityText(),
                     valueStyle: _getQuantityTextStyle(),
+                    isShowIcon: true,
                   ),
                   ColorSelectionWidget(
                     onColorChanged: _onColorChanged,
@@ -146,12 +170,17 @@ class _DetailProductState extends State<DetailProduct> {
                   RowHeaderWidget(
                     title: "review.title".tr(),
                     value: "review.view_all".tr(),
-                    onTap: () => Navigator.pushNamed(context, ReviewScreen.routeName),
+                    onTap:
+                        () => Navigator.pushNamed(
+                          context,
+                          ReviewScreen.routeName,
+                        ),
                   ),
 
                   Padding(
-                      padding: EdgeInsets.only(bottom: 10),
-                      child: ReviewItemWidget(reviewModel: MockData.reviews[0],))
+                    padding: EdgeInsets.only(bottom: 10),
+                    child: ReviewItemWidget(reviewModel: MockData.reviews[0]),
+                  ),
                 ],
               ),
             ),
