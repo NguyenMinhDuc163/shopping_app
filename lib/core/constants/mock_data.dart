@@ -158,7 +158,7 @@ class MockData {
       InventoryItem(size: 'XL', colorId: 6, quantity: 4),
 
       InventoryItem(size: '2XL', colorId: 1, quantity: 0),
-      InventoryItem(size: '2XL', colorId: 2, quantity: 2),
+      InventoryItem(size: '2XL', colorId: 2, quantity: 1),
       InventoryItem(size: '2XL', colorId: 3, quantity: 2),
       InventoryItem(size: '2XL', colorId: 4, quantity: 2),
       InventoryItem(size: '2XL', colorId: 5, quantity: 2),

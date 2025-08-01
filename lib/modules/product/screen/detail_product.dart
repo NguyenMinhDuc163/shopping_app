@@ -5,6 +5,7 @@ import 'package:shopping_app/modules/product/model/product_model.dart';
 import 'package:shopping_app/modules/product/widget/appbar_product_widget.dart';
 import 'package:shopping_app/modules/product/widget/color_selection_widget.dart';
 import 'package:shopping_app/modules/product/widget/description_widget.dart';
+import 'package:shopping_app/modules/product/widget/product_image.dart';
 import 'package:shopping_app/modules/product/widget/product_info_widget.dart';
 import 'package:shopping_app/modules/product/widget/product_thumbnails_widget.dart';
 import 'package:shopping_app/modules/product/widget/row_header_widget.dart';
@@ -23,13 +24,19 @@ class DetailProduct extends StatefulWidget {
 }
 
 class _DetailProductState extends State<DetailProduct> {
-  /// TODO task 1: detail lam lai nhu thiet ke, chon size, color
-  /// TODO task 2: click brand => ds sp theo brand
-  /// TODO task 3: 2 nut scroll len no cung di theo, va dang bi de le anh
-  /// TODO task 4: logo duoi anh sp => brand
+  /// TODO task 1: click brand => ds sp theo brand
+  /// TODO task 2: 2 nut scroll len no cung di theo, va dang bi de le anh
+  /// TODO task 3: logo duoi anh sp => brand
+  /// TODO task 4: price va gia tien can trai
   /// TODO task 5; tach các widget co du lieu ra
-  /// TODO task 6: man review => danh gia => star
-  /// TODO task 7: price va gia tien cam trai
+  /// TODO task 6: detail lam lai nhu thiet ke, chon size, color
+
+  /// TODO custom paint,blur
+  /// TODO xy ly khi het S, color het hang
+  /// TODO toi uu truy van bang Map
+  /// TODO sử dụng ValueNotifier
+  /// TODO dung generic
+  /// TODO them icon o color
 
   int selectedSizeIndex = 0;
   int selectedColorIndex = 0;
@@ -99,37 +106,9 @@ class _DetailProductState extends State<DetailProduct> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Stack(
-              children: [
-                Image.asset(
-                  ImagePath.productDetail,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                ),
-                Positioned(
-                  bottom: -30,
-                  left: 0,
-                  right: 0,
-                  child: Center(
-                    child: Container(
-                      width: 80,
-                      height: 80,
-                      padding: AppPad.a12,
-                      decoration: BoxDecoration(
-                        color: AppColors.colorD9E3DC,
-                        shape: BoxShape.circle,
-                      ),
-                      child: SvgPicture.asset(
-                        IconPath.iconNike,
-                        width: 30,
-                        height: 30,
-                      ),
-                    ),
-                  ),
-                ),
-                AppbarProductWidget(),
-              ],
-            ),
+            ProductImage(stackChildren: [
+              AppbarProductWidget(),
+            ],),
             ProductInfoWidget(product: product),
             Padding(
               padding: AppPad.h16,

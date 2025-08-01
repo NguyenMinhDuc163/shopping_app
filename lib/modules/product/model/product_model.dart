@@ -67,7 +67,6 @@ class ProductModel {
         return item.quantity;
       }
     }
-
     return 0;
   }
 }

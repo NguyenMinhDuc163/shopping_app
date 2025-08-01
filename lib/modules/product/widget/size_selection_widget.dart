@@ -21,21 +21,21 @@ class SizeSelectionWidget extends StatefulWidget {
 }
 
 class _SizeSelectionWidgetState extends State<SizeSelectionWidget> {
-  late int selectedSize;
+  late int selectedSizeIndex;
 
   @override
   void initState() {
     super.initState();
-    selectedSize = widget.initialSelectedIndex ?? 0;
+    selectedSizeIndex = widget.initialSelectedIndex ?? 0;
   }
 
   @override
   void didUpdateWidget(SizeSelectionWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.initialSelectedIndex != null &&
-        widget.initialSelectedIndex != selectedSize) {
+        widget.initialSelectedIndex != selectedSizeIndex) {
       setState(() {
-        selectedSize = widget.initialSelectedIndex!;
+        selectedSizeIndex = widget.initialSelectedIndex!;
       });
     }
   }
@@ -46,7 +46,7 @@ class _SizeSelectionWidgetState extends State<SizeSelectionWidget> {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: List.generate(widget.sizes?.length ?? 0, (index) {
-          final isSelected = selectedSize == index;
+          final isSelected = selectedSizeIndex == index;
           final isAvailable = widget.isSizeAvailable?.call(index) ?? true;
 
           return Padding(
@@ -55,7 +55,7 @@ class _SizeSelectionWidgetState extends State<SizeSelectionWidget> {
               onTap: isAvailable
                       ? () {
                         setState(() {
-                          selectedSize = index;
+                          selectedSizeIndex = index;
                         });
                         widget.onSizeChanged?.call(index);
                       }
