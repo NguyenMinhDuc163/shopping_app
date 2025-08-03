@@ -49,7 +49,7 @@ class _ProductItemWidgetState extends State<ProductItemWidget> {
                   Positioned(
                     top: 8,
                     right: 8,
-                    child: FavoriteWidget(productId: widget.productId),
+                    child: FavoriteWidget(),
                   ),
                 ],
               ),

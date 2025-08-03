@@ -41,7 +41,6 @@ class ProductModel {
   final List<ColorModel> colors;
   final List<InventoryItem> inventory;
 
-  // Map để tối ưu truy vấn quantity: key = "size_colorId", value = quantity
   late final Map<String, int> _quantityMap;
 
   ProductModel({
