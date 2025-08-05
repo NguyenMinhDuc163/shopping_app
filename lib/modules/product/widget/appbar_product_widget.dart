@@ -1,4 +1,5 @@
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shopping_app/modules/cart/screen/cart_screen.dart';
 
 import '../../../init.dart';
 
@@ -24,7 +25,7 @@ class AppbarProductWidget extends StatelessWidget {
               backgroundColor: AppColors.white,
               child: IconButton(
                 icon: SvgPicture.asset(IconPath.iconBag),
-                onPressed: () {},
+                onPressed: () => Navigator.pushNamed(context, CartScreen.routeName),
               ),
             ),
           ],
