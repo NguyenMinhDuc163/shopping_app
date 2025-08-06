@@ -16,9 +16,6 @@ class CartNotifier extends ChangeNotifier {
 
   ValueNotifier<CartState> get state => _state;
 
-  int get selectedIndex => _state.value.selectedIndex;
-  List<int> get quantities => _state.value.quantities;
-  List<ProductCartModel> get cartItems => _state.value.cartItems;
 
   void updateSelectedIndex(int index) {
     _state.value = _state.value.copyWith(selectedIndex: index);
@@ -49,11 +46,7 @@ class CartNotifier extends ChangeNotifier {
     );
   }
 
-  void clearCart() {
-    _state.value = CartState(selectedIndex: 0, quantities: [], cartItems: []);
-  }
 
-  // Calculate totals
   double get subtotal {
     double total = 0;
     for (int i = 0; i < _state.value.cartItems.length; i++) {

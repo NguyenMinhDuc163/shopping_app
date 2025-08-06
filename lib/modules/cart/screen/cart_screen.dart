@@ -24,6 +24,11 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final cartNotifier = CartNotifier();
 
+
+    /// ToDo khong can doi mau khi chon san pham
+    /// TODO tim hieu  shrinkWrap
+    /// TODO chuyen screen thanh customScrollView'
+    /// Tang vung an
     return FunctionScreenTemplate(
       onClickBottomButton: () => Navigator.pushNamed(context, AddressFormScreen.routeName),
       title: 'cart.title'.tr(),
@@ -52,7 +57,7 @@ class CartScreen extends StatelessWidget {
                         onTap: () {
                           cartNotifier.updateSelectedIndex(index);
                         },
-                        onDelete: () {
+                        onTapDelete: () {
                           cartNotifier.removeItem(index);
                         },
                       );

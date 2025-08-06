@@ -1,22 +1,21 @@
-import 'package:flutter/foundation.dart';
+import 'package:disposable_provider/disposable_provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:shopping_app/core/constants/mock_data.dart';
-import 'package:shopping_app/core/theme/app_colors.dart';
-import 'package:shopping_app/core/theme/app_text_styles.dart';
 import 'package:shopping_app/modules/product/model/product_model.dart';
 
 import '../../../init.dart';
 
-class DetailProductNotifier {
+class DetailProductController extends Disposable{
   ValueNotifier<int> selectedSizeIndex = ValueNotifier(0);
   ValueNotifier<int> selectedColorIndex = ValueNotifier(0);
 
   final ProductModel product = MockData.mockProduct;
 
-  DetailProductNotifier() {
+  DetailProductController() {
     _setDefaultSizeColor();
   }
 
+  // TODO toi uu lai su dung map o model ProductModel
   void _setDefaultSizeColor() {
     bool foundColor = false;
 
@@ -79,5 +78,11 @@ class DetailProductNotifier {
 
   bool isColorAvailable(int colorIndex) {
     return product.getQuantity(selectedSizeIndex.value, colorIndex) > 0;
+  }
+
+  @override
+  void dispose() {
+    selectedColorIndex.dispose();
+    selectedSizeIndex.dispose();
   }
 }

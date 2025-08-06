@@ -95,7 +95,7 @@ class _FunctionScreenTemplateState extends State<FunctionScreenTemplate>
   Widget _buildScaffold({required Widget body, required bool appBar}) {
     return WillUnfocusFormScope(
       child: SafeArea(
-        top: false,
+        // top: false,
         child: Scaffold(
           extendBodyBehindAppBar: widget.background != null,
           resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset,
@@ -125,9 +125,12 @@ class _FunctionScreenTemplateState extends State<FunctionScreenTemplate>
     );
   }
 
+
+  // TODO tang kich thuoc nut back
   PreferredSizeWidget appBarWidget() {
     return AppBar(
       backgroundColor: widget.backgroundColor ?? AppColors.white,
+      toolbarHeight: 55,
       elevation: 0,
       leading: Padding(
         padding: AppPad.a8,

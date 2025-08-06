@@ -16,7 +16,7 @@ class CartItemWidget extends StatelessWidget {
   final bool isSelected;
   final Function(int) onQuantityChanged;
   final VoidCallback? onTap;
-  final VoidCallback? onDelete;
+  final VoidCallback? onTapDelete;
 
   const CartItemWidget({
     super.key,
@@ -25,9 +25,10 @@ class CartItemWidget extends StatelessWidget {
     required this.isSelected,
     required this.onQuantityChanged,
     this.onTap,
-    this.onDelete,
+    this.onTapDelete,
   });
 
+  // TODO thay itemWidget thanh  AssetIconSvg
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -82,7 +83,7 @@ class CartItemWidget extends StatelessWidget {
               ),
             ),
             GestureDetector(
-              onTap: onDelete,
+              onTap: onTapDelete,
               child: IconWidget(iconPath: FontAwesomeIcons.trashCan),
             ),
           ],

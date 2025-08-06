@@ -1,7 +1,9 @@
+import 'package:disposable_provider/disposable_provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shopping_app/core/constants/mock_data.dart';
 import 'package:shopping_app/modules/product/model/product_model.dart';
+import 'package:shopping_app/modules/product/bloc/detail_product_controller.dart';
 import 'package:shopping_app/modules/product/widget/appbar_product_widget.dart';
 import 'package:shopping_app/modules/product/widget/description_widget.dart';
 import 'package:shopping_app/modules/product/widget/product_image.dart';
@@ -11,7 +13,6 @@ import 'package:shopping_app/modules/product/widget/row_header_widget.dart';
 import 'package:shopping_app/modules/product/widget/selection_widget.dart';
 import 'package:shopping_app/modules/reviews/screen/review_screen.dart';
 import 'package:shopping_app/modules/reviews/widget/review_item_widget.dart';
-import 'package:shopping_app/modules/product/notifier/detail_product_notifier.dart';
 
 import '../../../init.dart';
 
@@ -21,7 +22,10 @@ class DetailProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _DetailProductContent();
+    return DisposableProvider(create: (BuildContext context) {
+      return DetailProductController();
+    },
+    child: _DetailProductContent());
   }
 }
 
@@ -42,12 +46,14 @@ class DetailProduct extends StatelessWidget {
 /// TODO task 6 them icon o color
 
 class _DetailProductContent extends StatelessWidget {
-  _DetailProductContent();
+  const _DetailProductContent();
 
-  final DetailProductNotifier _notifier = DetailProductNotifier();
+
 
   @override
   Widget build(BuildContext context) {
+    final DetailProductController controller = DisposableProvider.of<DetailProductController>(context);
+
     return FunctionScreenTemplate(
       isShowBottomButton: false,
       isShowAppBar: false,
@@ -57,7 +63,7 @@ class _DetailProductContent extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ProductImage(stackChildren: [AppbarProductWidget()]),
-            ProductInfoWidget(product: _notifier.product),
+            ProductInfoWidget(product: controller.product),
             Padding(
               padding: AppPad.h16,
               child: Column(
@@ -68,13 +74,13 @@ class _DetailProductContent extends StatelessWidget {
                   RowHeaderWidget(title: "review.size".tr(), value: "review.size_guide".tr()),
 
                   ValueListenableBuilder<int>(
-                    valueListenable: _notifier.selectedSizeIndex,
+                    valueListenable: controller.selectedSizeIndex,
                     builder: (context, selectedSizeIndex, child) {
                       return SelectionWidget<String>(
-                        items: _notifier.product.sizes,
-                        onSelectionChanged: _notifier.onSizeChanged,
-                        initialSelectedIndex: selectedSizeIndex,
-                        isItemAvailable: _notifier.isSizeAvailable,
+                        items: controller.product.sizes,
+                        onSelectionChanged: controller.onSizeChanged,
+                        selectedIndex: selectedSizeIndex,
+                        isItemAvailable: controller.isSizeAvailable,
                         itemBuilder: (size, isSelected, isAvailable) {
                           return Text(
                             size,
@@ -89,22 +95,22 @@ class _DetailProductContent extends StatelessWidget {
                   ),
 
                   ValueListenableBuilder<int>(
-                    valueListenable: _notifier.selectedColorIndex,
+                    valueListenable: controller.selectedColorIndex,
                     builder: (context, selectedColorIndex, child) {
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           RowHeaderWidget(
                             title: "detail_product.color".tr(),
-                            value: _notifier.getQuantityText(),
-                            valueStyle: _notifier.getQuantityTextStyle(),
+                            value: controller.getQuantityText(),
+                            valueStyle: controller.getQuantityTextStyle(),
                             isShowIcon: true,
                           ),
                           SelectionWidget<ColorModel>(
-                            items: _notifier.product.colors,
-                            onSelectionChanged: _notifier.onColorChanged,
-                            initialSelectedIndex: selectedColorIndex,
-                            isItemAvailable: _notifier.isColorAvailable,
+                            items: controller.product.colors,
+                            onSelectionChanged: controller.onColorChanged,
+                            selectedIndex: selectedColorIndex,
+                            isItemAvailable: controller.isColorAvailable,
                             itemBuilder: (color, isSelected, isAvailable) {
                               return Container(
                                 margin: isSelected ? const EdgeInsets.all(2) : EdgeInsets.zero,
@@ -120,7 +126,7 @@ class _DetailProductContent extends StatelessWidget {
                       );
                     },
                   ),
-                  DescriptionWidget(product: _notifier.product),
+                  DescriptionWidget(product: controller.product),
 
                   RowHeaderWidget(
                     title: "review.title".tr(),
