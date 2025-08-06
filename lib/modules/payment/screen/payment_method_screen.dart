@@ -22,7 +22,9 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
   TextEditingController expController = TextEditingController();
   TextEditingController cvvController = TextEditingController();
 
-
+// TODO scroll full card
+// todo controllers extent disposeeble controllers => nhom
+  // TODO kheo den 1 phan se tu chuyen sang card khac
 
   @override
   Widget build(BuildContext context) {
