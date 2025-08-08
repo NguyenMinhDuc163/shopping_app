@@ -80,6 +80,11 @@ class CartItemWidget extends StatelessWidget {
               onTap: onTapDelete,
               child: IconWidget(iconPath: FontAwesomeIcons.trashCan),
             ),
+
+            // GestureDetector(
+            //   onTap: onTapDelete,
+            //   child: IconWidget(iconPath: FontAwesomeIcons.trashCan),
+            // ),
           ],
         ),
       ),

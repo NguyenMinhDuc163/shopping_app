@@ -59,12 +59,10 @@ class DetailProduct extends StatelessWidget {
 ///todo controllers extent disposeeble controllers => nhom 16 - 20
 ///payment_method_screen
 /// TODO scroll full card
-///  todo controllers extent disposeeble controllers => nhom
+/// TODO controllers extent disposeeble controllers => nhom
 /// TODO kheo den 1 phan se tu chuyen sang card khac
 class _DetailProductContent extends StatelessWidget {
   const _DetailProductContent();
-
-
 
   @override
   Widget build(BuildContext context) {
