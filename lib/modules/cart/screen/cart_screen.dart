@@ -57,29 +57,27 @@ class CartScreen extends StatelessWidget {
             ),
           ),
 
-          SliverPadding(padding: AppPad.h16, sliver: AppGap.sh16),
-          SliverPadToBox(
-            padding: AppPad.h16,
+          AppGap.sh16,
+          SliverToBoxAdapter(
             child: TitleWidget(
               title: "cart.delivery_address".tr(),
               onTap: () => Navigator.pushNamed(context, AddressFormScreen.routeName),
             ),
           ),
-          SliverPadding(padding: AppPad.h16, sliver: AppGap.sh16),
+          AppGap.sh16,
           SliverPadToBox(
             padding: AppPad.h16,
             child: DeliveryAddressWidget(address: "43, Electronics City Phase 1,\nElectronic City"),
           ),
 
-          SliverPadding(padding: AppPad.h16, sliver: AppGap.sh30),
-          SliverPadToBox(
-            padding: AppPad.h16,
+          AppGap.sh30,
+          SliverToBoxAdapter(
             child: TitleWidget(
               title: "cart.payment_method".tr(),
               onTap: () => Navigator.pushNamed(context, PaymentMethodScreen.routeName),
             ),
           ),
-          SliverPadding(padding: AppPad.h16, sliver: AppGap.sh12),
+          AppGap.sh12,
           SliverPadToBox(
             padding: AppPad.h16,
             child: PaymentMethodWidget(
@@ -89,7 +87,7 @@ class CartScreen extends StatelessWidget {
             ),
           ),
 
-          SliverPadding(padding: AppPad.h16, sliver: AppGap.sh20),
+          AppGap.sh20,
           SliverPadToBox(
             padding: AppPad.h16,
             child: ValueListenableBuilder<CartState>(

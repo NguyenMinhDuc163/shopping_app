@@ -51,10 +51,9 @@ class DetailProduct extends StatelessWidget {
 /// cart_screen
 // ToDo khong can doi mau khi chon san pham
 // TODO vung an
-/// TODO tim hieu  shrinkWrap
 /// TODO chuyen screen thanh customScrollView'
 /// cart_item_widget
-/// TODO thay itemWidget thanh  AssetIconSvg
+/// TODO thay itemWidget thanh AssetIconSvg
 /// address_form_screen
 ///todo controllers extent disposeeble controllers => nhom 16 - 20
 ///payment_method_screen
