@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shopping_app/common/widgets/images/custom_asset_svg_picture.dart';
+import 'package:shopping_app/core/constants/icon_path.dart';
 import 'package:shopping_app/core/constants/mock_data.dart';
 import 'package:shopping_app/core/theme/app_border_radius.dart';
 import 'package:shopping_app/core/theme/app_colors.dart';
 import 'package:shopping_app/core/theme/app_pad.dart';
 import 'package:shopping_app/core/theme/app_text_styles.dart';
 import 'package:shopping_app/core/widgets/app_gap.dart';
+import 'package:shopping_app/init.dart';
 import 'package:shopping_app/modules/cart/model/product_cart_model.dart';
 import 'package:shopping_app/modules/cart/widget/icon_widget.dart';
 import 'package:shopping_app/modules/cart/widget/quantity_selector_widget.dart';
@@ -76,18 +79,22 @@ class CartItemWidget extends StatelessWidget {
                 ),
               ),
             ),
+            // GestureDetector(
+            //   onTap: onTapDelete,
+            //   child: AssetIconSvg(
+            //     IconPath.iconDelete,
+            //     dimension: 20,
+            //     fit: BoxFit.contain,
+            //   ),
+            // ),
+
             GestureDetector(
               onTap: onTapDelete,
               child: IconWidget(iconPath: FontAwesomeIcons.trashCan),
             ),
-
-            // GestureDetector(
-            //   onTap: onTapDelete,
-            //   child: IconWidget(iconPath: FontAwesomeIcons.trashCan),
-            // ),
           ],
         ),
       ),
     );
   }
-} 
+}
