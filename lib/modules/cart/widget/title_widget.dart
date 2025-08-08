@@ -8,14 +8,15 @@ class TitleWidget extends StatelessWidget {
   final VoidCallback? onTap;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(title, style: AppTextStyles.textHeader3),
-        InkWell(
-            onTap: onTap,
-            child: Icon(Icons.chevron_right, color: Colors.black)),
-      ],
+    return InkWell(
+      onTap: onTap,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(title, style: AppTextStyles.textHeader3),
+          Icon(Icons.chevron_right, color: Colors.black),
+        ],
+      ),
     );
   }
 }

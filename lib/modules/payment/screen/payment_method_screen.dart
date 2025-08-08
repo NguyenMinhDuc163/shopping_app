@@ -24,7 +24,7 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
 
 // TODO scroll full card
 // todo controllers extent disposeeble controllers => nhom
-  // TODO kheo den 1 phan se tu chuyen sang card khac
+// TODO kheo den 1 phan se tu chuyen sang card khac
 
   @override
   Widget build(BuildContext context) {

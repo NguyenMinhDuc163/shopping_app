@@ -13,7 +13,6 @@ import 'package:shopping_app/modules/cart/widget/quantity_selector_widget.dart';
 class CartItemWidget extends StatelessWidget {
   final ProductCartModel product;
   final int quantity;
-  final bool isSelected;
   final Function(int) onQuantityChanged;
   final VoidCallback? onTap;
   final VoidCallback? onTapDelete;
@@ -22,7 +21,6 @@ class CartItemWidget extends StatelessWidget {
     super.key,
     required this.product,
     required this.quantity,
-    required this.isSelected,
     required this.onQuantityChanged,
     this.onTap,
     this.onTapDelete,
@@ -35,10 +33,6 @@ class CartItemWidget extends StatelessWidget {
       onTap: onTap,
       child: Container(
         margin: const EdgeInsets.only(bottom: 16),
-        decoration: BoxDecoration(
-          color: isSelected ? AppColors.lightGray : AppColors.colorFEFEFE,
-          borderRadius: AppBorderRadius.a12,
-        ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
