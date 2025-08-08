@@ -1,12 +1,7 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shopping_app/core/constants/icon_path.dart';
 import 'package:shopping_app/core/constants/image_path.dart';
-import 'package:shopping_app/core/theme/app_colors.dart';
-import 'package:shopping_app/core/theme/app_pad.dart';
-import 'package:shopping_app/modules/product/widget/circle_widget.dart';
 
 class ProductImage extends StatelessWidget {
   const ProductImage({super.key, this.stackChildren = const []});
@@ -56,7 +51,7 @@ class ProductImage extends StatelessWidget {
     );
   }
 }
-
+/// https://fluttershapemaker.com/#/
 class BrandContainerClipper extends CustomClipper<Path>{
   @override
   Path getClip(Size size) {
