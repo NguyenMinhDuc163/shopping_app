@@ -79,6 +79,15 @@ class CartItemWidget extends StatelessWidget {
                 ),
               ),
             ),
+            // GestureDetector(
+            //   onTap: onTapDelete,
+            //   child: AssetIconSvg(
+            //     IconPath.iconDelete,
+            //     dimension: 20,
+            //     fit: BoxFit.contain,
+            //   ),
+            // ),
+
             GestureDetector(
               onTap: onTapDelete,
               child: Container(
@@ -95,11 +104,6 @@ class CartItemWidget extends StatelessWidget {
                 ),
               ),
             ),
-
-            // GestureDetector(
-            //   onTap: onTapDelete,
-            //   child: IconWidget(iconPath: FontAwesomeIcons.trashCan),
-            // ),
           ],
         ),
       ),
