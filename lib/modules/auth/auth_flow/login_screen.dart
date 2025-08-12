@@ -7,6 +7,8 @@ import 'package:shopping_app/modules/auth/auth_flow/sign_in_screen.dart';
 import 'package:shopping_app/modules/auth/auth_flow/sign_up_screen.dart';
 import 'package:shopping_app/modules/auth/widgets/text_span_widget.dart';
 import 'package:shopping_app/modules/dashboard/screen/dashboard_screen.dart';
+import 'package:shopping_app/modules/product/bloc/products_cubit.dart';
+import 'package:shopping_app/modules/product/repo/product_repo.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -46,10 +48,13 @@ class LoginScreen extends StatelessWidget {
                       iconPath: IconPath.iconFacebook,
                     ),
                     onPressed:
-                        () => Navigator.pushNamed(
-                      context,
-                      DashboardScreen.routeName,
-                    ),
+                      //   () => Navigator.pushNamed(
+                      // context,
+                      // DashboardScreen.routeName,
+                    (){
+                      ProductRepo repo = ProductRepo();
+                      ProductsCubit cubit = ProductsCubit(repo: repo);
+                    },
                     backgroundColor: AppColors.deepBlue,
                     padding: AppPad.v14,
                     boderRadius: BorderRadius.all(AppRadius.c10),

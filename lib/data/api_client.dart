@@ -81,7 +81,7 @@ class ApiClient {
               printOnSuccess: true,
               convertFormData: true,
             ),
-            TokenInterceptor(),
+            // TokenInterceptor(),
           ]);
 
   static String buildBearerAuthorizationHeaderValue(String token) {
