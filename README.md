@@ -1,4 +1,4 @@
-# flutter_base_project_for_beginner
+# shopping_app
 
 A base project of Flutter app for beginner.
 

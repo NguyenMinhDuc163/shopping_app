@@ -16,6 +16,18 @@ abstract final class AppConst {
   // UI
 
   static const Duration splashScreenDuration = Duration(milliseconds: 350);
+
+  // Api
+
+  static const int refetchApiThreshold = 3;
+
+  static const int limitOfItemsForPeekRequest = 5;
+
+  static const int limitOfItemsForEachRequest = 10;
+
+  static const Duration timesToFetchCommonDataAgain = Duration(days: 7);
+
+  static const int inputDebounceTimeInMilliseconds = 440;
 }
 
 final class _RegExp {
