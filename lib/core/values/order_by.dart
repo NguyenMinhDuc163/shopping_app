@@ -9,10 +9,3 @@ enum OrderBy {
 
   const OrderBy(this.value);
 }
-
-enum SortType {
-  priceAsc,
-  priceDesc,
-  nameAsc,
-  nameDesc,
-}

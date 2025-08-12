@@ -1,4 +1,3 @@
-
 import 'package:shopping_app/core/constants/app_constants.dart';
 
 class Validators {
@@ -28,11 +27,11 @@ class Validators {
     return null;
   }
 
-  static bool isValidEmail(String email) {
+  static bool _isValidEmail(String email) {
     return AppConst.Pattern.email.hasMatch(email);
   }
 
-  static String? isValidEmailNotification(
+  static String? isValidEmail(
     String? value, {
     required bool isOptional,
   }) {
@@ -44,7 +43,7 @@ class Validators {
       return 'Email không được để trống';
     }
 
-    if (isValidEmail(value)) return null;
+    if (_isValidEmail(value)) return null;
 
     return 'Email không đúng định dạng';
   }

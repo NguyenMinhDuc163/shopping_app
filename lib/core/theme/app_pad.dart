@@ -53,8 +53,6 @@ abstract final class AppPad {
   static const EdgeInsets v14 = EdgeInsets.symmetric(vertical: 14);
   static const EdgeInsets v20 = EdgeInsets.symmetric(vertical: 20);
   static const EdgeInsets v24 = EdgeInsets.symmetric(vertical: 24);
-  static const EdgeInsets v30 = EdgeInsets.symmetric(vertical: 30);
-  static const EdgeInsets v40 = EdgeInsets.symmetric(vertical: 40);
 
   static const EdgeInsets h4v8 = EdgeInsets.symmetric(horizontal: 4, vertical: 8);
   static const EdgeInsets h6v2 = EdgeInsets.symmetric(horizontal: 6, vertical: 2);
@@ -62,7 +60,6 @@ abstract final class AppPad {
   static const EdgeInsets h8v16 = EdgeInsets.symmetric(horizontal: 8, vertical: 16);
   static const EdgeInsets h12v4 = EdgeInsets.symmetric(horizontal: 12, vertical: 4);
   static const EdgeInsets h12v8 = EdgeInsets.symmetric(horizontal: 12, vertical: 8);
-  static const EdgeInsets h10v8 = EdgeInsets.symmetric(horizontal: 10, vertical: 8);
   static const EdgeInsets h15v21 = EdgeInsets.symmetric(horizontal: 15, vertical: 21);
   static const EdgeInsets h16v4 = EdgeInsets.symmetric(horizontal: 16, vertical: 4);
   static const EdgeInsets h16v6 = EdgeInsets.symmetric(horizontal: 16, vertical: 6);
@@ -79,15 +76,9 @@ abstract final class AppPad {
   static const EdgeInsets h18v16 = EdgeInsets.symmetric(horizontal: 18, vertical: 16);
   static const EdgeInsets h20v8 = EdgeInsets.symmetric(horizontal: 20, vertical: 8);
   static const EdgeInsets h20v10 = EdgeInsets.symmetric(horizontal: 20, vertical: 10);
-  static const EdgeInsets h22v10 = EdgeInsets.symmetric(horizontal: 22, vertical: 10);
-  static const EdgeInsets h22v15 = EdgeInsets.symmetric(horizontal: 22, vertical: 15);
   static const EdgeInsets h24v10 = EdgeInsets.symmetric(horizontal: 24, vertical: 10);
-  static const EdgeInsets h24v12 = EdgeInsets.symmetric(horizontal: 24, vertical: 12);
-  static const EdgeInsets h30v12 = EdgeInsets.symmetric(horizontal: 30, vertical: 12);
   static const EdgeInsets h26v14 = EdgeInsets.symmetric(horizontal: 26, vertical: 14);
   static const EdgeInsets h30v16 = EdgeInsets.symmetric(horizontal: 30, vertical: 16);
-  static const EdgeInsets h10v40 = EdgeInsets.symmetric(horizontal: 10, vertical: 40);
-  static const EdgeInsets h16v40 = EdgeInsets.symmetric(horizontal: 16, vertical: 40);
 
   static const EdgeInsets h16b24 = EdgeInsets.only(left: 16, right: 16, bottom: 24);
 

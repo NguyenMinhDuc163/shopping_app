@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:shopping_app/core/theme/app_colors.dart';
+import 'package:shimmer/shimmer.dart';
 
 class ShimmerWrapper extends StatelessWidget {
   const ShimmerWrapper({super.key, required this.child});

@@ -4,7 +4,6 @@ import 'package:gap/gap.dart';
 import 'responsive_sizedbox.dart';
 
 abstract final class AppGap {
-  static const Widget g1 = Gap(1);
   static const Widget g2 = Gap(2);
   static const Widget g4 = Gap(4);
   static const Widget g5 = Gap(5);
