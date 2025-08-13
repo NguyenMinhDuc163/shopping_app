@@ -90,7 +90,19 @@ class CartItemWidget extends StatelessWidget {
 
             GestureDetector(
               onTap: onTapDelete,
-              child: IconWidget(iconPath: FontAwesomeIcons.trashCan),
+              child: Container(
+                padding: AppPad.a3,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(color: AppColors.colorDEDEDE, width: 1.5),
+                  color: Colors.white,
+                ),
+                child: AssetIconSvg(
+                  IconPath.iconDelete,
+                  dimension: 20,
+                  fit: BoxFit.contain,
+                ),
+              ),
             ),
           ],
         ),

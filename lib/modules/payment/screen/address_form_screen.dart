@@ -38,7 +38,7 @@ class _AddressFormContent extends StatelessWidget {
           spacing: 20,
           children: [
             TextInputCustom(
-              controller: controller.nameController.value,
+              controller: controller.nameController,
               fillColor: true,
               label: 'payment.name'.tr(),
               hintText: "Hemendra Mali",
@@ -53,7 +53,7 @@ class _AddressFormContent extends StatelessWidget {
               children: [
                 Expanded(
                   child: TextInputCustom(
-                    controller: controller.countryController.value,
+                    controller: controller.countryController,
                     fillColor: true,
                     label: 'payment.country'.tr(),
                     hintText: "India",
@@ -65,7 +65,7 @@ class _AddressFormContent extends StatelessWidget {
                 ),
                 Expanded(
                   child: TextInputCustom(
-                    controller: controller.cityController.value,
+                    controller: controller.cityController,
                     fillColor: true,
                     label: 'payment.city'.tr(),
                     hintText: "Bangalore",
@@ -78,7 +78,7 @@ class _AddressFormContent extends StatelessWidget {
               ],
             ),
             TextInputCustom(
-              controller: controller.phoneController.value,
+              controller: controller.phoneController,
               fillColor: true,
               label: 'payment.phone_number'.tr(),
               hintText: "+91-800 301 0108",
@@ -88,7 +88,7 @@ class _AddressFormContent extends StatelessWidget {
               borderRadius: AppBorderRadius.a8,
             ),
             TextInputCustom(
-              controller: controller.addressController.value,
+              controller: controller.addressController,
               fillColor: true,
               label: 'payment.address'.tr(),
               hintText: "43, Electronics City Phase 1, Electronic City",

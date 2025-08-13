@@ -10,12 +10,15 @@ class TitleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(title, style: AppTextStyles.textHeader3),
-          Icon(Icons.chevron_right, color: Colors.black),
-        ],
+      child: Padding(
+        padding: AppPad.h16v6,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(title, style: AppTextStyles.textHeader3),
+            Icon(Icons.chevron_right, color: Colors.black),
+          ],
+        ),
       ),
     );
   }

@@ -1,4 +1,4 @@
-# flutter_base_project_for_beginner
+# shopping_app
 
 A base project of Flutter app for beginner.
 
@@ -58,6 +58,14 @@ spider build --watch --verbose
 
 or
 
-```
+```0-
 spider build --smart-watch
 ```
+
+
+```
+ fvm dart run  build_runner clean
+ fvm dart run  build_runner build
+```
+
+flutterfire_cli: ^1.3.1

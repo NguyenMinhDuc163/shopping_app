@@ -1,5 +1,5 @@
 import 'package:shopping_app/init.dart';
-import '../../auth_flow/login_screen.dart';
+import '../../auth_flow/screen/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
