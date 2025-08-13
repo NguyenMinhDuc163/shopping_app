@@ -11,6 +11,6 @@ class ApiPath {
   static String baseUrl = _ApiPath.baseUrl;
 
   static const String refreshToken = '/refresh-token';
-  static const String login = '/login';
+  static const String login = '/auth/login';
   static const String products = '/products';
 }
