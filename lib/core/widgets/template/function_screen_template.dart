@@ -94,37 +94,33 @@ class _FunctionScreenTemplateState extends State<FunctionScreenTemplate>
 
   Widget _buildScaffold({required Widget body, required bool appBar}) {
     return WillUnfocusFormScope(
-      child: SafeArea(
-        // top: false,
-        child: Scaffold(
-          extendBodyBehindAppBar: widget.background != null,
-          resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset,
-          backgroundColor:
-              widget.background != null
-                  ? Colors.transparent
-                  : widget.backgroundColor ?? AppColors.white,
-          appBar: appBar ? appBarWidget() : null,
-          body: body,
-          bottomNavigationBar: Visibility(
-            visible: widget.isShowBottomButton,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                (widget.customBottomNavigationBar ??
-                    ButtonWidget(
-                      title: widget.titleButtonBottom,
-                      padding: AppPad.v24,
-                      onPressed: widget.onClickBottomButton ?? () {},
-                    )),
-              ],
-            ),
-          ),
-          floatingActionButton: widget.floatingActionButton,
-        ),
+      child: Scaffold(
+        extendBodyBehindAppBar: widget.background != null,
+        resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset,
+        backgroundColor:
+            widget.background != null
+                ? Colors.transparent
+                : widget.backgroundColor ?? AppColors.white,
+        appBar: appBar ? appBarWidget() : null,
+        body: SafeArea(child: body),
+        bottomNavigationBar:
+            widget.isShowBottomButton
+                ? Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    (widget.customBottomNavigationBar ??
+                        ButtonWidget(
+                          title: widget.titleButtonBottom,
+                          padding: AppPad.v24,
+                          onPressed: widget.onClickBottomButton ?? () {},
+                        )),
+                  ],
+                )
+                : null,
+        floatingActionButton: widget.floatingActionButton,
       ),
     );
   }
-
 
   // TODO tang kich thuoc nut back
   PreferredSizeWidget appBarWidget() {

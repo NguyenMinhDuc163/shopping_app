@@ -26,6 +26,7 @@ class LoginScreen extends StatelessWidget {
         },
         titleButtonBottom: "login_screen.create_account".tr(),
         isShowBottomButton: true,
+        isShowAppBar: false,
         screen: Padding(
           padding: AppPad.h22v10,
           child: Column(
