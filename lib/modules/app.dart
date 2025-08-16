@@ -6,13 +6,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shopping_app/core/public/navigation_service.dart';
 import 'package:shopping_app/core/routes/routers.dart';
 import 'package:shopping_app/data/api_client.dart';
-import 'package:shopping_app/modules/auth/auth_flow/bloc/auth_cubit.dart';
-import 'package:shopping_app/modules/auth/auth_flow/bloc/auth_state.dart';
-import 'package:shopping_app/modules/auth/auth_flow/repository/auth_local_data_source.dart';
 import 'package:shopping_app/modules/auth/initial/screen/splash_screen.dart';
-import 'package:shopping_app/modules/home/screen/home_screen.dart';
+import 'package:shopping_app/modules/auth/sign_in/bloc/sign_in_cubit.dart';
+import 'package:shopping_app/modules/auth/sign_in/bloc/sign_in_state.dart';
+import 'package:shopping_app/modules/auth/sign_in/repository/auth_local_data_source.dart';
 
-import 'auth/auth_flow/repository/auth_repo.dart';
+import 'auth/login/screen/login_screen.dart';
+import 'auth/sign_in/repository/sign_in_repo.dart';
+import 'home/screen/home_screen.dart';
 
 class App extends StatelessWidget {
   const App({super.key, required this.sharedPreferences});
@@ -22,21 +23,25 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return RepositoryProvider(
       create:
-          (context) => AuthRepo(
+          (context) => SignInRepo(
             apiClient: ApiClient(),
             authLocalDataSource: AuthLocalDataSource(sharedPreferences),
           ),
       child: BlocProvider(
-        create: (context) => AuthCubit(repo: context.read<AuthRepo>()),
+        create: (context) => SignInCubit(repo: context.read<SignInRepo>()),
         child: MaterialApp(
           builder: (context, child) {
-            return BlocListener<AuthCubit, AuthState>(
+            return BlocListener<SignInCubit, SignInState>(
               listener: (context, state) {
-                // if (state is AuthGenToken) {
-                //   NavigationService.navigatorKey.currentState?.pushNamed(
-                //     HomeScreen.routeName,
-                //   );
-                // }
+                if (state is SignInAuthenticated) {
+                  NavigationService.navigatorKey.currentState?.pushReplacementNamed(
+                    HomeScreen.routeName,
+                  );
+                } else if (state is SignInInitial) {
+                  NavigationService.navigatorKey.currentState?.pushReplacementNamed(
+                    SplashScreen.routeName,
+                  );
+                }
               },
               child: ResponsiveBreakpoints.builder(
                 child: child!,
@@ -44,11 +49,7 @@ class App extends StatelessWidget {
                   const Breakpoint(start: 0, end: 450, name: MOBILE),
                   const Breakpoint(start: 451, end: 800, name: TABLET),
                   const Breakpoint(start: 801, end: 1920, name: DESKTOP),
-                  const Breakpoint(
-                    start: 1921,
-                    end: double.infinity,
-                    name: '4K',
-                  ),
+                  const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
                 ],
               ),
             );
@@ -57,8 +58,8 @@ class App extends StatelessWidget {
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
-          home: const SplashScreen(),
           routes: Routers.routes,
+          // initialRoute: '/',
           onGenerateRoute: Routers.generateRoute,
           navigatorKey: NavigationService.navigatorKey,
           navigatorObservers: [NavigationService.routeObserver],

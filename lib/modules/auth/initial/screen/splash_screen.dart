@@ -1,5 +1,8 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopping_app/init.dart';
-import '../../auth_flow/screen/login_screen.dart';
+import 'package:shopping_app/modules/auth/login/screen/login_screen.dart';
+import 'package:shopping_app/modules/auth/sign_in/repository/sign_in_repo.dart';
+import 'package:shopping_app/modules/home/screen/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -17,8 +20,16 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void redirectIntroScreen() async {
-    await Future.delayed(const Duration(milliseconds: 1000));
-    Navigator.of(context).pushNamed(LoginScreen.routeName);
+    String? token = await context.read<SignInRepo>().authLocalDataSource.getToken();
+    await Future.delayed(const Duration(seconds: 1));
+    if (!mounted) return;
+    if(token != null) {
+      Navigator.of(context).pushNamed(HomeScreen.routeName);
+    }else{
+      Navigator.of(context).pushNamed(LoginScreen.routeName);
+
+    }
+
   }
 
   @override

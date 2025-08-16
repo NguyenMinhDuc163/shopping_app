@@ -49,6 +49,7 @@ dependencies:
   dynamic_height_grid: ^1.0.1
   disposable_provider: ^2.4.0
   shared_preferences: ^2.5.3
+  fluttertoast: ^8.2.12
   # Environment
   envied: ^0.5.4+1
 

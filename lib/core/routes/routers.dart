@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopping_app/core/public/global_utils.dart';
 import 'package:shopping_app/core/theme/app_text_styles.dart';
 import 'package:shopping_app/core/widgets/template/function_screen_template.dart';
-import 'package:shopping_app/modules/auth/auth_flow/screen/sign_in_screen.dart';
-import 'package:shopping_app/modules/auth/auth_flow/screen/sign_up_screen.dart';
+import 'package:shopping_app/data/api_client.dart';
 import 'package:shopping_app/modules/auth/forgot_password/screen/change_password_screen.dart';
 import 'package:shopping_app/modules/auth/forgot_password/screen/forgot_password_screen.dart';
 import 'package:shopping_app/modules/auth/forgot_password/screen/verify_screen.dart';
-import 'package:shopping_app/modules/auth/auth_flow/screen/login_screen.dart';
 import 'package:shopping_app/modules/auth/initial/screen/onboarding_screen.dart';
+import 'package:shopping_app/modules/auth/initial/screen/splash_screen.dart';
+import 'package:shopping_app/modules/auth/login/screen/login_screen.dart';
+import 'package:shopping_app/modules/auth/sign_in/screen/sign_in_screen.dart';
+import 'package:shopping_app/modules/auth/sign_up/bloc/sign_up_cubit.dart';
+import 'package:shopping_app/modules/auth/sign_up/repository/sign_up_repo.dart';
+import 'package:shopping_app/modules/auth/sign_up/screen/sign_up_screen.dart';
 import 'package:shopping_app/modules/brand/screen/brain_screen.dart';
 import 'package:shopping_app/modules/cart/screen/cart_screen.dart';
 import 'package:shopping_app/modules/dashboard/screen/dashboard_screen.dart';
@@ -33,93 +38,53 @@ class Routers {
     // TODO Task 1: hiển thị log khi chuyển màn
 
     switch (settings.name) {
+      case '/':
+        return MaterialPageRoute(settings: settings, builder: (_) => const SplashScreen());
       case LoginScreen.routeName:
-        return MaterialPageRoute(
-          settings: settings,
-          builder: (_) => LoginScreen(),
-        );
+        return MaterialPageRoute(settings: settings, builder: (_) => LoginScreen());
       case HomeScreen.routeName:
-        return MaterialPageRoute(
-          settings: settings,
-          builder: (_) => HomeScreen(),
-        );
+        return MaterialPageRoute(settings: settings, builder: (_) => HomeScreen());
       case DashboardScreen.routeName:
-        return MaterialPageRoute(
-          settings: settings,
-          builder: (_) => DashboardScreen(),
-        );
+        return MaterialPageRoute(settings: settings, builder: (_) => DashboardScreen());
       case SignUpScreen.routeName:
         return MaterialPageRoute(
           settings: settings,
-          builder: (_) => SignUpScreen(),
+          builder: (context) => RepositoryProvider(
+            create: (context) => SignUpRepo(apiClient: ApiClient()),
+            child: BlocProvider(
+              create: (context) => SignUpCubit(repo: context.read<SignUpRepo>()),
+              child: SignUpScreen(),
+            ),
+          ),
         );
       case SignInScreen.routeName:
-        return MaterialPageRoute(
-          settings: settings,
-          builder: (_) => SignInScreen(),
-        );
+        return MaterialPageRoute(settings: settings, builder: (_) => SignInScreen());
       case ForgotPasswordScreen.routeName:
-        return MaterialPageRoute(
-          settings: settings,
-          builder: (_) => ForgotPasswordScreen(),
-        );
+        return MaterialPageRoute(settings: settings, builder: (_) => ForgotPasswordScreen());
       case VerifyScreen.routeName:
-        return MaterialPageRoute(
-          settings: settings,
-          builder: (_) => VerifyScreen(),
-        );
+        return MaterialPageRoute(settings: settings, builder: (_) => VerifyScreen());
       case ChangePasswordScreen.routeName:
-        return MaterialPageRoute(
-          settings: settings,
-          builder: (_) => ChangePasswordScreen(),
-        );
+        return MaterialPageRoute(settings: settings, builder: (_) => ChangePasswordScreen());
       case DetailProduct.routeName:
         String? imageUrl = settings.arguments as String?;
-        return MaterialPageRoute(
-          settings: settings,
-          builder: (_) => DetailProduct(),
-        );
+        return MaterialPageRoute(settings: settings, builder: (_) => DetailProduct());
       case AddressFormScreen.routeName:
-        return MaterialPageRoute(
-          settings: settings,
-          builder: (_) => AddressFormScreen(),
-        );
+        return MaterialPageRoute(settings: settings, builder: (_) => AddressFormScreen());
       case ConfirmScreen.routeName:
-        return MaterialPageRoute(
-          settings: settings,
-          builder: (_) => ConfirmScreen(),
-        );
+        return MaterialPageRoute(settings: settings, builder: (_) => ConfirmScreen());
       case NewCardScreen.routeName:
-        return MaterialPageRoute(
-          settings: settings,
-          builder: (_) => NewCardScreen(),
-        );
+        return MaterialPageRoute(settings: settings, builder: (_) => NewCardScreen());
       case PaymentMethodScreen.routeName:
-        return MaterialPageRoute(
-          settings: settings,
-          builder: (_) => PaymentMethodScreen(),
-        );
+        return MaterialPageRoute(settings: settings, builder: (_) => PaymentMethodScreen());
       case CartScreen.routeName:
-        return MaterialPageRoute(
-          settings: settings,
-          builder: (_) => CartScreen(),
-        );
+        return MaterialPageRoute(settings: settings, builder: (_) => CartScreen());
       case ReviewScreen.routeName:
-        return MaterialPageRoute(
-          settings: settings,
-          builder: (_) => ReviewScreen(),
-        );
+        return MaterialPageRoute(settings: settings, builder: (_) => ReviewScreen());
       case AddReviewScreen.routeName:
-        return MaterialPageRoute(
-          settings: settings,
-          builder: (_) => AddReviewScreen(),
-        );
+        return MaterialPageRoute(settings: settings, builder: (_) => AddReviewScreen());
       case BrainScreen.routeName:
         Map<String, dynamic> brand = settings.arguments as Map<String, dynamic>;
-        return MaterialPageRoute(
-          settings: settings,
-          builder: (_) => BrainScreen(brand: brand,),
-        );
+        return MaterialPageRoute(settings: settings, builder: (_) => BrainScreen(brand: brand));
       default:
         return MaterialPageRoute(
           settings: settings,

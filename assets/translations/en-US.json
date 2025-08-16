@@ -35,7 +35,12 @@
     "enter_username": "Enter username",
     "enter_password": "Enter password",
     "enter_email": "Enter email",
-    "strong": "Strong"
+    "strong": "Strong",
+    "register_success": "Registration successful",
+    "register_failure": "Registration failed",
+    "required_fields": "Please fill in all required fields",
+    "password_length": "Password must be at least 8 characters",
+    "invalid_email": "Invalid email address"
   },
   "login": {
     "title": "Login",
@@ -43,7 +48,9 @@
     "enter_data_to_continue": "Please enter your data to continue",
     "forgot_password": "Forgot password?",
     "connect_account_confirmation": "By connecting your account confirm that you agree with our",
-    "terms_and_conditions": "Term and Condition"
+    "terms_and_conditions": "Term and Condition",
+    "login_success": "Login successful",
+    "login_failure": "Login failed"
   },
   "forgot_password": {
     "title": "Forgot Password",

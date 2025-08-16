@@ -1,5 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:shopping_app/modules/auth/auth_flow/repository/constants.dart';
+
+import 'constants.dart';
 
 class AuthLocalDataSource {
   AuthLocalDataSource(this.sf);

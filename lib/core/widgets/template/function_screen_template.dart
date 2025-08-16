@@ -49,6 +49,7 @@ class FunctionScreenTemplate extends StatefulWidget {
 
 class _FunctionScreenTemplateState extends State<FunctionScreenTemplate>
     with WidgetsBindingObserver {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   bool isOpacity = false;
 
   @override
@@ -138,7 +139,7 @@ class _FunctionScreenTemplateState extends State<FunctionScreenTemplate>
                   ? IconButton(
                     icon: SvgPicture.asset(IconPath.iconMenu),
                     onPressed: () {
-                      Scaffold.of(context).openDrawer();
+                      _scaffoldKey.currentState?.openDrawer();
                     },
                   )
                   : IconButton(

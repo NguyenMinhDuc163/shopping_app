@@ -35,7 +35,12 @@
     "enter_username": "Nhập username",
     "enter_password": "Nhập password",
     "enter_email": "Nhập email",
-    "strong": "Mạnh"
+    "strong": "Mạnh",
+    "register_success": "Đăng ký thành công",
+    "register_failure": "Đăng ký thất bại",
+    "required_fields": "Vui lòng nhập đủ thông tin",
+    "password_length": "Mật khẩu phải có ít nhất 8 ký tự",
+    "invalid_email": "Email không hợp lệ"
   },
   "login": {
     "title": "Đăng nhập",
@@ -43,7 +48,9 @@
     "enter_data_to_continue": "Vui lòng nhập thông tin để tiếp tục",
     "forgot_password": "Quên mật khẩu?",
     "connect_account_confirmation": "Bằng cách kết nối tài khoản, bạn xác nhận rằng bạn đồng ý với",
-    "terms_and_conditions": "Điều khoản và Điều kiện"
+    "terms_and_conditions": "Điều khoản và Điều kiện",
+    "login_success": "Đăng nhập thành công",
+    "login_failure": "Đăng nhập thất bại"
   },
   "forgot_password": {
     "title": "Quên mật khẩu",
