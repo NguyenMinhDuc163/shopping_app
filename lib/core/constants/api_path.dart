@@ -13,4 +13,5 @@ class ApiPath {
   static const String refreshToken = '/refresh-token';
   static const String login = '/auth/login';
   static const String products = '/products';
+  static const String register = '/auth/register/minh-duc-fbsvc-74eb4abcbc';
 }

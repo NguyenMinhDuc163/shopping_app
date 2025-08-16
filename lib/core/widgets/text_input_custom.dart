@@ -68,7 +68,7 @@ class _TextInputCustomState extends State<TextInputCustom> {
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: 6,
       children: [
@@ -135,10 +135,9 @@ class _TextInputCustomState extends State<TextInputCustom> {
           });
         },
       );
-    }  else if (isValid && widget.suffixIcon != null) {
+    } else if (isValid && widget.suffixIcon != null) {
       return widget.suffixIcon;
-    }
-    else if (isValid) {
+    } else if (isValid) {
       return const Icon(Icons.done, color: Colors.green);
     }
 
