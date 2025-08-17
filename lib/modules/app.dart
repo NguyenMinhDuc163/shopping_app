@@ -34,13 +34,11 @@ class App extends StatelessWidget {
             return BlocListener<SignInCubit, SignInState>(
               listener: (context, state) {
                 if (state is SignInAuthenticated) {
-                  NavigationService.navigatorKey.currentState?.pushReplacementNamed(
-                    HomeScreen.routeName,
-                  );
+                  NavigationService.navigatorKey.currentState
+                      ?.pushReplacementNamed(HomeScreen.routeName);
                 } else if (state is SignInInitial) {
-                  NavigationService.navigatorKey.currentState?.pushReplacementNamed(
-                    SplashScreen.routeName,
-                  );
+                  NavigationService.navigatorKey.currentState
+                      ?.pushReplacementNamed(SplashScreen.routeName);
                 }
               },
               child: ResponsiveBreakpoints.builder(
@@ -49,7 +47,11 @@ class App extends StatelessWidget {
                   const Breakpoint(start: 0, end: 450, name: MOBILE),
                   const Breakpoint(start: 451, end: 800, name: TABLET),
                   const Breakpoint(start: 801, end: 1920, name: DESKTOP),
-                  const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
+                  const Breakpoint(
+                    start: 1921,
+                    end: double.infinity,
+                    name: '4K',
+                  ),
                 ],
               ),
             );
