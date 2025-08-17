@@ -35,6 +35,7 @@ class SignInCubit extends Cubit<SignInState> {
       }
     } catch (e) {
       emit(SignInFailure());
+      throw Exception("Lỗi hệ thống");
     }
   }
 }

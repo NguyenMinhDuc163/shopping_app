@@ -8,6 +8,14 @@ class SignUpInProgress extends SignUpState {}
 
 class SignUpSuccess extends SignUpState {}
 
-class SignUpFailure extends SignUpState {}
+class SignUpFailure extends SignUpState {
+  final String message;
 
-class SignUpError extends SignUpState {}
+  SignUpFailure({this.message = 'Đăng ký thất bại'});
+}
+
+class SignUpError extends SignUpState {
+  final String message;
+
+  SignUpError({this.message = 'Đã xảy ra lỗi'});
+}

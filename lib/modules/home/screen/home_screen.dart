@@ -1,5 +1,7 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shopping_app/init.dart';
+import 'package:shopping_app/modules/auth/sign_in/repository/sign_in_repo.dart';
 import 'package:shopping_app/modules/cart/screen/cart_screen.dart';
 import 'package:shopping_app/modules/home/widget/new_arrival_widget.dart';
 import 'package:shopping_app/modules/home/widget/search_bar_delegate.dart';
@@ -16,6 +18,14 @@ class HomeScreen extends StatelessWidget {
       isShowBottomButton: false,
       isShowAppBar: true,
       isShowDrawer: true,
+      leadingWidget: IconButton(
+        icon: SvgPicture.asset(IconPath.iconMenu),
+        onPressed: () async {
+          context.read<SignInRepo>().authLocalDataSource.deleteToken();
+          final token =await  context.read<SignInRepo>().authLocalDataSource.getToken();
+          print("====> ${token}");
+        },
+      ),
       actionsWidget: [
         GestureDetector(
           onTap: () => Navigator.pushNamed(context, CartScreen.routeName),

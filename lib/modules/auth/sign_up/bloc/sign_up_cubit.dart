@@ -21,15 +21,23 @@ class SignUpCubit extends Cubit<SignUpState> {
   }) async {
     emit(SignUpInProgress());
 
-    try{
-      final res = await repo.register(username: username, password: password, email: email);
-      if(res){
+    try {
+      final res = await repo.register(
+        username: username,
+        password: password,
+        email: email,
+      );
+      if (res) {
         emit(SignUpSuccess());
-      }else{
-        emit(SignUpFailure());
+      } else {
+        emit(
+          SignUpFailure(
+            message: 'Thông tin đăng ký không hợp lệ hoặc tài khoản đã tồn tại',
+          ),
+        );
       }
-    }catch(e){
-      emit(SignUpError());
+    } catch (e) {
+      emit(SignUpError(message: e.toString()));
       return;
     }
   }

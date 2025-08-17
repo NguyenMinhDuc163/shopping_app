@@ -11,7 +11,7 @@ class ApiPath {
   static String baseUrl = _ApiPath.baseUrl;
 
   static const String refreshToken = '/refresh-token';
-  static const String login = '/auth/login';
-  static const String products = '/products';
+  static const String login = '/auth/login-on-firebase/minh-duc-fbsvc-74eb4abcbc';
   static const String register = '/auth/register/minh-duc-fbsvc-74eb4abcbc';
+  static const String products = '/products';
 }

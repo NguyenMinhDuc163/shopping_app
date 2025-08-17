@@ -22,10 +22,12 @@ class DetailProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DisposableProvider(create: (BuildContext context) {
-      return DetailProductController();
-    },
-    child: _DetailProductContent());
+    return DisposableProvider(
+      create: (BuildContext context) {
+        return DetailProductController();
+      },
+      child: _DetailProductContent(),
+    );
   }
 }
 
@@ -45,8 +47,6 @@ class DetailProduct extends StatelessWidget {
 /// TODO task 5  generic
 /// TODO task 6 them icon o color
 
-
-
 /// 5/8
 /// cart_screen
 // ToDo khong can doi mau khi chon san pham
@@ -65,7 +65,9 @@ class _DetailProductContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final DetailProductController controller = DisposableProvider.of<DetailProductController>(context);
+    final DetailProductController controller = DisposableProvider.of<DetailProductController>(
+      context,
+    );
 
     return FunctionScreenTemplate(
       isShowBottomButton: false,

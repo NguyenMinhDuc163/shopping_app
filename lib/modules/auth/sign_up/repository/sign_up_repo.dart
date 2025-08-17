@@ -14,7 +14,7 @@ class SignUpRepo {
      final res = await apiClient.fetch(
       ApiPath.register,
       RequestMethod.post,
-      data: {
+      rawData: {
         "username": username,
         "password": password,
         "email": email,
