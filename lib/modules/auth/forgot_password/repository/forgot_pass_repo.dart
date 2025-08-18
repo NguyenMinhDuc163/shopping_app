@@ -28,4 +28,23 @@ class ForgotPassRepo{
 
   }
 
+  Future<bool> verifyOtp({required String otp, required String userName}) async {
+    try{
+      final res = await apiClient.fetch(
+        ApiPath.verifyOtp,
+        RequestMethod.post,
+        rawData: {
+          "username": userName,
+          "enteredOtp": otp,
+          "expiresInMins": 30
+        },
+      );
+      return res.code == 200;
+    }catch (e) {
+      print("Error: $e");
+      return false;
+    }
+
+  }
+
 }

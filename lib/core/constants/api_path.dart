@@ -17,4 +17,5 @@ class ApiPath {
       '/auth/login-on-firebase';
   static const String register = '/auth/register';
   static const String products = '/products';
+  static const String verifyOtp = '/auth/verify-otp';
 }

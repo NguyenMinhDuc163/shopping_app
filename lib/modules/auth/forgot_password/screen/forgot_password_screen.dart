@@ -4,12 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shopping_app/core/widgets/app_gap.dart';
 import 'package:shopping_app/core/widgets/text_input_custom.dart';
+import 'package:shopping_app/init.dart';
 import 'package:shopping_app/modules/auth/forgot_password/bloc/forgot_pass_controller.dart';
 import 'package:shopping_app/modules/auth/forgot_password/bloc/forgot_pass_cubit.dart';
 import 'package:shopping_app/modules/auth/forgot_password/bloc/forgot_pass_state.dart';
-import 'package:shopping_app/modules/auth/forgot_password/screen/verify_screen.dart';
 import 'package:shopping_app/utils/helpers/validators.dart';
-import 'package:shopping_app/init.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   const ForgotPasswordScreen({super.key});
