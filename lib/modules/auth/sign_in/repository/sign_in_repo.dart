@@ -16,7 +16,7 @@ class SignInRepo {
     final res = await apiClient.fetch(
       ApiPath.login,
       RequestMethod.post,
-      data: {"username": "emilys", "password": "emilyspass", "expiresInMins": 30},
+      rawData: {"username":username, "password": password,},
     );
     LoginResponse loginResponse = LoginResponse.fromJson(res.json);
     authLocalDataSource.saveToken(AuthDataConstants.tokenKey);

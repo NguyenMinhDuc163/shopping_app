@@ -53,11 +53,15 @@ const _exceptionCanResolveByReFetch = [
 ];
 
 bool _shouldReFetch(DioException e, int retryTimes) {
-  return _exceptionCanResolveByReFetch.any((el) => e.message?.contains(el) == true) &&
+  return _exceptionCanResolveByReFetch.any(
+        (el) => e.message?.contains(el) == true,
+      ) &&
       retryTimes <= AppConst.refetchApiThreshold;
 }
 
-final String _debugEmptyResponse = SystemUtils.colorizeTerminalText.cyan('<Empty>');
+final String _debugEmptyResponse = SystemUtils.colorizeTerminalText.cyan(
+  '<Empty>',
+);
 
 final _baseOptions = BaseOptions(
   connectTimeout: const Duration(milliseconds: 100000),
@@ -74,15 +78,12 @@ class ApiClient {
   factory ApiClient() => _instance ??= ApiClient._();
 
   ApiClient._()
-      : _dio = Dio(_baseOptions)
-          ..interceptors.addAll([
-            // LogInterceptor(),
-            CurlLoggerDioInterceptor(
-              printOnSuccess: true,
-              convertFormData: true,
-            ),
-            // TokenInterceptor(),
-          ]);
+    : _dio = Dio(_baseOptions)
+        ..interceptors.addAll([
+          // LogInterceptor(),
+          CurlLoggerDioInterceptor(printOnSuccess: true, convertFormData: true),
+          TokenInterceptor(),
+        ]);
 
   static String buildBearerAuthorizationHeaderValue(String token) {
     return 'Bearer $token';
@@ -153,14 +154,20 @@ class ApiClient {
     if (token != null) {
       headers.putIfAbsent(
         'Authorization',
-        () => !isBearerToken ? token : buildBearerAuthorizationHeaderValue(token),
+        () =>
+            !isBearerToken ? token : buildBearerAuthorizationHeaderValue(token),
       );
     }
 
     options.headers = headers;
-    options.contentType ??= headers.containsKey('Authorization')
-        ? ContentType('application', 'x-www-form-urlencoded', charset: "utf-8").mimeType
-        : ContentType.json.mimeType;
+    options.contentType ??=
+        headers.containsKey('Authorization')
+            ? ContentType(
+              'application',
+              'x-www-form-urlencoded',
+              charset: "utf-8",
+            ).mimeType
+            : ContentType.json.mimeType;
 
     Response response;
     int retryTimes = 1;
@@ -176,13 +183,17 @@ class ApiClient {
 
     while (true) {
       try {
-        final Map<String, dynamic>? effectiveData = data ?? await asyncDataGetter?.call();
+        final Map<String, dynamic>? effectiveData =
+            data ?? await asyncDataGetter?.call();
 
         response = await _dio.request(
           url,
-          data: rawData ??
+          data:
+              rawData ??
               await asyncRawDataGetter?.call() ??
-              (method == RequestMethod.post && effectiveData != null ? FormData.fromMap(effectiveData) : effectiveData),
+              (method == RequestMethod.post && effectiveData != null
+                  ? FormData.fromMap(effectiveData)
+                  : effectiveData),
           queryParameters: searchParams,
           options: options,
         );
@@ -215,7 +226,9 @@ class ApiClient {
 
             SystemUtils.debugLog.error(
               'Response $debugStatusCode (error) of $debugUrl',
-              e.response?.data == null ? _debugEmptyResponse : _prettyJson(e.response?.data),
+              e.response?.data == null
+                  ? _debugEmptyResponse
+                  : _prettyJson(e.response?.data),
             );
           }
           return true;
@@ -234,7 +247,9 @@ class ApiClient {
 
         SystemUtils.debugLog.info(
           'Response $debugStatusCode of $debugUrl',
-          response.data == null ? _debugEmptyResponse : _prettyJson(response.data),
+          response.data == null
+              ? _debugEmptyResponse
+              : _prettyJson(response.data),
         );
       }
 
@@ -362,9 +377,7 @@ class ApiClient {
         final FormData formData;
 
         if (isListLiteral) {
-          formData = FormData.fromMap({
-            paramName: multipartFiles,
-          });
+          formData = FormData.fromMap({paramName: multipartFiles});
         } else {
           formData = FormData();
           formData.files.addAll(
@@ -405,7 +418,8 @@ class ApiClient {
     }
 
     if (e.message?.contains('Failed host lookup') == true ||
-        (dioError is SocketException && dioError.message.contains('Failed host lookup') == true)) {
+        (dioError is SocketException &&
+            dioError.message.contains('Failed host lookup') == true)) {
       if ((await ConnectivityService.canConnectToNetwork()) == false) {
         return const NoConnectionException();
       } else {

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
+import 'package:shopping_app/core/constants/api_path.dart';
 
 import '../../core/app_authentication.dart';
 import '../../core/constants/app_constants.dart';
@@ -21,10 +22,13 @@ class TokenInterceptor extends InterceptorsWrapper {
 
   @override
   void onRequest(
-      RequestOptions options, RequestInterceptorHandler handler) async {
+    RequestOptions options,
+    RequestInterceptorHandler handler,
+  ) async {
     final authorization = options.headers['Authorization'];
 
-    final bool areHeadersHasAccessToken = authorization != null &&
+    final bool areHeadersHasAccessToken =
+        authorization != null &&
         authService.accessToken != null &&
         authorization.toString().contains(authService.accessToken!);
 
@@ -87,19 +91,32 @@ class TokenInterceptor extends InterceptorsWrapper {
 
     if (hasRefreshFailed && areHeadersHasAccessToken) return;
 
-    final RequestOptions updatedOptions = hasRefreshSucceeded ==
-                null /* means it unset */ ||
-            !areHeadersHasAccessToken
-        ? options
-        : options.copyWith(
-            headers: {
-              ...options.headers,
-              if (areHeadersHasAccessToken)
-                'Authorization': ApiClient.buildBearerAuthorizationHeaderValue(
-                  authService.accessToken!,
-                ),
-            },
-          );
+    String updatedPath = options.path;
+    final String urlToken = ApiPath.registerId;
+    if (!updatedPath.contains(urlToken)) {
+      if (updatedPath.contains('?')) {
+        final pathParts = updatedPath.split('?');
+        updatedPath = '${pathParts[0]}/$urlToken?${pathParts[1]}';
+      } else {
+        updatedPath = '$updatedPath/$urlToken';
+      }
+    }
+
+    final RequestOptions updatedOptions =
+        hasRefreshSucceeded == null /* means it unset */ ||
+                !areHeadersHasAccessToken
+            ? options.copyWith(path: updatedPath)
+            : options.copyWith(
+              path: updatedPath,
+              headers: {
+                ...options.headers,
+                if (areHeadersHasAccessToken)
+                  'Authorization':
+                      ApiClient.buildBearerAuthorizationHeaderValue(
+                        authService.accessToken!,
+                      ),
+              },
+            );
 
     super.onRequest(updatedOptions, handler);
   }
@@ -130,10 +147,9 @@ class TokenInterceptor extends InterceptorsWrapper {
           _refreshTokenCompleter?.completeError(e, StackTrace.current);
           _refreshTokenCompleter = null;
 
-          handler.reject(DioException(
-            requestOptions: response.requestOptions,
-            error: e,
-          ));
+          handler.reject(
+            DioException(requestOptions: response.requestOptions, error: e),
+          );
           return;
         }
       }
@@ -151,10 +167,7 @@ class TokenInterceptor extends InterceptorsWrapper {
   }
 
   @override
-  void onError(
-    DioException err,
-    ErrorInterceptorHandler handler,
-  ) async {
+  void onError(DioException err, ErrorInterceptorHandler handler) async {
     if (err.response?.statusCode == StatusCode.locked) {
       AppAuthenticationBinding.instance!.notifyLocked();
     }
@@ -203,10 +216,9 @@ class TokenInterceptor extends InterceptorsWrapper {
             requestOptions = err.requestOptions;
           }
 
-          handler.reject(DioException(
-            requestOptions: requestOptions,
-            error: e,
-          ));
+          handler.reject(
+            DioException(requestOptions: requestOptions, error: e),
+          );
           return;
         }
       }
@@ -221,9 +233,9 @@ class TokenInterceptor extends InterceptorsWrapper {
     } else {
       if (_times > AppConst.refetchApiThreshold) {
         _times = 1;
-        handler.resolve(Response(
-          requestOptions: err.requestOptions..data = err.response,
-        ));
+        handler.resolve(
+          Response(requestOptions: err.requestOptions..data = err.response),
+        );
         authService.notifyTokenChanged();
       } else {
         _times = 1;

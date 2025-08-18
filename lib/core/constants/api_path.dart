@@ -9,9 +9,12 @@ class ApiPath {
   /// Base URL
   @EnviedField(varName: 'BASE_URL', obfuscate: true)
   static String baseUrl = _ApiPath.baseUrl;
+  @EnviedField(varName: 'REGISTER_ID', obfuscate: true)
+  static String registerId = _ApiPath.registerId;
 
   static const String refreshToken = '/refresh-token';
-  static const String login = '/auth/login';
+  static const String login =
+      '/auth/login-on-firebase';
+  static const String register = '/auth/register';
   static const String products = '/products';
-  static const String register = '/auth/register/minh-duc-fbsvc-74eb4abcbc';
 }

@@ -37,9 +37,7 @@ final class _RegExp {
     unicode: true,
   );
 
-  final RegExp specialCharacters = RegExp(
-    r'[!@#$%^&.*+?{}()|[\]\\]',
-  );
+  final RegExp specialCharacters = RegExp(r'[!@#$%^&.*+?{}()|[\]\\]');
 
   final RegExp email = RegExp(
     r'^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$',
