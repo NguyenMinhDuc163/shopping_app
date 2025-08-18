@@ -30,20 +30,7 @@ class SignInController extends Disposable {
     }
 
     if (state is SignInFailure) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('login.failed'.tr()),
-          backgroundColor: Colors.red,
-          duration: Duration(seconds: 3),
-          action: SnackBarAction(
-            label: 'OK',
-            textColor: Colors.white,
-            onPressed: () {
-              ScaffoldMessenger.of(context).hideCurrentSnackBar();
-            },
-          ),
-        ),
-      );
+      showToastTop(message: 'login.failed'.tr());
     }
   }
 
