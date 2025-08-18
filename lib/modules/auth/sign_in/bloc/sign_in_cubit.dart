@@ -3,6 +3,8 @@ import 'package:shopping_app/modules/auth/sign_in/bloc/sign_in_state.dart';
 import 'package:shopping_app/modules/auth/sign_in/repository/sign_in_repo.dart';
 
 class SignInCubit extends Cubit<SignInState> {
+  final SignInRepo repo;
+
   SignInCubit({required this.repo}) : super(SignInInitial()) {
     // lay tu repo => co token => emit AuthGenToken
     // tach dang nhap dang ky
@@ -19,7 +21,6 @@ class SignInCubit extends Cubit<SignInState> {
     });
   }
 
-  final SignInRepo repo;
 
   Future onLoginStarted({
     required String username,
@@ -34,7 +35,7 @@ class SignInCubit extends Cubit<SignInState> {
         emit(SignInFailure());
       }
     } catch (e) {
-      emit(SignInFailure());
+      emit(SignInError());
       throw Exception("Lỗi hệ thống");
     }
   }

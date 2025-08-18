@@ -6,6 +6,8 @@ import 'package:shopping_app/core/widgets/text_input_custom.dart';
 import 'package:shopping_app/core/widgets/toast.dart';
 import 'package:shopping_app/init.dart';
 import 'package:shopping_app/modules/auth/forgot_password/screen/forgot_password_screen.dart';
+import 'package:shopping_app/modules/auth/forgot_password/screen/reset_password_screen.dart';
+import 'package:shopping_app/modules/auth/forgot_password/screen/verify_screen.dart';
 import 'package:shopping_app/modules/auth/initial/screen/onboarding_screen.dart';
 import 'package:shopping_app/modules/auth/sign_in/bloc/sign_in_controller.dart';
 import 'package:shopping_app/modules/auth/sign_in/bloc/sign_in_cubit.dart';
