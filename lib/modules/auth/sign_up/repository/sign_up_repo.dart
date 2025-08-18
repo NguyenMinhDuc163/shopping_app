@@ -18,7 +18,7 @@ class SignUpRepo {
         "username": username,
         "password": password,
         "email": email,
-        "expiresInMins": 30,
+        "verification": "4 digit OTP"
       },
     );
      RegisterResponse registerResponse = RegisterResponse.fromJson(res.json);

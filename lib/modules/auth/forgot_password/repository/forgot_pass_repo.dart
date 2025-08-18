@@ -10,17 +10,17 @@ class ForgotPassRepo{
   Future<bool> sendOPT({required String email}) async {
     try{
       final res = await apiClient.fetch(
-        ApiPath.register,
+        ApiPath.login,
         RequestMethod.post,
         rawData: {
-          "username": "a1",
-          "password": "123456",
+          "username": "nguyenduc163",
+          "password": "12345678",
+          "verification": "4 digit OTP",
           "email": email,
-          "verification": "4 digit OTP"
         },
       );
-      String status = res.json['status'];
-      return status == 'ok';
+
+      return res.code == 200;
     }catch (e) {
       print("Error in ForgotPassRepo: $e");
       return false;

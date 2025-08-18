@@ -13,7 +13,7 @@ class ResetPassController extends Disposable{
 
   void onResetPassword(BuildContext context, ) {
 
-    context.read<ResetPassCubit>().onResetPassword(userName: "sdsa", password: confirmPasswordController.text);
+    context.read<ResetPassCubit>().onResetPassword(userName: "duc12345", password: confirmPasswordController.text);
   }
 
   handleListener(BuildContext context, ResetPassState state) {

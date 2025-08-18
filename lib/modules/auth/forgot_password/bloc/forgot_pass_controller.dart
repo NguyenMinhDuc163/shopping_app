@@ -17,7 +17,7 @@ class ForgotPassController extends Disposable{
   }
 
   void onSendOpt(BuildContext context, ) {
-    if(!Validators.isValidEmail(emailController.text)) {
+    if(!Validators.isValidEmail(emailController.text.trim())) {
       showToastTop(message: "forgot_password.invalid_email".tr());
       return;
     }
