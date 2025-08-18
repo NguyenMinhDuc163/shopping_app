@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopping_app/core/widgets/toast.dart';
 import 'package:shopping_app/modules/auth/forgot_password/bloc/verify_otp_cubit.dart';
 import 'package:shopping_app/modules/auth/forgot_password/bloc/verify_otp_state.dart';
-import 'package:shopping_app/modules/auth/forgot_password/screen/change_password_screen.dart';
+import 'package:shopping_app/modules/auth/forgot_password/screen/reset_password_screen.dart';
 
 class VerifyOtpController extends Disposable{
   TextEditingController otpController = TextEditingController();
@@ -21,7 +21,7 @@ class VerifyOtpController extends Disposable{
 
   handleListener(BuildContext context, VerifyOtpState state) {
     if (state is VerifyOtpSuccess) {
-      Navigator.pushNamed(context, ChangePasswordScreen.routeName);
+      Navigator.pushNamed(context, ResetPasswordScreen.routeName);
     }
 
     if (state is VerifyOtpFailure || state is VerifyOtpError) {

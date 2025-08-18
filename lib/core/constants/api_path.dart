@@ -18,4 +18,5 @@ class ApiPath {
   static const String register = '/auth/register';
   static const String products = '/products';
   static const String verifyOtp = '/auth/verify-otp';
+  static const String resetPassword = '/auth/reset-password';
 }

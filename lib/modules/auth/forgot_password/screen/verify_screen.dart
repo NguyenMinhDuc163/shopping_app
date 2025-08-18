@@ -9,7 +9,7 @@ import 'package:shopping_app/modules/auth/forgot_password/bloc/forgot_pass_state
 import 'package:shopping_app/modules/auth/forgot_password/bloc/verify_otp_controller.dart';
 import 'package:shopping_app/modules/auth/forgot_password/bloc/verify_otp_cubit.dart';
 import 'package:shopping_app/modules/auth/forgot_password/bloc/verify_otp_state.dart';
-import 'package:shopping_app/modules/auth/forgot_password/screen/change_password_screen.dart';
+import 'package:shopping_app/modules/auth/forgot_password/screen/reset_password_screen.dart';
 import 'package:shopping_app/modules/auth/widgets/countdown_widget.dart';
 import 'package:shopping_app/init.dart';
 

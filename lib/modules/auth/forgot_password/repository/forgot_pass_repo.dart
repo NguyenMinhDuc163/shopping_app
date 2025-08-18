@@ -47,4 +47,23 @@ class ForgotPassRepo{
 
   }
 
+  Future<bool> resetPassword({required String userName, required String password}) async {
+    try{
+      final res = await apiClient.fetch(
+        ApiPath.resetPassword,
+        RequestMethod.post,
+        rawData: {
+          "username": userName,
+          "password": password,
+        },
+      );
+      String status = res.json['status'];
+      return status == 'ok';
+    }catch (e) {
+      print("Error: $e");
+      return false;
+    }
+
+  }
+
 }

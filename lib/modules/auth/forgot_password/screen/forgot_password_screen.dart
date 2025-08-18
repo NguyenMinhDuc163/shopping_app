@@ -21,9 +21,7 @@ class ForgotPasswordScreen extends StatelessWidget {
         return ForgotPassController();
       },
       builder: (context, child) {
-        final ForgotPassController controller = DisposableProvider.of<ForgotPassController>(
-          context,
-        );
+        final ForgotPassController controller = DisposableProvider.of<ForgotPassController>(context,);
         return BlocListener<ForgotPassCubit, ForgotPassState>(
           listener: controller.handleListener,
           listenWhen: (previous, next) => previous.runtimeType != next.runtimeType,

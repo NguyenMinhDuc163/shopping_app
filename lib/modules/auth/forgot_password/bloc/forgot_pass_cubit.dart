@@ -2,14 +2,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopping_app/modules/auth/forgot_password/bloc/forgot_pass_state.dart';
 import 'package:shopping_app/modules/auth/forgot_password/repository/forgot_pass_repo.dart';
 
-class ForgotPassCubit  extends Cubit<ForgotPassState>  {
+class ForgotPassCubit extends Cubit<ForgotPassState> {
   final ForgotPassRepo repo;
 
   ForgotPassCubit({required this.repo}) : super(ForgotPassInitial());
 
-  Future onSendOtp({
-    required String email,
-  }) async {
+  Future onSendOtp({required String email}) async {
     emit(ForgotPassInProgress());
     try {
       final res = await repo.sendOPT(email: email);
@@ -23,5 +21,4 @@ class ForgotPassCubit  extends Cubit<ForgotPassState>  {
       throw Exception(e);
     }
   }
-
 }

@@ -5,9 +5,10 @@ import 'package:shopping_app/core/theme/app_text_styles.dart';
 import 'package:shopping_app/core/widgets/template/function_screen_template.dart';
 import 'package:shopping_app/data/api_client.dart';
 import 'package:shopping_app/modules/auth/forgot_password/bloc/forgot_pass_cubit.dart';
+import 'package:shopping_app/modules/auth/forgot_password/bloc/reset_pass_cubit.dart';
 import 'package:shopping_app/modules/auth/forgot_password/bloc/verify_otp_cubit.dart';
 import 'package:shopping_app/modules/auth/forgot_password/repository/forgot_pass_repo.dart';
-import 'package:shopping_app/modules/auth/forgot_password/screen/change_password_screen.dart';
+import 'package:shopping_app/modules/auth/forgot_password/screen/reset_password_screen.dart';
 import 'package:shopping_app/modules/auth/forgot_password/screen/forgot_password_screen.dart';
 import 'package:shopping_app/modules/auth/forgot_password/screen/verify_screen.dart';
 import 'package:shopping_app/modules/auth/initial/screen/onboarding_screen.dart';
@@ -83,19 +84,32 @@ class Routers {
           settings: settings,
           builder:
               (context) => RepositoryProvider(
-            create: (context) => ForgotPassRepo(apiClient: ApiClient()),
+                create: (context) => ForgotPassRepo(apiClient: ApiClient()),
 
-            child: BlocProvider(
-              create: (context) => VerifyOtpCubit(repo: context.read<ForgotPassRepo>()),
+                child: BlocProvider(
+                  create: (context) => VerifyOtpCubit(repo: context.read<ForgotPassRepo>()),
 
-              child: VerifyScreen(),
-            ),
-          ),
+                  child: VerifyScreen(),
+                ),
+              ),
         );
-      case ChangePasswordScreen.routeName:
-        return MaterialPageRoute(settings: settings, builder: (_) => ChangePasswordScreen());
+
+      case ResetPasswordScreen.routeName:
+        return MaterialPageRoute(
+          settings: settings,
+          builder:
+              (context) => RepositoryProvider(
+                create: (context) => ForgotPassRepo(apiClient: ApiClient()),
+
+                child: BlocProvider(
+                  create: (context) => ResetPassCubit(repo: context.read<ForgotPassRepo>()),
+
+                  child: ResetPasswordScreen(),
+                ),
+              ),
+        );
+
       case DetailProduct.routeName:
-        String? imageUrl = settings.arguments as String?;
         return MaterialPageRoute(settings: settings, builder: (_) => DetailProduct());
       case AddressFormScreen.routeName:
         return MaterialPageRoute(settings: settings, builder: (_) => AddressFormScreen());

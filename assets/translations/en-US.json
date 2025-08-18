@@ -64,7 +64,9 @@
     "verification_code": "Verification Code",
     "confirm_code": "Confirm Code",
     "confirm_password": "Confirm Password",
-    "otp_send_failure": "Failed to send OTP"
+    "otp_send_failure": "Failed to send OTP",
+    "success": "Password reset successful",
+    "failure": "Password reset failed"
   },
   "onboarding": {
     "slogan": "Look Good, Feel Good",

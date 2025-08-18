@@ -64,7 +64,9 @@
     "verification_code": "Mã xác nhận",
     "confirm_code": "Xác nhận mã",
     "confirm_password": "Xác nhận mật khẩu",
-    "otp_send_failure": "Gửi mã OTP thất bại"
+    "otp_send_failure": "Gửi mã OTP thất bại",
+    "success": "Khôi phục mật khẩu thành công",
+    "failure": "Khôi phục mật khẩu thất bại"
   },
   "onboarding": {
     "slogan": "Trông đẹp, Cảm thấy tuyệt",
