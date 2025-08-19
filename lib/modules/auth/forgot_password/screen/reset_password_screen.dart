@@ -7,7 +7,6 @@ import 'package:shopping_app/init.dart';
 import 'package:shopping_app/modules/auth/forgot_password/bloc/reset_pass_controller.dart';
 import 'package:shopping_app/modules/auth/forgot_password/bloc/reset_pass_cubit.dart';
 import 'package:shopping_app/modules/auth/forgot_password/bloc/reset_pass_state.dart';
-import 'package:shopping_app/modules/auth/sign_in/screen/sign_in_screen.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
   const ResetPasswordScreen({super.key});
@@ -43,52 +42,53 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
           onClickBottomButton: () {
             controller.onResetPassword(context);
           },
-          screen: Center(
-            child: Padding(
-              padding: AppPad.h22v10,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                spacing: height_30,
-                children: [
-                  Text(
-                    'forgot_password.new_password'.tr(),
-                    style: AppTextStyles.textHeader1,
-                  ),
-                  Spacer(),
+          screen: SingleChildScrollView(
+            child: Center(
+              child: Padding(
+                padding: AppPad.h22v10,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  spacing: height_30,
+                  children: [
+                    Text(
+                      'forgot_password.new_password'.tr(),
+                      style: AppTextStyles.textHeader1,
+                    ),
+                    AppGap.h100,
+                    TextInputCustom(
+                      label: 'sign_up.password'.tr(),
+                      controller: controller.passwordController,
+                      hintText: "sign_up.enter_password".tr(),
+                      suffixIcon: Text(
+                        "sign_up.strong".tr(),
+                        style: AppTextStyles.textContent3.copyWith(
+                          color: AppColors.limeGreen,
+                        ),
+                      ),
+                      validator: (text) {
+                        return text.length >= 8;
+                      },
+                    ),
+                    TextInputCustom(
+                      label: 'forgot_password.confirm_password'.tr(),
+                      controller: controller.confirmPasswordController,
+                      hintText: "forgot_password.enter_new_password".tr(),
+                      validator: (text) {
+                        return text.length >= 4;
+                      },
+                    ),
 
-                  TextInputCustom(
-                    label: 'sign_up.password'.tr(),
-                    controller: controller.passwordController,
-                    hintText: "sign_up.enter_password".tr(),
-                    suffixIcon: Text(
-                      "sign_up.strong".tr(),
+                    AppGap.h100,
+                    Text(
+                      'forgot_password.enter_new_password'.tr(),
+                      textAlign: TextAlign.center,
                       style: AppTextStyles.textContent3.copyWith(
-                        color: AppColors.limeGreen,
+                        color: AppColors.coolGray,
                       ),
                     ),
-                    validator: (text) {
-                      return text.length >= 8;
-                    },
-                  ),
-                  TextInputCustom(
-                    label: 'forgot_password.confirm_password'.tr(),
-                    controller: controller.confirmPasswordController,
-                    hintText: "forgot_password.enter_new_password".tr(),
-                    validator: (text) {
-                      return text.length >= 4;
-                    },
-                  ),
-
-                  Spacer(),
-                  Text(
-                    'forgot_password.enter_new_password'.tr(),
-                    textAlign: TextAlign.center,
-                    style: AppTextStyles.textContent3.copyWith(
-                      color: AppColors.coolGray,
-                    ),
-                  ),
-                  AppGap.g1
-                ],
+                    AppGap.g1
+                  ],
+                ),
               ),
             ),
           ),

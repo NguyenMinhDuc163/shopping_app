@@ -42,28 +42,30 @@ class ForgotPasswordScreen extends StatelessWidget {
           screen: Padding(
             padding: AppPad.h22v10,
             child: Center(
-              child: Column(
-                spacing: height_30,
-                children: [
-                  Text("forgot_password.title".tr(), style: AppTextStyles.textHeader1),
-                  SvgPicture.asset(ImagePath.imgForgotPassword),
-                  AppGap.g2,
-                  TextInputCustom(
-                    label: 'Email'.tr(),
-                    controller: controller.emailController,
-                    hintText: "forgot_password.email_address".tr(),
-                    validator: (text) {
-                      return Validators.isValidEmail(text);
-                    },
-                  ),
-                  Spacer(),
-                  Text(
-                    'forgot_password.enter_email_for_confirmation'.tr(),
-                    textAlign: TextAlign.center,
-                    style: AppTextStyles.textContent3.copyWith(color: AppColors.coolGray),
-                  ),
-                  AppGap.g1,
-                ],
+              child: SingleChildScrollView(
+                child: Column(
+                  spacing: height_30,
+                  children: [
+                    Text("forgot_password.title".tr(), style: AppTextStyles.textHeader1),
+                    SvgPicture.asset(ImagePath.imgForgotPassword),
+                    AppGap.g2,
+                    TextInputCustom(
+                      label: 'Email'.tr(),
+                      controller: controller.emailController,
+                      hintText: "forgot_password.email_address".tr(),
+                      validator: (text) {
+                        return Validators.isValidEmail(text);
+                      },
+                    ),
+                    AppGap.h100,
+                    Text(
+                      'forgot_password.enter_email_for_confirmation'.tr(),
+                      textAlign: TextAlign.center,
+                      style: AppTextStyles.textContent3.copyWith(color: AppColors.coolGray),
+                    ),
+                    AppGap.g1,
+                  ],
+                ),
               ),
             ),
           ),

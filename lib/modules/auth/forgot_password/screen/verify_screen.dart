@@ -45,55 +45,57 @@ class VerifyScreen extends StatelessWidget {
           screen: Padding(
             padding: AppPad.h22v10,
             child: Center(
-              child: Column(
-                spacing: height_30,
-                children: [
-                  Text(
-                    "forgot_password.verification_code".tr(),
-                    style: AppTextStyles.textHeader1,
-                  ),
-                  SvgPicture.asset(ImagePath.imgForgotPassword),
-                  AppGap.g2,
-                  PinCodeTextField(
-                    appContext: context,
-                    // controller: controller.otpController,
-                    length: 4,
-                    onChanged: (value) {},
-                    onCompleted: (value){
-                      controller.onSubmitOpt(context, value: value);
-                    },
-                    pinTheme: PinTheme(
-                      shape: PinCodeFieldShape.box,
-                      borderRadius: BorderRadius.circular(12),
-                      fieldHeight: 70,
-                      fieldWidth: 60,
-                      activeColor: Colors.grey[300]!,
-                      selectedColor: Colors.grey[400]!,
-                      inactiveColor: Colors.grey[200]!,
+              child: SingleChildScrollView(
+                child: Column(
+                  spacing: height_30,
+                  children: [
+                    Text(
+                      "forgot_password.verification_code".tr(),
+                      style: AppTextStyles.textHeader1,
                     ),
-                    textStyle: TextStyle(
-                      fontSize: 28,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    keyboardType: TextInputType.number,
-                  ),
-                  Spacer(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CountdownWidget(seconds: 120, onResend: () {}),
-                      Text(
-                        'forgot_password.resend_confirmation_code'.tr(),
-                        textAlign: TextAlign.center,
-                        style: AppTextStyles.textContent2.copyWith(
-                          color: AppColors.coolGray,
-                        ),
+                    SvgPicture.asset(ImagePath.imgForgotPassword),
+                    AppGap.g2,
+                    PinCodeTextField(
+                      appContext: context,
+                      // controller: controller.otpController,
+                      length: 4,
+                      onChanged: (value) {},
+                      onCompleted: (value){
+                        controller.onSubmitOpt(context, value: value);
+                      },
+                      pinTheme: PinTheme(
+                        shape: PinCodeFieldShape.box,
+                        borderRadius: BorderRadius.circular(12),
+                        fieldHeight: 70,
+                        fieldWidth: 60,
+                        activeColor: Colors.grey[300]!,
+                        selectedColor: Colors.grey[400]!,
+                        inactiveColor: Colors.grey[200]!,
                       ),
-                    ],
-                  ),
-                  AppGap.g1,
-                ],
+                      textStyle: TextStyle(
+                        fontSize: 28,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      keyboardType: TextInputType.number,
+                    ),
+                    AppGap.h100,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CountdownWidget(seconds: 120, onResend: () {}),
+                        Text(
+                          'forgot_password.resend_confirmation_code'.tr(),
+                          textAlign: TextAlign.center,
+                          style: AppTextStyles.textContent2.copyWith(
+                            color: AppColors.coolGray,
+                          ),
+                        ),
+                      ],
+                    ),
+                    AppGap.g1,
+                  ],
+                ),
               ),
             ),
           ),
