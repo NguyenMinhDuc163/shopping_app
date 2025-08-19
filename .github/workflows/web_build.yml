@@ -11,37 +11,12 @@ on:
 
 env:
   FLUTTER_VERSION: ${{ secrets.FLUTTER_VERSION }}
-  TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-  TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
   GH_PAGES_DEPLOY_TOKEN: ${{ secrets.GH_PAGES_DEPLOY_TOKEN }}
   WEB_URL: ${{ secrets.WEB_URL }}
-  # Cho phép dùng trực tiếp trong shell nếu cần (không in ra logs!)
   BASE_URL: ${{ secrets.BASE_URL }}
   REGISTER_ID: ${{ secrets.REGISTER_ID }}
 
 jobs:
-  notify-commit:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: Get Commit Info
-        run: |
-          COMMIT_HASH=$(git rev-parse --short HEAD)
-          COMMIT_MESSAGE=$(git log -1 --pretty=%B)
-          COMMIT_AUTHOR=$(git log -1 --pretty="%an")
-          COMMIT_DATE=$(git log -1 --pretty="%cd" --date=iso)
-          MESSAGE="🛠 *New Build Triggered*%0A"
-          MESSAGE+="%0A"
-          MESSAGE+="👤 *Author:* \`$COMMIT_AUTHOR\`%0A"
-          MESSAGE+="📅 *Date:* \`$COMMIT_DATE\`%0A"
-          MESSAGE+="🔢 *Commit:* \`$COMMIT_HASH\`%0A"
-          MESSAGE+="📝 *Message:* \`$COMMIT_MESSAGE\`%0A"
-          curl -X POST "https://api.telegram.org/bot${{ env.TELEGRAM_BOT_TOKEN }}/sendMessage" \
-               -d "chat_id=${{ env.TELEGRAM_CHAT_ID }}" \
-               -d "text=$MESSAGE" \
-               -d "parse_mode=MarkdownV2"
-
   build-web:
     runs-on: ubuntu-latest
     steps:
@@ -65,7 +40,6 @@ jobs:
           REGISTER_ID=${{ secrets.REGISTER_ID }}
           EOF
 
-      # (Tuỳ chọn) Kiểm tra file tồn tại mà không lộ dữ liệu
       - name: Verify env/.env.dev existence (no secret leak)
         run: |
           test -f env/.env.dev && echo "env/.env.dev exists ✅"
@@ -92,16 +66,3 @@ jobs:
           publish_dir: build/web
           publish_branch: gh-pages
           force_orphan: true
-
-      - name: Send Web Build URL to Telegram
-        run: |
-          TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
-          # Escape URL cho MarkdownV2
-          ESCAPED_WEB_URL=$(echo "${{ env.WEB_URL }}" | sed 's/\./\\./g' | sed 's/\//\\\//g')
-          MESSAGE="🚀 *Web Build Completed*%0A"
-          MESSAGE+="📅 *Date:* \`$TIMESTAMP\`%0A"
-          MESSAGE+="🌍 *URL:* \[Click here\]\($ESCAPED_WEB_URL\)"
-          curl -X POST "https://api.telegram.org/bot${{ env.TELEGRAM_BOT_TOKEN }}/sendMessage" \
-               --data-urlencode "chat_id=${{ env.TELEGRAM_CHAT_ID }}" \
-               --data-urlencode "text=$MESSAGE" \
-               --data-urlencode "parse_mode=MarkdownV2"
