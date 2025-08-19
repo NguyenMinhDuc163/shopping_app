@@ -22,20 +22,7 @@ class SignInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Map<String, String>? prefillData = ModalRoute.of(context)?.settings.arguments as Map<String, String>?;
-    return DisposableProvider(
-      create: (BuildContext context) {
-        return SignInController(prefillData: prefillData);
-      },
-      builder: (context, child) {
-        final SignInController controller =
-            DisposableProvider.of<SignInController>(context);
-        return _buildContent(context, controller);
-      },
-    );
-  }
-
-  Widget _buildContent(BuildContext context, SignInController controller) {
+    final SignInController controller = DisposableProvider.of<SignInController>(context);
     return BlocListener<SignInCubit, SignInState>(
       listener: controller.handleListener,
       child: FunctionScreenTemplate(
@@ -85,10 +72,10 @@ class SignInScreen extends StatelessWidget {
                     GestureDetector(
                       onTap:
                           () => Navigator.pushNamed(
-                            context,
-                            // ForgotPasswordScreen.routeName,
-                            VerifyScreen.routeName,
-                          ),
+                        context,
+                        // ForgotPasswordScreen.routeName,
+                        VerifyScreen.routeName,
+                      ),
                       child: Align(
                         alignment: Alignment.centerRight,
                         child: Text(
@@ -122,9 +109,9 @@ class SignInScreen extends StatelessWidget {
                       clickableText: 'login.terms_and_conditions'.tr(),
                       onTap:
                           () => Navigator.pushNamed(
-                            context,
-                            SignInScreen.routeName,
-                          ),
+                        context,
+                        SignInScreen.routeName,
+                      ),
                     ),
                   ],
                 ),
@@ -141,11 +128,12 @@ class SignInScreen extends StatelessWidget {
               SignInSuccess() => initialWidget,
               SignInFailure() => initialWidget,
               SignInError() => initialWidget,
-              _ => Container(),
+              SignInAuthenticated() => initialWidget,
             });
           },
         ),
       ),
     );
   }
+
 }

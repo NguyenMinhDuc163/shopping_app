@@ -94,12 +94,12 @@ class TokenInterceptor extends InterceptorsWrapper {
     String updatedPath = options.path;
     final String urlToken = ApiPath.registerId;
     if (!updatedPath.contains(urlToken)) {
-      if (updatedPath.contains('?')) {
-        final pathParts = updatedPath.split('?');
-        updatedPath = '${pathParts[0]}/$urlToken?${pathParts[1]}';
-      } else {
+      // if (updatedPath.contains('?')) {
+      //   final pathParts = updatedPath.split('?');
+      //   updatedPath = '${pathParts[0]}/$urlToken?${pathParts[1]}';
+      // } else {
         updatedPath = '$updatedPath/$urlToken';
-      }
+      // }
     }
 
     final RequestOptions updatedOptions =

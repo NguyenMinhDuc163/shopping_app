@@ -13,97 +13,91 @@ import 'package:shopping_app/modules/auth/forgot_password/screen/reset_password_
 import 'package:shopping_app/modules/auth/widgets/countdown_widget.dart';
 import 'package:shopping_app/init.dart';
 
-
 class VerifyScreen extends StatelessWidget {
   const VerifyScreen({super.key});
   static const String routeName = '/verifyScreen';
   @override
   Widget build(BuildContext context) {
     return DisposableProvider(
-        create: (BuildContext context) {
-          return VerifyOtpController();
-        },
-        builder: (context, child){
-          final VerifyOtpController controller = DisposableProvider.of<VerifyOtpController>(
-            context,
-          );
-          return BlocListener<VerifyOtpCubit, VerifyOtpState>(
-              listener: controller.handleListener,
-              listenWhen: (previous, next) => previous.runtimeType != next.runtimeType,
-              child: buildContent(context, controller));
-        });
+      create: (BuildContext context) {
+        return VerifyOtpController();
+      },
+      builder: (context, child) {
+        final VerifyOtpController controller = DisposableProvider.of<VerifyOtpController>(context);
+        return BlocListener<VerifyOtpCubit, VerifyOtpState>(
+          listener: controller.handleListener,
+          listenWhen: (previous, next) => previous.runtimeType != next.runtimeType,
+          child: FunctionScreenTemplate(
+            titleButtonBottom: "forgot_password.confirm_code".tr(),
+            onClickBottomButton: () {
+              controller.onSubmitOpt(context);
+            },
+            screen: buildContent(context, controller),
+          ),
+        );
+      },
+    );
   }
-  Widget buildContent(BuildContext context, VerifyOtpController controller){
-    return BlocBuilder<VerifyOtpCubit, VerifyOtpState>(
-      builder: (context, state){
 
-        final initialWidget = FunctionScreenTemplate(
-          titleButtonBottom: "forgot_password.confirm_code".tr(),
-          onClickBottomButton: () {
-            controller.onSubmitOpt(context);
-          },
-          screen: Padding(
-            padding: AppPad.h22v10,
-            child: Center(
-              child: SingleChildScrollView(
-                child: Column(
-                  spacing: height_30,
-                  children: [
-                    Text(
-                      "forgot_password.verification_code".tr(),
-                      style: AppTextStyles.textHeader1,
+
+  Widget buildContent(BuildContext context, VerifyOtpController controller) {
+    return BlocBuilder<VerifyOtpCubit, VerifyOtpState>(
+      builder: (context, state) {
+        final initialWidget = Padding(
+          padding: AppPad.h22v10,
+          child: Center(
+            child: SingleChildScrollView(
+              child: Column(
+                spacing: height_30,
+                children: [
+                  Text("forgot_password.verification_code".tr(), style: AppTextStyles.textHeader1),
+                  SvgPicture.asset(ImagePath.imgForgotPassword),
+                  AppGap.g2,
+                  PinCodeTextField(
+                    appContext: context,
+                    controller: controller.otpController,
+                    length: 4,
+                    onChanged: (value) {},
+                    onCompleted: (value) {
+                      controller.onSubmitOpt(context, value: value);
+                    },
+                    autoDisposeControllers: false,
+                    pinTheme: PinTheme(
+                      shape: PinCodeFieldShape.box,
+                      borderRadius: BorderRadius.circular(12),
+                      fieldHeight: 70,
+                      fieldWidth: 60,
+                      activeColor: Colors.grey[300]!,
+                      selectedColor: Colors.grey[400]!,
+                      inactiveColor: Colors.grey[200]!,
                     ),
-                    SvgPicture.asset(ImagePath.imgForgotPassword),
-                    AppGap.g2,
-                    PinCodeTextField(
-                      appContext: context,
-                      // controller: controller.otpController,
-                      length: 4,
-                      onChanged: (value) {},
-                      onCompleted: (value){
-                        controller.onSubmitOpt(context, value: value);
-                      },
-                      pinTheme: PinTheme(
-                        shape: PinCodeFieldShape.box,
-                        borderRadius: BorderRadius.circular(12),
-                        fieldHeight: 70,
-                        fieldWidth: 60,
-                        activeColor: Colors.grey[300]!,
-                        selectedColor: Colors.grey[400]!,
-                        inactiveColor: Colors.grey[200]!,
+                    textStyle: TextStyle(
+                      fontSize: 28,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    keyboardType: TextInputType.number,
+                  ),
+                  AppGap.h100,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CountdownWidget(seconds: 120, onResend: () {}),
+                      Text(
+                        'forgot_password.resend_confirmation_code'.tr(),
+                        textAlign: TextAlign.center,
+                        style: AppTextStyles.textContent2.copyWith(color: AppColors.coolGray),
                       ),
-                      textStyle: TextStyle(
-                        fontSize: 28,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w500,
-                      ),
-                      keyboardType: TextInputType.number,
-                    ),
-                    AppGap.h100,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CountdownWidget(seconds: 120, onResend: () {}),
-                        Text(
-                          'forgot_password.resend_confirmation_code'.tr(),
-                          textAlign: TextAlign.center,
-                          style: AppTextStyles.textContent2.copyWith(
-                            color: AppColors.coolGray,
-                          ),
-                        ),
-                      ],
-                    ),
-                    AppGap.g1,
-                  ],
-                ),
+                    ],
+                  ),
+                  AppGap.g1,
+                ],
               ),
             ),
           ),
         );
 
-        final Widget inProgressWidget = Center(
-          child: CircularProgressIndicator(),
-        );
+        final Widget inProgressWidget = Center(child: CircularProgressIndicator());
         return (switch (state) {
           VerifyOtpInitial() => initialWidget,
           VerifyOtpInProgress() => inProgressWidget,
@@ -115,3 +109,6 @@ class VerifyScreen extends StatelessWidget {
     );
   }
 }
+
+// TODO tach rieng ra 1 class , dung context.watch, context.read, khong dung blocbuilder
+// TODO show loading khong bi mat man hinh o dang sau

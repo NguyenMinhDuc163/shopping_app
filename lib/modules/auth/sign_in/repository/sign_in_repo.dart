@@ -21,6 +21,9 @@ class SignInRepo {
     LoginResponse loginResponse = LoginResponse.fromJson(res.json);
     authLocalDataSource.saveToken(AuthDataConstants.tokenKey);
     print("=====>: ${loginResponse}");
+    if(res.code != 200){
+      throw res.message;
+    }
     return res.code == 200;
   }
 

@@ -21,7 +21,8 @@ class ForgotPasswordScreen extends StatelessWidget {
         return ForgotPassController();
       },
       builder: (context, child) {
-        final ForgotPassController controller = DisposableProvider.of<ForgotPassController>(context,);
+        // final ForgotPassController controller = DisposableProvider.of<ForgotPassController>(context,);
+        final ForgotPassController controller = context.read(); // TODO C2
         return BlocListener<ForgotPassCubit, ForgotPassState>(
           listener: controller.handleListener,
           listenWhen: (previous, next) => previous.runtimeType != next.runtimeType,
@@ -33,7 +34,15 @@ class ForgotPasswordScreen extends StatelessWidget {
 
   Widget buildContent(BuildContext context, ForgotPassController controller) {
     return BlocBuilder<ForgotPassCubit, ForgotPassState>(
+      buildWhen: (previous, next) => next is! ResetPassState ,
       builder: (context, state) {
+        if(state is ForgotPassInProgress) {
+          final Widget inProgressWidget = Center(
+            child: CircularProgressIndicator(),
+          );
+          return inProgressWidget;
+        }
+
         final Widget initialWidget = FunctionScreenTemplate(
           titleButtonBottom: "forgot_password.confirm_mail".tr(),
           onClickBottomButton: () {
@@ -70,16 +79,8 @@ class ForgotPasswordScreen extends StatelessWidget {
             ),
           ),
         );
-        final Widget inProgressWidget = Center(
-          child: CircularProgressIndicator(),
-        );
-        return (switch (state) {
-          ForgotPassInitial() => initialWidget,
-          ForgotPassInProgress() => inProgressWidget,
-          ForgotPassSuccess() => initialWidget,
-          ForgotPassFailure() => initialWidget,
-          ForgotPassError() => initialWidget,
-        });
+        return initialWidget;
+
       },
     );
   }

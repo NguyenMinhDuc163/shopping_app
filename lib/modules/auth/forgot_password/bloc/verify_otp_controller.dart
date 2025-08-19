@@ -12,6 +12,7 @@ class VerifyOtpController extends Disposable{
 
   @override
   void dispose() {
+    print('dasdsd');
     otpController.dispose();
   }
 

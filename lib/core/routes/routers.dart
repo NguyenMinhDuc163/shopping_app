@@ -1,3 +1,4 @@
+import 'package:disposable_provider/disposable_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopping_app/core/public/global_utils.dart';
@@ -14,6 +15,7 @@ import 'package:shopping_app/modules/auth/forgot_password/screen/verify_screen.d
 import 'package:shopping_app/modules/auth/initial/screen/onboarding_screen.dart';
 import 'package:shopping_app/modules/auth/initial/screen/splash_screen.dart';
 import 'package:shopping_app/modules/auth/login/screen/login_screen.dart';
+import 'package:shopping_app/modules/auth/sign_in/bloc/sign_in_controller.dart';
 import 'package:shopping_app/modules/auth/sign_in/screen/sign_in_screen.dart';
 import 'package:shopping_app/modules/auth/sign_up/bloc/sign_up_cubit.dart';
 import 'package:shopping_app/modules/auth/sign_up/repository/sign_up_repo.dart';
@@ -63,17 +65,25 @@ class Routers {
               ),
         );
       case SignInScreen.routeName:
-        return MaterialPageRoute(settings: settings, builder: (_) => SignInScreen());
+        final Map<String, String>? prefillData = settings.arguments as Map<String, String>?;
+        return MaterialPageRoute(
+          settings: settings,
+          builder:
+              (_) => DisposableProvider(
+                create: (BuildContext context) {
+                  return SignInController(prefillData: prefillData);
+                },
+                child: SignInScreen(),
+              ),
+        );
       case ForgotPasswordScreen.routeName:
         return MaterialPageRoute(
           settings: settings,
           builder:
               (context) => RepositoryProvider(
                 create: (context) => ForgotPassRepo(apiClient: ApiClient()),
-
                 child: BlocProvider(
                   create: (context) => ForgotPassCubit(repo: context.read<ForgotPassRepo>()),
-
                   child: ForgotPasswordScreen(),
                 ),
               ),
