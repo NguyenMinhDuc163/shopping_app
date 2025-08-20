@@ -1,8 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shopping_app/core/widgets/switch_botton_widget.dart';
 import 'package:shopping_app/core/widgets/template/button_widget.dart';
 import 'package:shopping_app/init.dart';
+import 'package:shopping_app/modules/auth/login/screen/login_screen.dart';
+import 'package:shopping_app/modules/auth/sign_in/repository/sign_in_repo.dart';
+import 'package:shopping_app/modules/auth/sign_in/screen/sign_in_screen.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});
@@ -23,7 +27,7 @@ class DrawerWidget extends StatelessWidget {
                   onTap: () => Navigator.pop(context),
                   child: CircleAvatar(
                     backgroundColor: AppColors.offWhite,
-                    child: SvgPicture.asset(IconPath.iconMenu, ),
+                    child: SvgPicture.asset(IconPath.iconMenu),
                   ),
                 ),
               ),
@@ -49,10 +53,7 @@ class DrawerWidget extends StatelessWidget {
                     onTap: () => Navigator.pop(context),
                   ),
                 ),
-                Padding(
-                  padding: AppPad.h10,
-                  child: SwitchBottomWidget(onChanged: (value) {}),
-                ),
+                Padding(padding: AppPad.h10, child: SwitchBottomWidget(onChanged: (value) {})),
               ],
             ),
             _buildDrawerItem(
@@ -91,7 +92,10 @@ class DrawerWidget extends StatelessWidget {
               title: 'common.logout'.tr(),
               iconColor: Colors.red,
               textStyle: AppTextStyles.textContent2.copyWith(color: Colors.red),
-              onTap: () => Navigator.pop(context),
+              onTap: () async {
+                await context.read<SignInRepo>().authLocalDataSource.deleteToken();
+                Navigator.pushReplacementNamed(context, LoginScreen.routeName);
+              },
             ),
           ],
         ),
@@ -104,23 +108,17 @@ class DrawerWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       spacing: width_8,
       children: [
-        CircleAvatar(
-          radius: 25,
-          backgroundColor: Colors.grey[200],
-          child: Icon(Icons.person),
-        ),
+        CircleAvatar(radius: 25, backgroundColor: Colors.grey[200], child: Icon(Icons.person)),
 
         Column(
-          crossAxisAlignment:CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text("Nguyen Duc", style: AppTextStyles.textHeader3),
             Row(
               children: [
                 Text(
                   "common.verified_profile".tr(),
-                  style: AppTextStyles.textContent2.copyWith(
-                    color: AppColors.coolGray,
-                  ),
+                  style: AppTextStyles.textContent2.copyWith(color: AppColors.coolGray),
                 ),
                 SvgPicture.asset(IconPath.iconDone),
               ],
@@ -132,9 +130,7 @@ class DrawerWidget extends StatelessWidget {
           boderRadius: AppBorderRadius.a8,
           padding: AppPad.h10v8,
           backgroundColor: AppColors.offWhite,
-          titleStyle: AppTextStyles.textContent3.copyWith(
-            color: AppColors.coolGray,
-          ),
+          titleStyle: AppTextStyles.textContent3.copyWith(color: AppColors.coolGray),
         ),
       ],
     );

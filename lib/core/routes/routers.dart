@@ -5,8 +5,11 @@ import 'package:shopping_app/core/public/global_utils.dart';
 import 'package:shopping_app/core/theme/app_text_styles.dart';
 import 'package:shopping_app/core/widgets/template/function_screen_template.dart';
 import 'package:shopping_app/data/api_client.dart';
+import 'package:shopping_app/modules/auth/forgot_password/bloc/forgot_pass_controller.dart';
 import 'package:shopping_app/modules/auth/forgot_password/bloc/forgot_pass_cubit.dart';
+import 'package:shopping_app/modules/auth/forgot_password/bloc/reset_pass_controller.dart';
 import 'package:shopping_app/modules/auth/forgot_password/bloc/reset_pass_cubit.dart';
+import 'package:shopping_app/modules/auth/forgot_password/bloc/verify_otp_controller.dart';
 import 'package:shopping_app/modules/auth/forgot_password/bloc/verify_otp_cubit.dart';
 import 'package:shopping_app/modules/auth/forgot_password/repository/forgot_pass_repo.dart';
 import 'package:shopping_app/modules/auth/forgot_password/screen/reset_password_screen.dart';
@@ -17,6 +20,7 @@ import 'package:shopping_app/modules/auth/initial/screen/splash_screen.dart';
 import 'package:shopping_app/modules/auth/login/screen/login_screen.dart';
 import 'package:shopping_app/modules/auth/sign_in/bloc/sign_in_controller.dart';
 import 'package:shopping_app/modules/auth/sign_in/screen/sign_in_screen.dart';
+import 'package:shopping_app/modules/auth/sign_up/bloc/sign_up_controller.dart';
 import 'package:shopping_app/modules/auth/sign_up/bloc/sign_up_cubit.dart';
 import 'package:shopping_app/modules/auth/sign_up/repository/sign_up_repo.dart';
 import 'package:shopping_app/modules/auth/sign_up/screen/sign_up_screen.dart';
@@ -60,7 +64,12 @@ class Routers {
                 create: (context) => SignUpRepo(apiClient: ApiClient()),
                 child: BlocProvider(
                   create: (context) => SignUpCubit(repo: context.read<SignUpRepo>()),
-                  child: SignUpScreen(),
+                  child: DisposableProvider(
+                    create: (BuildContext context) {
+                      return SignUpController();
+                    },
+                    child: SignUpScreen(),
+                  ),
                 ),
               ),
         );
@@ -84,7 +93,12 @@ class Routers {
                 create: (context) => ForgotPassRepo(apiClient: ApiClient()),
                 child: BlocProvider(
                   create: (context) => ForgotPassCubit(repo: context.read<ForgotPassRepo>()),
-                  child: ForgotPasswordScreen(),
+                  child: DisposableProvider(
+                    create: (BuildContext context) {
+                      return ForgotPassController();
+                    },
+                    child: ForgotPasswordScreen(),
+                  ),
                 ),
               ),
         );
@@ -99,7 +113,12 @@ class Routers {
                 child: BlocProvider(
                   create: (context) => VerifyOtpCubit(repo: context.read<ForgotPassRepo>()),
 
-                  child: VerifyScreen(),
+                  child: DisposableProvider(
+                    create: (BuildContext context) {
+                      return VerifyOtpController();
+                    },
+                    child: VerifyScreen(),
+                  ),
                 ),
               ),
         );
@@ -114,7 +133,12 @@ class Routers {
                 child: BlocProvider(
                   create: (context) => ResetPassCubit(repo: context.read<ForgotPassRepo>()),
 
-                  child: ResetPasswordScreen(),
+                  child: DisposableProvider(
+                    create: (BuildContext context) {
+                      return ResetPassController();
+                    },
+                    child: ResetPasswordScreen(),
+                  ),
                 ),
               ),
         );

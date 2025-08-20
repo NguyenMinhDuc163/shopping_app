@@ -15,100 +15,92 @@ class SignUpScreen extends StatelessWidget {
   static const String routeName = '/signUpScreen';
   @override
   Widget build(BuildContext context) {
-    return DisposableProvider(
-      create: (BuildContext context) {
-        return SignUpController();
-      },
-      builder: (context, child) {
-        final SignUpController controller =
-            DisposableProvider.of<SignUpController>(context);
+    final SignUpController controller = context.read();
 
-        return FunctionScreenTemplate(
-          titleButtonBottom: 'sign_up.title'.tr(),
-          onClickBottomButton: (){
-            controller.onSignUp(context);
-          },
-          screen: BlocListener<SignUpCubit, SignUpState>(
-            listener: controller.handleListener,
-            listenWhen:
-                (previous, next) => previous.runtimeType != next.runtimeType,
-            child: buildContent(controller),
-          ),
-        );
-      },
+    return BlocListener<SignUpCubit, SignUpState>(
+      listener: controller.handleListener,
+      listenWhen: (previous, next) => previous.runtimeType != next.runtimeType,
+      child: _SignUpContent(controller: controller),
     );
   }
+}
 
-  Widget buildContent(SignUpController controller) {
-    return BlocBuilder<SignUpCubit, SignUpState>(
-      builder: (context, state) {
-        final initialWidget = Center(
-          child: Padding(
-            padding: AppPad.h22v10,
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                spacing: height_30,
+class _SignUpContent extends StatelessWidget {
+  const _SignUpContent({required this.controller});
+
+  final SignUpController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    final SignUpState state = context.watch<SignUpCubit>().state;
+
+    final Widget contentWidget = Center(
+      child: Padding(
+        padding: AppPad.h22v10,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            spacing: height_30,
+            children: [
+              Text('sign_up.title'.tr(), style: AppTextStyles.textHeader1),
+              AppGap.h100,
+              TextInputCustom(
+                label: 'sign_up.username'.tr(),
+                controller: controller.usernameController,
+                hintText: "sign_up.enter_username".tr(),
+                validator: (text) {
+                  return text.length >= 4;
+                },
+              ),
+              TextInputCustom(
+                label: 'sign_up.password'.tr(),
+                controller: controller.passwordController,
+                hintText: "sign_up.enter_password".tr(),
+                suffixIcon: Text(
+                  "sign_up.strong".tr(),
+                  style: AppTextStyles.textContent3.copyWith(color: AppColors.limeGreen),
+                ),
+                validator: (text) {
+                  return text.length >= 8;
+                },
+              ),
+              TextInputCustom(
+                label: 'Email',
+                controller: controller.emailController,
+                hintText: "sign_up.enter_email".tr(),
+                validator: (text) {
+                  return Validators.isValidEmail(text);
+                },
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('sign_up.title'.tr(), style: AppTextStyles.textHeader1),
-                  AppGap.h100,
-                  TextInputCustom(
-                    label: 'sign_up.username'.tr(),
-                    controller: controller.usernameController,
-                    hintText: "sign_up.enter_username".tr(),
-                    validator: (text) {
-                      return text.length >= 4;
-                    },
-                  ),
-                  TextInputCustom(
-                    label: 'sign_up.password'.tr(),
-                    controller: controller.passwordController,
-                    hintText: "sign_up.enter_password".tr(),
-                    suffixIcon: Text(
-                      "sign_up.strong".tr(),
-                      style: AppTextStyles.textContent3.copyWith(
-                        color: AppColors.limeGreen,
-                      ),
-                    ),
-                    validator: (text) {
-                      return text.length >= 8;
-                    },
-                  ),
-                  TextInputCustom(
-                    label: 'Email',
-                    controller: controller.emailController,
-                    hintText: "sign_up.enter_email".tr(),
-                    validator: (text) {
-                      return Validators.isValidEmail(text);
-                    },
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "sign_up.remember_me".tr(),
-                        style: AppTextStyles.textContent3,
-                      ),
-                      SwitchBottomWidget(onChanged: (value) {}),
-                    ],
-                  ),
-                  AppGap.h100,
+                  Text("sign_up.remember_me".tr(), style: AppTextStyles.textContent3),
+                  SwitchBottomWidget(onChanged: (value) {}),
                 ],
               ),
-            ),
+              AppGap.h100,
+            ],
           ),
-        );
-        final Widget inProgressWidget = Center(
-          child: CircularProgressIndicator(),
-        );
-        return (switch (state) {
-          SignUpInitial() => initialWidget,
-          SignUpInProgress() => inProgressWidget,
-          SignUpSuccess() => initialWidget,
-          SignUpFailure() => initialWidget,
-          SignUpError() => initialWidget,
-        });
-      },
+        ),
+      ),
+    );
+
+    return Stack(
+      children: [
+        FunctionScreenTemplate(
+          titleButtonBottom: 'sign_up.title'.tr(),
+          onClickBottomButton: () {
+            controller.onSignUp(context);
+          },
+          screen: contentWidget,
+        ),
+        if (state is SignUpInProgress)
+          Container(
+            color: Colors.black.withOpacity(0.3),
+            child: const Center(child: CircularProgressIndicator()),
+          ),
+      ],
     );
   }
 }

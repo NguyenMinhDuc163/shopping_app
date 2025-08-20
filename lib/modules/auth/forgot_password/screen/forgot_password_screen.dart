@@ -16,72 +16,72 @@ class ForgotPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DisposableProvider(
-      create: (BuildContext context) {
-        return ForgotPassController();
-      },
-      builder: (context, child) {
-        // final ForgotPassController controller = DisposableProvider.of<ForgotPassController>(context,);
-        final ForgotPassController controller = context.read(); // TODO C2
-        return BlocListener<ForgotPassCubit, ForgotPassState>(
-          listener: controller.handleListener,
-          listenWhen: (previous, next) => previous.runtimeType != next.runtimeType,
-          child: buildContent(context, controller),
-        );
-      },
+    // final ForgotPassController controller = DisposableProvider.of<ForgotPassController>(context,);
+    final ForgotPassController controller = context.read(); // TODO C2
+    return BlocListener<ForgotPassCubit, ForgotPassState>(
+      listener: controller.handleListener,
+      listenWhen: (previous, next) => previous.runtimeType != next.runtimeType,
+      child: _ForgotPasswordContent(controller: controller),
     );
   }
+}
 
-  Widget buildContent(BuildContext context, ForgotPassController controller) {
-    return BlocBuilder<ForgotPassCubit, ForgotPassState>(
-      buildWhen: (previous, next) => next is! ResetPassState ,
-      builder: (context, state) {
-        if(state is ForgotPassInProgress) {
-          final Widget inProgressWidget = Center(
-            child: CircularProgressIndicator(),
-          );
-          return inProgressWidget;
-        }
+class _ForgotPasswordContent extends StatelessWidget {
+  const _ForgotPasswordContent({required this.controller});
 
-        final Widget initialWidget = FunctionScreenTemplate(
+  final ForgotPassController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    final ForgotPassState state = context.watch<ForgotPassCubit>().state;
+
+    final Widget contentWidget = Padding(
+      padding: AppPad.h22v10,
+      child: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            spacing: height_30,
+            children: [
+              Text("forgot_password.title".tr(), style: AppTextStyles.textHeader1),
+              SvgPicture.asset(ImagePath.imgForgotPassword),
+              AppGap.g2,
+              TextInputCustom(
+                label: 'Email'.tr(),
+                controller: controller.emailController,
+                hintText: "forgot_password.email_address".tr(),
+                validator: (text) {
+                  return Validators.isValidEmail(text);
+                },
+              ),
+              AppGap.h100,
+              Text(
+                'forgot_password.enter_email_for_confirmation'.tr(),
+                textAlign: TextAlign.center,
+                style: AppTextStyles.textContent3.copyWith(color: AppColors.coolGray),
+              ),
+              AppGap.g1,
+            ],
+          ),
+        ),
+      ),
+    );
+
+    return Stack(
+      children: [
+        FunctionScreenTemplate(
           titleButtonBottom: "forgot_password.confirm_mail".tr(),
           onClickBottomButton: () {
             controller.onSendOpt(context);
           },
-          screen: Padding(
-            padding: AppPad.h22v10,
-            child: Center(
-              child: SingleChildScrollView(
-                child: Column(
-                  spacing: height_30,
-                  children: [
-                    Text("forgot_password.title".tr(), style: AppTextStyles.textHeader1),
-                    SvgPicture.asset(ImagePath.imgForgotPassword),
-                    AppGap.g2,
-                    TextInputCustom(
-                      label: 'Email'.tr(),
-                      controller: controller.emailController,
-                      hintText: "forgot_password.email_address".tr(),
-                      validator: (text) {
-                        return Validators.isValidEmail(text);
-                      },
-                    ),
-                    AppGap.h100,
-                    Text(
-                      'forgot_password.enter_email_for_confirmation'.tr(),
-                      textAlign: TextAlign.center,
-                      style: AppTextStyles.textContent3.copyWith(color: AppColors.coolGray),
-                    ),
-                    AppGap.g1,
-                  ],
-                ),
-              ),
-            ),
-          ),
-        );
-        return initialWidget;
 
-      },
+          screen: contentWidget,
+        ),
+        if (state is ForgotPassInProgress)
+          Container(
+            color: Colors.black.withOpacity(0.3),
+            child: const Center(child: CircularProgressIndicator()),
+          ),
+      ],
     );
   }
 }
