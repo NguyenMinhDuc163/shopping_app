@@ -93,7 +93,7 @@ class DrawerWidget extends StatelessWidget {
               iconColor: Colors.red,
               textStyle: AppTextStyles.textContent2.copyWith(color: Colors.red),
               onTap: () async {
-                await context.read<SignInRepo>().authLocalDataSource.deleteToken();
+                context.read<SignInRepo>().authService.clearToken();
                 Navigator.pushReplacementNamed(context, LoginScreen.routeName);
               },
             ),

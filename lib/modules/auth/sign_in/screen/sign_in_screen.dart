@@ -99,10 +99,6 @@ class _SignInContent extends StatelessWidget {
                 ),
                 SwitchBottomWidget(
                   onChanged: (value) {
-                    context
-                        .read<SignInRepo>()
-                        .authLocalDataSource
-                        .deleteToken();
                   },
                 ),
               ],

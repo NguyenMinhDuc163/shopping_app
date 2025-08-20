@@ -19,7 +19,7 @@ class SignInCubit extends Cubit<SignInState> {
   }
 
   Future<void> _checkExistingToken() async {
-    final String? token = await repo.authLocalDataSource.getToken();
+    final String? token = repo.authService.accessToken;
     if (token != null) {
       emit(SignInAuthenticated());
     }

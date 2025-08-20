@@ -4,24 +4,21 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shopping_app/core/public/navigation_service.dart';
 import 'package:shopping_app/core/routes/routers.dart';
 import 'package:shopping_app/data/api_client.dart';
 import 'package:shopping_app/firebase_options.dart';
 import 'package:shopping_app/modules/auth/initial/screen/splash_screen.dart';
 import 'package:shopping_app/modules/auth/sign_in/bloc/sign_in_cubit.dart';
-import 'package:shopping_app/modules/auth/sign_in/repository/auth_local_data_source.dart';
 
+import 'data/services/auth_service.dart';
 import 'modules/auth/sign_in/repository/sign_in_repo.dart';
 
 void main() async {
-WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  final SharedPreferences sf = await SharedPreferences.getInstance();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await EasyLocalization.ensureInitialized();
+  AuthService authService = await AuthService.initialize();
 
   Locale defaultLocale = const Locale('en', 'US');
 
@@ -34,24 +31,21 @@ WidgetsFlutterBinding.ensureInitialized();
             path: 'assets/translations',
             fallbackLocale: const Locale('en', 'US'),
             startLocale: defaultLocale,
-            child: MyApp(sharedPreferences: sf),
+            child: MyApp(authService: authService),
           ),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
-const MyApp({super.key, required this.sharedPreferences});
-  final SharedPreferences sharedPreferences;
+  const MyApp({super.key, required this.authService});
+  final AuthService authService;
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider(
-      create: (context) => SignInRepo(
-          apiClient: ApiClient(),
-          authLocalDataSource: AuthLocalDataSource(sharedPreferences)
-      ),
+      create: (context) => SignInRepo(apiClient: ApiClient(), authService: authService),
       child: BlocProvider(
-        create: (context) => SignInCubit(repo: context.read<SignInRepo>(),),
+        create: (context) => SignInCubit(repo: context.read<SignInRepo>()),
         child: MaterialApp(
           builder: (context, child) {
             return ResponsiveBreakpoints.builder(
