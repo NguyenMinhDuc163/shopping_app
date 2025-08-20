@@ -22,7 +22,6 @@ class SignUpRepo {
       },
     );
      RegisterResponse registerResponse = RegisterResponse.fromJson(res.json);
-    print("=====> : ${registerResponse}");
     return res.code == 200;
   }
 }

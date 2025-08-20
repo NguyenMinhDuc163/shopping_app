@@ -2,68 +2,42 @@ import 'package:shopping_app/core/constants/api_path.dart';
 import 'package:shopping_app/data/api_client.dart';
 import 'package:shopping_app/data/models/request_method.dart';
 
-class ForgotPassRepo{
+class ForgotPassRepo {
   final ApiClient apiClient;
 
   ForgotPassRepo({required this.apiClient});
 
   Future<bool> sendOPT({required String email}) async {
-    try{
-      final res = await apiClient.fetch(
-        ApiPath.login,
-        RequestMethod.post,
-        rawData: {
-          "username": "nguyenduc163",
-          "password": "12345678",
-          "verification": "4 digit OTP",
-          "email": email,
-        },
-      );
+    final res = await apiClient.fetch(
+      ApiPath.login,
+      RequestMethod.post,
+      rawData: {
+        "username": "nguyenduc163",
+        "password": "12345678",
+        "verification": "4 digit OTP",
+        "email": email,
+      },
+    );
 
-      return res.code == 200;
-    }catch (e) {
-      print("Error in ForgotPassRepo: $e");
-      return false;
-    }
-
+    return res.code == 200;
   }
 
   Future<bool> verifyOtp({required String otp, required String userName}) async {
-    try{
-      final res = await apiClient.fetch(
-        ApiPath.verifyOtp,
-        RequestMethod.post,
-        rawData: {
-          "username": userName,
-          "enteredOtp": otp,
-          "expiresInMins": 30
-        },
-      );
-      return res.code == 200;
-    }catch (e) {
-      print("Error: $e");
-      return false;
-    }
-
+    final res = await apiClient.fetch(
+      ApiPath.verifyOtp,
+      RequestMethod.post,
+      rawData: {"username": userName, "enteredOtp": otp, "expiresInMins": 30},
+    );
+    return res.code == 200;
   }
 
   Future<bool> resetPassword({required String userName, required String password}) async {
-    try{
-      final res = await apiClient.fetch(
-        ApiPath.resetPassword,
-        RequestMethod.post,
-        rawData: {
-          "username": userName,
-          "password": password,
-        },
-      );
-      String status = res.json['status'];
-      return status == 'ok';
-    }catch (e) {
-      print("Error: $e");
-      return false;
-    }
-
+    final res = await apiClient.fetch(
+      ApiPath.resetPassword,
+      RequestMethod.post,
+      rawData: {"username": userName, "password": password},
+    );
+    String status = res.json['status'];
+    return status == 'ok';
   }
-
 }

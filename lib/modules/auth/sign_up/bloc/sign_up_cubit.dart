@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shopping_app/core/error_handling/app_error_state.dart';
 import 'package:shopping_app/modules/auth/sign_up/bloc/sign_up_state.dart';
 import 'package:shopping_app/modules/auth/sign_up/repository/sign_up_repo.dart';
 
@@ -37,7 +38,7 @@ class SignUpCubit extends Cubit<SignUpState> {
         );
       }
     } catch (e) {
-      emit(SignUpError(message: e.toString()));
+      emit(SignUpError(message: AppErrorState.getFriendlyErrorString(e)));
       return;
     }
   }
