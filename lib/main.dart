@@ -15,11 +15,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = AppBlocObserver();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  final SharedPreferences sf = await SharedPreferences.getInstance();
   await EasyLocalization.ensureInitialized();
 
-  // Khởi tạo AuthService trước khi app chạy
-  await AuthService.initialize();
+  AuthService authService = await AuthService.initialize();
 
   Locale defaultLocale = const Locale('en', 'US');
 
@@ -29,7 +27,7 @@ void main() async {
       path: 'assets/translations',
       fallbackLocale: const Locale('en', 'US'),
       startLocale: defaultLocale,
-      child: App(sharedPreferences: sf),
+      child: App(authService: authService),
     ),
   );
 }

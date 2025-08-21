@@ -4,6 +4,7 @@ import 'package:shopping_app/core/constants/icon_path.dart';
 import 'package:shopping_app/core/theme/app_colors.dart';
 import 'package:shopping_app/core/theme/app_pad.dart';
 import 'package:shopping_app/core/theme/app_text_styles.dart';
+import 'package:shopping_app/core/widgets/drawer_widget.dart';
 import 'package:shopping_app/core/widgets/template/button_widget.dart';
 import 'package:shopping_app/core/widgets/template/opacity_widget.dart';
 import 'package:shopping_app/core/widgets/will_unfocus_form_scope.dart';
@@ -15,7 +16,8 @@ class FunctionScreenTemplate extends StatefulWidget {
       titleWidget,
       floatingActionButton,
       background,
-      customBottomNavigationBar;
+      customBottomNavigationBar,
+      drawer;
   bool resizeToAvoidBottomInset;
   bool isShowDrawer, isShowBottomButton, isShowAppBar;
   Widget? leadingWidget;
@@ -41,6 +43,7 @@ class FunctionScreenTemplate extends StatefulWidget {
     this.actionsWidget,
     this.onClickBottomButton,
     this.backgroundColor,
+    this.drawer,
   });
 
   @override
@@ -104,6 +107,7 @@ class _FunctionScreenTemplateState extends State<FunctionScreenTemplate>
                 ? Colors.transparent
                 : widget.backgroundColor ?? AppColors.white,
         appBar: appBar ? appBarWidget() : null,
+        drawer: DrawerWidget(), // Thêm drawer property
         body: SafeArea(child: body),
         bottomNavigationBar:
             widget.isShowBottomButton
@@ -140,6 +144,7 @@ class _FunctionScreenTemplateState extends State<FunctionScreenTemplate>
                   ? IconButton(
                     icon: SvgPicture.asset(IconPath.iconMenu),
                     onPressed: () {
+                      print("ádasdsd");
                       _scaffoldKey.currentState?.openDrawer();
                     },
                   )

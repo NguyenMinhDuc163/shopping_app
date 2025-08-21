@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void redirectIntroScreen() async {
-    String? token = await context.read<SignInRepo>().authLocalDataSource.getToken();
+    String? token = context.read<SignInRepo>().authService.accessToken;
     await Future.delayed(const Duration(seconds: 1));
     if (!mounted) return;
     if(token != null) {

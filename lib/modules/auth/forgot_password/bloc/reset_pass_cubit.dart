@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shopping_app/core/error_handling/app_error_state.dart';
 import 'package:shopping_app/modules/auth/forgot_password/bloc/reset_pass_state.dart';
 import 'package:shopping_app/modules/auth/forgot_password/repository/forgot_pass_repo.dart';
 
@@ -16,7 +17,7 @@ class ResetPassCubit extends Cubit<ResetPassState> {
         emit(ResetPassFailure());
       }
     } catch (e) {
-      emit(ResetPassError());
+      emit(ResetPassError(message: AppErrorState.getFriendlyErrorString(e)));
       throw Exception(e);
     }
   }

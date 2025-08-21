@@ -16,7 +16,7 @@ class VerifyOtpController extends Disposable{
   }
 
   void onSubmitOpt(BuildContext context,{String? value}) {
-    context.read<VerifyOtpCubit>().onVerifyOtp(userName: "dasdsa", otp: value ?? otpController.text);
+    context.read<VerifyOtpCubit>().onVerifyOtp(userName: "duc12345", otp: value ?? otpController.text);
   }
 
   handleListener(BuildContext context, VerifyOtpState state) {

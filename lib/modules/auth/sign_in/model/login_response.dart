@@ -13,7 +13,7 @@ class LoginResponse {
 
   final String? accessToken;
   final String? refreshToken;
-  final int? id;
+  final String? id;
   final String? username;
   final String? email;
   final String? firstName;

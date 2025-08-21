@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shopping_app/core/error_handling/app_error_state.dart';
 import 'package:shopping_app/modules/auth/forgot_password/bloc/verify_otp_state.dart';
 import 'package:shopping_app/modules/auth/forgot_password/repository/forgot_pass_repo.dart';
 
@@ -19,7 +20,7 @@ class VerifyOtpCubit extends Cubit<VerifyOtpState>{
         emit(VerifyOtpFailure());
       }
     } catch (e) {
-      emit(VerifyOtpError());
+      emit(VerifyOtpError(message: AppErrorState.getFriendlyErrorString(e)));
       throw Exception(e);
     }
   }

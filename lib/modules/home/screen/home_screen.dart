@@ -18,14 +18,14 @@ class HomeScreen extends StatelessWidget {
       isShowBottomButton: false,
       isShowAppBar: true,
       isShowDrawer: true,
-      leadingWidget: IconButton(
-        icon: SvgPicture.asset(IconPath.iconMenu),
-        onPressed: () async {
-          context.read<SignInRepo>().authLocalDataSource.deleteToken();
-          final token =await  context.read<SignInRepo>().authLocalDataSource.getToken();
-          print("====> ${token}");
-        },
-      ),
+      // leadingWidget: IconButton(
+      //   icon: SvgPicture.asset(IconPath.iconMenu),
+      //   onPressed: () async {
+      //     context.read<SignInRepo>().authLocalDataSource.deleteToken();
+      //     final token =await  context.read<SignInRepo>().authLocalDataSource.getToken();
+      //     print("====> ${token}");
+      //   },
+      // ),
       actionsWidget: [
         GestureDetector(
           onTap: () => Navigator.pushNamed(context, CartScreen.routeName),

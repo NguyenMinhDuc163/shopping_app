@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shopping_app/core/error_handling/app_error_state.dart';
 import 'package:shopping_app/modules/auth/sign_in/bloc/sign_in_state.dart';
 import 'package:shopping_app/modules/auth/sign_in/repository/sign_in_repo.dart';
 
@@ -12,15 +13,17 @@ class SignInCubit extends Cubit<SignInState> {
     // throw messgae khi call api lõi
     // xu ly luu token o repo
     // them messgae neu loi
-
-    Future.delayed( Duration.zero, () async {
-      String? token = await repo.authLocalDataSource.getToken();
-      if (token != null) {
-        emit(SignInAuthenticated());
-      }
-    });
+    // TODO dang xuat
+    // TODO tim hieu thu vien flutter secure_storage
+    _checkExistingToken();
   }
 
+  Future<void> _checkExistingToken() async {
+    final String? token = repo.authService.accessToken;
+    if (token != null) {
+      emit(SignInAuthenticated());
+    }
+  }
 
   Future onLoginStarted({
     required String username,
@@ -35,8 +38,7 @@ class SignInCubit extends Cubit<SignInState> {
         emit(SignInFailure());
       }
     } catch (e) {
-      emit(SignInError());
-      throw Exception("Lỗi hệ thống");
+      emit(SignInError(message: AppErrorState.getFriendlyErrorString(e)));
     }
   }
 }

@@ -2,22 +2,20 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shopping_app/core/public/navigation_service.dart';
 import 'package:shopping_app/core/routes/routers.dart';
 import 'package:shopping_app/data/api_client.dart';
+import 'package:shopping_app/data/services/auth_service.dart';
 import 'package:shopping_app/modules/auth/initial/screen/splash_screen.dart';
 import 'package:shopping_app/modules/auth/sign_in/bloc/sign_in_cubit.dart';
 import 'package:shopping_app/modules/auth/sign_in/bloc/sign_in_state.dart';
-import 'package:shopping_app/modules/auth/sign_in/repository/auth_local_data_source.dart';
 
-import 'auth/login/screen/login_screen.dart';
 import 'auth/sign_in/repository/sign_in_repo.dart';
 import 'home/screen/home_screen.dart';
 
 class App extends StatelessWidget {
-  const App({super.key, required this.sharedPreferences});
-  final SharedPreferences sharedPreferences;
+  const App({super.key, required this.authService});
+  final AuthService authService;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +23,7 @@ class App extends StatelessWidget {
       create:
           (context) => SignInRepo(
             apiClient: ApiClient(),
-            authLocalDataSource: AuthLocalDataSource(sharedPreferences),
+            authService: authService,
           ),
       child: BlocProvider(
         create: (context) => SignInCubit(repo: context.read<SignInRepo>()),
