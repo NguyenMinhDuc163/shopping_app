@@ -18,6 +18,7 @@ class ApiPath {
   static const String products = '/products';
   static const String verifyOtp = '/auth/verify-otp';
   static const String resetPassword = '/auth/reset-password';
+  static const String forgotPassword = '/auth/forgot-password';
 }
 
 // TODO trong intercepter => ds api can truyen id

@@ -66,7 +66,9 @@
     "confirm_password": "Xác nhận mật khẩu",
     "otp_send_failure": "Gửi mã OTP thất bại",
     "success": "Khôi phục mật khẩu thành công",
-    "failure": "Khôi phục mật khẩu thất bại"
+    "failure": "Khôi phục mật khẩu thất bại",
+    "enter_password": "Vui lòng nhập mật khẩu",
+    "password_mismatch": "Mật khẩu không trùng khớp"
   },
   "onboarding": {
     "slogan": "Trông đẹp, Cảm thấy tuyệt",

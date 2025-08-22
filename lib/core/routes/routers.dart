@@ -104,6 +104,7 @@ class Routers {
         );
 
       case VerifyScreen.routeName:
+        final Map<String, String>? data = settings.arguments as Map<String, String>?;
         return MaterialPageRoute(
           settings: settings,
           builder:
@@ -115,7 +116,7 @@ class Routers {
 
                   child: DisposableProvider(
                     create: (BuildContext context) {
-                      return VerifyOtpController();
+                      return VerifyOtpController(dataUser: data);
                     },
                     child: VerifyScreen(),
                   ),
@@ -124,6 +125,7 @@ class Routers {
         );
 
       case ResetPasswordScreen.routeName:
+        final Map<String, String>? data = settings.arguments as Map<String, String>?;
         return MaterialPageRoute(
           settings: settings,
           builder:
@@ -135,7 +137,7 @@ class Routers {
 
                   child: DisposableProvider(
                     create: (BuildContext context) {
-                      return ResetPassController();
+                      return ResetPassController(dataUser: data);
                     },
                     child: ResetPasswordScreen(),
                   ),

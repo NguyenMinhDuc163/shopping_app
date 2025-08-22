@@ -8,10 +8,10 @@ class ForgotPassCubit extends Cubit<ForgotPassState> {
 
   ForgotPassCubit({required this.repo}) : super(ForgotPassInitial());
 
-  Future onSendOtp({required String email}) async {
+  Future onSendOtp({required String username}) async {
     emit(ForgotPassInProgress());
     try {
-      final res = await repo.sendOPT(email: email);
+      final res = await repo.sendOPT(username: username);
       if (res) {
         emit(ForgotPassSuccess());
       } else {

@@ -9,6 +9,12 @@ import 'package:shopping_app/modules/auth/forgot_password/screen/reset_password_
 
 class VerifyOtpController extends Disposable{
   TextEditingController otpController = TextEditingController();
+  String username = '';
+  VerifyOtpController({Map<String, String>? dataUser}) {
+    if (dataUser != null) {
+      username = dataUser['username'] ?? "";
+    }
+  }
 
   @override
   void dispose() {
@@ -16,12 +22,20 @@ class VerifyOtpController extends Disposable{
   }
 
   void onSubmitOpt(BuildContext context,{String? value}) {
-    context.read<VerifyOtpCubit>().onVerifyOtp(userName: "duc12345", otp: value ?? otpController.text);
+    context.read<VerifyOtpCubit>().onVerifyOtp(userName: username, otp: value ?? otpController.text);
   }
 
   handleListener(BuildContext context, VerifyOtpState state) {
     if (state is VerifyOtpSuccess) {
-      Navigator.pushNamed(context, ResetPasswordScreen.routeName);
+      final data = {
+        'username': username,
+      };
+
+      Navigator.pushNamed(
+        context,
+        ResetPasswordScreen.routeName,
+        arguments: data,
+      );
     }
 
     if (state is VerifyOtpFailure || state is VerifyOtpError) {

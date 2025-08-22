@@ -46,9 +46,9 @@ class _ForgotPasswordContent extends StatelessWidget {
               SvgPicture.asset(ImagePath.imgForgotPassword),
               AppGap.g2,
               TextInputCustom(
-                label: 'Email'.tr(),
-                controller: controller.emailController,
-                hintText: "forgot_password.email_address".tr(),
+                label: 'sign_up.username'.tr(),
+                controller: controller.userNameController,
+                hintText: "sign_up.enter_username".tr(),
                 validator: (text) {
                   return Validators.isValidEmail(text);
                 },
