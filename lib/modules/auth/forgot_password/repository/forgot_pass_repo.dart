@@ -7,20 +7,20 @@ class ForgotPassRepo {
 
   ForgotPassRepo({required this.apiClient});
 
-  Future<bool> sendOPT({required String email}) async {
+  Future<bool> sendOPT({required String username}) async {
     final res = await apiClient.fetch(
-      ApiPath.login,
+      ApiPath.forgotPassword,
       RequestMethod.post,
       rawData: {
-        "username": "nguyenduc163",
-        "password": "12345678",
+        "username": username,
         "verification": "4 digit OTP",
-        "email": email,
       },
     );
-
-    return res.code == 200;
+    String status = res.json['status'];
+    return status == 'ok' && res.code == 200;
   }
+
+
 
   Future<bool> verifyOtp({required String otp, required String userName}) async {
     final res = await apiClient.fetch(

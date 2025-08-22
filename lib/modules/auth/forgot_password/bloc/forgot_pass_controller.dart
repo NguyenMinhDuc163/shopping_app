@@ -9,24 +9,32 @@ import 'package:shopping_app/modules/auth/forgot_password/screen/verify_screen.d
 import 'package:shopping_app/utils/helpers/validators.dart';
 
 class ForgotPassController extends Disposable{
-  TextEditingController emailController = TextEditingController();
+  TextEditingController userNameController = TextEditingController();
 
   @override
   void dispose() {
-    emailController.dispose();
+    userNameController.dispose();
   }
 
   void onSendOpt(BuildContext context, ) {
-    if(!Validators.isValidEmail(emailController.text.trim())) {
-      showToastTop(message: "forgot_password.invalid_email".tr());
+    if(userNameController.text.trim() == '') {
+      showToastTop(message: "login.enter_data_to_continue".tr());
       return;
     }
-    context.read<ForgotPassCubit>().onSendOtp(email: emailController.text);
+    context.read<ForgotPassCubit>().onSendOtp(username: userNameController.text);
   }
 
   handleListener(BuildContext context, ForgotPassState state) {
     if (state is ForgotPassSuccess) {
-      Navigator.pushNamed(context, VerifyScreen.routeName);
+      final data = {
+        'username': userNameController.text,
+      };
+
+      Navigator.pushNamed(
+        context,
+        VerifyScreen.routeName,
+        arguments: data,
+      );
     }
 
     if (state is ForgotPassFailure || state is ForgotPassError) {

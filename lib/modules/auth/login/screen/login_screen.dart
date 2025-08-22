@@ -1,24 +1,45 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shopping_app/core/values/login_type.dart';
 import 'package:shopping_app/core/widgets/template/button_widget.dart';
 import 'package:shopping_app/init.dart';
+import 'package:shopping_app/modules/auth/login/bloc/login_controller.dart';
+import 'package:shopping_app/modules/auth/login/bloc/login_cubit.dart';
+import 'package:shopping_app/modules/auth/login/widget/title_widget.dart';
 import 'package:shopping_app/modules/auth/sign_in/screen/sign_in_screen.dart';
 import 'package:shopping_app/modules/auth/sign_up/screen/sign_up_screen.dart';
 import 'package:shopping_app/modules/auth/widgets/text_span_widget.dart';
-import 'package:shopping_app/modules/product/bloc/products_cubit.dart';
-import 'package:shopping_app/modules/product/repo/product_repo.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
+
   static const String routeName = '/LoginScreen';
 
   @override
   Widget build(BuildContext context) {
-    return AnnotatedRegion(
+    final LoginController controller = context.read(); // TODO C2
+
+    return BlocListener<LoginCubit, LoginState>(
+      listener: controller.handleListener,
+      child: _LoginContent(controller: controller),
+    );
+  }
+}
+
+class _LoginContent extends StatelessWidget {
+  const _LoginContent({required this.controller});
+
+  final LoginController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    final LoginState state = context.watch<LoginCubit>().state;
+
+    final Widget contentWidget = AnnotatedRegion(
       value: SystemUiOverlayStyle.light.copyWith(
-          systemNavigationBarColor: AppColors.lavenderColor,
-          systemNavigationBarContrastEnforced:false,
+        systemNavigationBarColor: AppColors.lavenderColor,
+        systemNavigationBarContrastEnforced: false,
       ),
       child: FunctionScreenTemplate(
         onClickBottomButton: () {
@@ -43,38 +64,37 @@ class LoginScreen extends StatelessWidget {
                 spacing: 20,
                 children: [
                   ButtonWidget(
-                    titleWidget: _buildTitle(
+                    titleWidget: TitleWidget(
                       title: "Facebook",
                       iconPath: IconPath.iconFacebook,
                     ),
-                    onPressed:
-                      //   () => Navigator.pushNamed(
-                      // context,
-                      // DashboardScreen.routeName,
-                    (){
-                      ProductRepo repo = ProductRepo();
-                      ProductsCubit cubit = ProductsCubit(repo: repo);
+                    onPressed: () {
+                      controller.onLogin(context, LoginType.facebook);
                     },
                     backgroundColor: AppColors.deepBlue,
                     padding: AppPad.v14,
                     boderRadius: BorderRadius.all(AppRadius.c10),
                   ),
                   ButtonWidget(
-                    titleWidget: _buildTitle(
+                    titleWidget: TitleWidget(
                       title: "Twitter",
                       iconPath: IconPath.iconTwitter,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      controller.onLogin(context, LoginType.twitter);
+                    },
                     backgroundColor: AppColors.skyBlue,
                     padding: AppPad.v14,
                     boderRadius: BorderRadius.all(AppRadius.c10),
                   ),
                   ButtonWidget(
-                    titleWidget: _buildTitle(
+                    titleWidget: TitleWidget(
                       title: "Google",
                       iconPath: IconPath.iconGoogle,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      controller.onLogin(context, LoginType.google);
+                    },
                     backgroundColor: AppColors.crimson,
                     padding: AppPad.v14,
                     boderRadius: BorderRadius.all(AppRadius.c10),
@@ -87,8 +107,7 @@ class LoginScreen extends StatelessWidget {
                 normalText: "${'login_screen.already_have_account'.tr()} ",
                 clickableText: 'login_screen.signin'.tr(),
                 onTap:
-                    () =>
-                    Navigator.pushNamed(context, SignInScreen.routeName),
+                    () => Navigator.pushNamed(context, SignInScreen.routeName),
               ),
               // AppGap.g2,
             ],
@@ -96,21 +115,15 @@ class LoginScreen extends StatelessWidget {
         ),
       ),
     );
-  }
 
-  Widget _buildTitle({required String title, required String iconPath}) {
-    return Row(
-      spacing: width_8,
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Stack(
       children: [
-        SvgPicture.asset(iconPath),
-        Text(
-          title,
-          style: AppTextStyles.textContent1.copyWith(
-            color: AppColors.white,
-            fontWeight: FontWeight.bold,
+        contentWidget,
+        if (state is LoginInProgress)
+          Container(
+            color: Colors.black.withOpacity(0.3),
+            child: const Center(child: CircularProgressIndicator()),
           ),
-        ),
       ],
     );
   }
