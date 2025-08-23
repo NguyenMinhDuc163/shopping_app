@@ -25,10 +25,7 @@ class SignInCubit extends Cubit<SignInState> {
     }
   }
 
-  Future onLoginStarted({
-    required String username,
-    required String password,
-  }) async {
+  Future onLoginStarted({required String username, required String password}) async {
     emit(SignInInProgress());
     try {
       final res = await repo.login(username: username, password: password);
@@ -37,6 +34,32 @@ class SignInCubit extends Cubit<SignInState> {
       } else {
         emit(SignInFailure());
       }
+    } catch (e) {
+      emit(SignInError(message: AppErrorState.getFriendlyErrorString(e)));
+    }
+  }
+
+  Future onLoginSocial() async {
+    emit(SignInInProgress());
+    try {
+      final res = await repo.signInWithGoogle();
+      if (res == true) {
+        emit(SignInSuccess());
+      } else if (res == null) {
+        emit(SignInInitial());
+      } else {
+        emit(SignInFailure());
+      }
+    } catch (e) {
+      emit(SignInError(message: AppErrorState.getFriendlyErrorString(e)));
+      rethrow;
+    }
+  }
+
+  Future<void> logout() async {
+    try {
+      await repo.logout();
+      emit(SignInInitial());
     } catch (e) {
       emit(SignInError(message: AppErrorState.getFriendlyErrorString(e)));
     }
