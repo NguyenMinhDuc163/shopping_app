@@ -12,7 +12,20 @@
           "package_name": "com.example.shopping_app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "988421736886-s8tjuuk8186ikk5tglrt9shcn73mccre.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.shopping_app",
+            "certificate_hash": "688fa4bd9e2ad29aef4cbb665cb7549fb8fde101"
+          }
+        },
+        {
+          "client_id": "988421736886-hg32llt7iut8oouir9drgfcu9uc0hk94.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyD53CMG8A7Jc_iT452CSQSYfZyt6dgG5H8"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "988421736886-hg32llt7iut8oouir9drgfcu9uc0hk94.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
