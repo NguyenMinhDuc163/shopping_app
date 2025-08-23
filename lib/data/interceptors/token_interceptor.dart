@@ -91,23 +91,11 @@ class TokenInterceptor extends InterceptorsWrapper {
 
     if (hasRefreshFailed && areHeadersHasAccessToken) return;
 
-    String updatedPath = options.path;
-    final String urlToken = ApiPath.registerId;
-    if (!updatedPath.contains(urlToken)) {
-      // if (updatedPath.contains('?')) {
-      //   final pathParts = updatedPath.split('?');
-      //   updatedPath = '${pathParts[0]}/$urlToken?${pathParts[1]}';
-      // } else {
-        updatedPath = '$updatedPath/$urlToken';
-      // }
-    }
-
     final RequestOptions updatedOptions =
         hasRefreshSucceeded == null /* means it unset */ ||
                 !areHeadersHasAccessToken
-            ? options.copyWith(path: updatedPath)
+            ? options
             : options.copyWith(
-              path: updatedPath,
               headers: {
                 ...options.headers,
                 if (areHeadersHasAccessToken)
