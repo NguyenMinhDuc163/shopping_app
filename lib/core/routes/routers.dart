@@ -12,14 +12,12 @@ import 'package:shopping_app/modules/auth/forgot_password/bloc/reset_pass_cubit.
 import 'package:shopping_app/modules/auth/forgot_password/bloc/verify_otp_controller.dart';
 import 'package:shopping_app/modules/auth/forgot_password/bloc/verify_otp_cubit.dart';
 import 'package:shopping_app/modules/auth/forgot_password/repository/forgot_pass_repo.dart';
-import 'package:shopping_app/modules/auth/forgot_password/screen/reset_password_screen.dart';
 import 'package:shopping_app/modules/auth/forgot_password/screen/forgot_password_screen.dart';
+import 'package:shopping_app/modules/auth/forgot_password/screen/reset_password_screen.dart';
 import 'package:shopping_app/modules/auth/forgot_password/screen/verify_screen.dart';
 import 'package:shopping_app/modules/auth/initial/screen/onboarding_screen.dart';
 import 'package:shopping_app/modules/auth/initial/screen/splash_screen.dart';
 import 'package:shopping_app/modules/auth/login/bloc/login_controller.dart';
-import 'package:shopping_app/modules/auth/login/bloc/login_cubit.dart';
-import 'package:shopping_app/modules/auth/login/repository/login_repo.dart';
 import 'package:shopping_app/modules/auth/login/screen/login_screen.dart';
 import 'package:shopping_app/modules/auth/sign_in/bloc/sign_in_controller.dart';
 import 'package:shopping_app/modules/auth/sign_in/screen/sign_in_screen.dart';
@@ -69,18 +67,11 @@ class Routers {
         return MaterialPageRoute(
           settings: settings,
           builder:
-              (context) => RepositoryProvider(
-                create: (context) => LoginRepo(apiClient: ApiClient()),
-                child: BlocProvider(
-                  create:
-                      (context) => LoginCubit(repo: context.read<LoginRepo>()),
-                  child: DisposableProvider(
-                    create: (BuildContext context) {
-                      return LoginController();
-                    },
-                    child: LoginScreen(),
-                  ),
-                ),
+              (context) =>DisposableProvider(
+                create: (BuildContext context) {
+                  return LoginController();
+                },
+                child: LoginScreen(),
               ),
         );
       case SignUpScreen.routeName:

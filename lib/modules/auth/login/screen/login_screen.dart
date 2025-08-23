@@ -5,8 +5,9 @@ import 'package:shopping_app/core/values/login_type.dart';
 import 'package:shopping_app/core/widgets/template/button_widget.dart';
 import 'package:shopping_app/init.dart';
 import 'package:shopping_app/modules/auth/login/bloc/login_controller.dart';
-import 'package:shopping_app/modules/auth/login/bloc/login_cubit.dart';
 import 'package:shopping_app/modules/auth/login/widget/title_widget.dart';
+import 'package:shopping_app/modules/auth/sign_in/bloc/sign_in_cubit.dart';
+import 'package:shopping_app/modules/auth/sign_in/bloc/sign_in_state.dart';
 import 'package:shopping_app/modules/auth/sign_in/screen/sign_in_screen.dart';
 import 'package:shopping_app/modules/auth/sign_up/screen/sign_up_screen.dart';
 import 'package:shopping_app/modules/auth/widgets/text_span_widget.dart';
@@ -20,7 +21,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final LoginController controller = context.read(); // TODO C2
 
-    return BlocListener<LoginCubit, LoginState>(
+    return BlocListener<SignInCubit, SignInState>(
       listener: controller.handleListener,
       child: _LoginContent(controller: controller),
     );
@@ -34,7 +35,7 @@ class _LoginContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final LoginState state = context.watch<LoginCubit>().state;
+    final SignInState state = context.watch<SignInCubit>().state;
 
     final Widget contentWidget = AnnotatedRegion(
       value: SystemUiOverlayStyle.light.copyWith(
@@ -119,7 +120,7 @@ class _LoginContent extends StatelessWidget {
     return Stack(
       children: [
         contentWidget,
-        if (state is LoginInProgress)
+        if (state is SignInInProgress)
           Container(
             color: Colors.black.withOpacity(0.3),
             child: const Center(child: CircularProgressIndicator()),

@@ -76,7 +76,7 @@ dependencies:
   # firebase
   firebase_core: ^4.0.0
   firebase_auth: ^6.0.1
-  google_sign_in: ^7.1.1
+  google_sign_in: ^6.3.0
 
 
 dev_dependencies:

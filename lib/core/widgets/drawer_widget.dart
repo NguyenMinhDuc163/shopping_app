@@ -94,6 +94,8 @@ class DrawerWidget extends StatelessWidget {
               textStyle: AppTextStyles.textContent2.copyWith(color: Colors.red),
               onTap: () async {
                 context.read<SignInRepo>().authService.clearToken();
+                context.read<SignInRepo>().logout();
+
                 Navigator.pushReplacementNamed(context, LoginScreen.routeName);
               },
             ),
