@@ -1,0 +1,150 @@
+{
+  "common": {
+    "continue": "Tiếp tục",
+    "dark_mode": "Chế độ tối",
+    "account_information": "Thông tin tài khoản",
+    "change_password": "Đổi mật khẩu",
+    "order": "Đơn hàng",
+    "my_cards": "Thẻ của tôi",
+    "wishlist": "Danh sách yêu thích",
+    "settings": "Cài đặt",
+    "logout": "Đăng xuất",
+    "verified_profile": "Hồ sơ đã xác minh",
+    "orders": "Đơn"
+  },
+  "home_screen": {
+    "title": "trang chủ",
+    "home": "Trang chủ",
+    "wishlist": "yêu thích",
+    "cart": "Giỏ hàng",
+    "wallet": "Ví"
+  },
+  "login_screen": {
+    "title": "Đăng nhập",
+    "get_started": "Bắt Đầu Nào",
+    "already_have_account": "Đã có tài khoản? ",
+    "signin": "Đăng nhập",
+    "create_account": "Tạo tài khoản"
+  },
+  "sign_up": {
+    "title": "Đăng ký",
+    "username": "Tên người dùng",
+    "remember_me": "Ghi nhớ tôi",
+    "password": "Mật khẩu",
+    "email_address": "Địa chỉ email",
+    "enter_username": "Nhập username",
+    "enter_password": "Nhập password",
+    "enter_email": "Nhập email",
+    "strong": "Mạnh",
+    "register_success": "Đăng ký thành công",
+    "register_failure": "Đăng ký thất bại",
+    "required_fields": "Vui lòng nhập đủ thông tin",
+    "password_length": "Mật khẩu phải có ít nhất 8 ký tự",
+    "invalid_email": "Email không hợp lệ"
+  },
+  "login": {
+    "title": "Đăng nhập",
+    "welcome": "Chào mừng",
+    "enter_data_to_continue": "Vui lòng nhập thông tin để tiếp tục",
+    "forgot_password": "Quên mật khẩu?",
+    "connect_account_confirmation": "Bằng cách kết nối tài khoản, bạn xác nhận rằng bạn đồng ý với",
+    "terms_and_conditions": "Điều khoản và Điều kiện",
+    "login_success": "Đăng nhập thành công",
+    "login_failure": "Đăng nhập thất bại"
+  },
+  "forgot_password": {
+    "title": "Quên mật khẩu",
+    "email_address": "Địa chỉ email",
+    "enter_email_for_confirmation": "Vui lòng nhập email để nhận mã xác nhận nhằm đặt lại mật khẩu.",
+    "confirm_mail": "Xác nhận email",
+    "resend_confirmation_code": "Gửi lại mã xác nhận",
+    "new_password": "Mật khẩu mới",
+    "enter_new_password": "Vui lòng nhập mật khẩu mới.",
+    "reset_password": "Đặt lại mật khẩu",
+    "verification_code": "Mã xác nhận",
+    "confirm_code": "Xác nhận mã",
+    "confirm_password": "Xác nhận mật khẩu",
+    "otp_send_failure": "Gửi mã OTP thất bại",
+    "success": "Khôi phục mật khẩu thành công",
+    "failure": "Khôi phục mật khẩu thất bại",
+    "enter_password": "Vui lòng nhập mật khẩu",
+    "password_mismatch": "Mật khẩu không trùng khớp"
+  },
+  "onboarding": {
+    "slogan": "Trông đẹp, Cảm thấy tuyệt",
+    "description": "Tạo phong cách cá nhân & độc đáo của bạn và trông tuyệt vời mỗi ngày.",
+    "women": "Nữ",
+    "men": "Nam",
+    "skip": "Bỏ qua"
+  },
+  "wishlist": {
+    "items": "Mục",
+    "edit": "Chỉnh sửa",
+    "available_in_stock": "Có sẵn trong kho",
+    "in_wishlist": "Trong danh sách yêu thích"
+  },
+  "payment": {
+    "title": "Thanh toán",
+    "name": "Tên",
+    "country": "Quốc gia",
+    "city": "Thành phố",
+    "phone_number": "Số điện thoại",
+    "address": "Địa chỉ",
+    "save_as_primary_address": "Lưu làm địa chỉ chính",
+    "card_owner": "Chủ thẻ",
+    "card_number": "Số thẻ",
+    "save_card_info": "Lưu thông tin thẻ",
+    "save_address": "Lưu địa chỉ",
+    "save_card": "Lưu thẻ",
+    "add_new_card": "Thêm thẻ mới",
+    "add_card": "Thêm thẻ",
+    "order_confirmed": "Đơn hàng đã được xác nhận!",
+    "order_confirmation_message": "Đơn hàng của bạn đã được xác nhận, chúng tôi sẽ sớm gửi email xác nhận cho bạn.",
+    "go_to_orders": "Đi đến Đơn hàng",
+    "continue_shopping": "Tiếp tục mua sắm"
+  },
+  "cart": {
+    "title": "Giỏ hàng",
+    "delivery_address": "Địa chỉ giao hàng",
+    "payment_method": "Phương thức thanh toán",
+    "order_info": "Thông tin đơn hàng",
+    "subtotal": "Tổng phụ",
+    "delivery_charge": "Phí giao hàng",
+    "total": "Tổng cộng"
+  },
+  "review": {
+    "title": "Đánh giá",
+    "view_all": "Xem tất cả",
+    "description": "Mô tả",
+    "size_guide": "Hướng dẫn kích thước",
+    "size": "Kích thước",
+    "price": "Giá",
+    "rating": "Xếp hạng",
+    "add_review": "Thêm đánh giá",
+    "type_your_name": "Nhập tên của bạn",
+    "name": "Tên",
+    "how_was_your_experience": "Trải nghiệm của bạn thế nào?",
+    "describe_your_experience": "Mô tả trải nghiệm của bạn?",
+    "star": "Sao",
+    "submit_review": "Gửi đánh giá"
+  },
+  "detail_product": {
+    "color": "Màu sắc",
+    "in_stock": "{number} trong kho",
+    "only_left": "Chỉ còn {number} sản phẩm"
+  },
+  "brand_screen": {
+    "sort": "Sắp xếp",
+    "price_low_to_high": "Giá từ thấp đến cao",
+    "price_high_to_low": "Giá từ cao đến thấp",
+    "by_product_name_asc": "Theo tên sản phẩm (A-Z)",
+    "filter": "Lọc",
+    "reset": "Đặt lại",
+    "price_range": "Khoảng giá",
+    "from": "Từ",
+    "to": "Đến",
+    "available_in_stock": "Có sẵn trong kho",
+    "cancel": "Hủy",
+    "confirm": "Xác nhận"
+  }
+}

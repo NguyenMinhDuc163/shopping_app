@@ -1,0 +1,158 @@
+{
+  "common": {
+    "continue": "Continue",
+    "dark_mode": "Dark Mode",
+    "account_information": "Account Information",
+    "change_password": "Change Password",
+    "order": "Order",
+    "my_cards": "My Cards",
+    "wishlist": "Wishlist",
+    "settings": "Settings",
+    "logout": "Logout",
+    "verified_profile": "Verified Profile",
+    "orders": "Orders"
+  },
+  "home_screen": {
+    "title": "Home Screen",
+    "home": "Home",
+    "wishlist": "Wishlist",
+    "cart": "Cart",
+    "wallet": "Wallet"
+  },
+  "login_screen": {
+    "title": "Login Screen",
+    "get_started": "Let’s Get Started",
+    "already_have_account": "Already have an account? ",
+    "signin": "Signin",
+    "create_account": "Create an Account"
+  },
+  "sign_up": {
+    "title": "Sign Up",
+    "username": "Username",
+    "remember_me": "Remember me",
+    "password": "Password",
+    "email_address": "Email Address",
+    "enter_username": "Enter username",
+    "enter_password": "Enter password",
+    "enter_email": "Enter email",
+    "strong": "Strong",
+    "register_success": "Registration successful",
+    "register_failure": "Registration failed",
+    "required_fields": "Please fill in all required fields",
+    "password_length": "Password must be at least 8 characters",
+    "invalid_email": "Invalid email address"
+  },
+  "login": {
+    "title": "Login",
+    "welcome": "Welcome",
+    "enter_data_to_continue": "Please enter your data to continue",
+    "forgot_password": "Forgot password?",
+    "connect_account_confirmation": "By connecting your account confirm that you agree with our",
+    "terms_and_conditions": "Term and Condition",
+    "login_success": "Login successful",
+    "login_failure": "Login failed"
+  },
+  "forgot_password": {
+    "title": "Forgot Password",
+    "email_address": "Email Address",
+    "enter_email_for_confirmation": "Please write your email to receive a confirmation code to set a new password.",
+    "confirm_mail": "Confirm Mail",
+    "resend_confirmation_code": "resend confirmation code",
+    "new_password": "New Password",
+    "enter_new_password": "Please write your new password.",
+    "reset_password": "Reset Password",
+    "verification_code": "Verification Code",
+    "confirm_code": "Confirm Code",
+    "confirm_password": "Confirm Password",
+    "otp_send_failure": "Failed to send OTP",
+    "success": "Password reset successful",
+    "failure": "Password reset failed",
+    "enter_password": "Please enter your password",
+    "password_mismatch": "Passwords do not match"
+  },
+  "onboarding": {
+    "slogan": "Look Good, Feel Good",
+    "description": "Create your individual & unique style and look amazing everyday.",
+    "women": "Women",
+    "men": "Men",
+    "skip": "Skip"
+  },
+  "wishlist": {
+    "items": "Items",
+    "edit": "Edit",
+    "available_in_stock": "Available in stock",
+    "in_wishlist": "in wishlist"
+  },
+  "payment": {
+    "title": "Payment",
+    "name": "Name",
+    "country": "Country",
+    "city": "City",
+    "phone_number": "Phone Number",
+    "address": "Address",
+    "save_as_primary_address": "Save as primary address",
+    "add_new_card": "Add new card",
+    "card_owner": "Card Owner",
+    "card_number": "Card Number",
+    "save_card_info": "Save card info",
+    "save_address": "Save Address",
+    "save_card": "Save Card",
+    "add_card": "Add Card",
+    "order_confirmed": "Order Confirmed!",
+    "order_confirmation_message": "Your order has been confirmed, we will send you confirmation email shortly.",
+    "go_to_orders": "Go to Orders",
+    "continue_shopping": "Continue Shopping"
+  },
+  "filter": {
+    "sort": "Sort",
+    "price_low_to_high": "Price from low to high",
+    "price_high_to_low": "Price from high to low",
+    "name_a_to_z": "By product name (A-Z)",
+    "cancel": "Cancel",
+    "confirm": "Confirm"
+  },
+  "cart": {
+    "title": "Cart",
+    "delivery_address": "Delivery Address",
+    "payment_method": "Payment Method",
+    "order_info": "Order Info",
+    "subtotal": "Subtotal",
+    "delivery_charge": "Delivery Charge",
+    "total": "Total"
+  },
+  "review": {
+    "title": "Reviews",
+    "view_all": "View All",
+    "description": "Description",
+    "size_guide": "Size Guide",
+    "size": "Size",
+    "price": "Price",
+    "rating": "rating",
+    "add_review": "Add Review",
+    "type_your_name": "Type your name",
+    "name": "Name",
+    "how_was_your_experience": "How was your experience ?",
+    "describe_your_experience": "Describe your experience?",
+    "star": "Star",
+    "submit_review": "Submit Review"
+  },
+  "detail_product": {
+    "color": "Color",
+    "in_stock": "{number} in stock",
+    "only_left": "Only {number} left"
+  },
+  "brand_screen": {
+    "sort": "Sort",
+    "price_low_to_high": "Price from low to high",
+    "price_high_to_low": "Price from high to low",
+    "by_product_name_asc": "By product name (A-Z)",
+    "filter": "Filter",
+    "reset": "Reset",
+    "price_range": "Price Range",
+    "from": "From",
+    "to": "To",
+    "available_in_stock": "Available in stock",
+    "cancel": "Cancel",
+    "confirm": "Confirm"
+  }
+}
