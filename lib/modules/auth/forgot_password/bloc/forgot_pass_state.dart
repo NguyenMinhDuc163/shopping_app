@@ -1,4 +1,4 @@
-sealed class ForgotPassState{}
+sealed class ForgotPassState {}
 
 class ForgotPassInitial extends ForgotPassState {}
 
@@ -18,8 +18,22 @@ class ForgotPassError extends ForgotPassState {
   ForgotPassError({this.message = 'Đã xảy ra lỗi'});
 }
 
-sealed class ResetPassState extends ForgotPassState{}
+// States cho check username
+class CheckUsernameInProgress extends ForgotPassState {}
 
+class CheckUsernameSuccess extends ForgotPassState {
+  final bool isAvailable;
+
+  CheckUsernameSuccess({required this.isAvailable});
+}
+
+class CheckUsernameFailure extends ForgotPassState {
+  final String message;
+
+  CheckUsernameFailure({this.message = 'Kiểm tra username thất bại'});
+}
+
+sealed class ResetPassState extends ForgotPassState {}
 
 class ResetPassInProgress extends ResetPassState {}
 

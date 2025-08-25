@@ -52,11 +52,20 @@ class _TextInputCustomState extends State<TextInputCustom> {
     obscureText = widget.isPassword;
   }
 
+  @override
+  void didUpdateWidget(TextInputCustom oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    _validate();
+  }
+
   void _validate() {
     if (widget.validator != null) {
-      setState(() {
-        isValid = widget.validator!(widget.controller.text);
-      });
+      final newIsValid = widget.validator!(widget.controller.text);
+      if (isValid != newIsValid) {
+        setState(() {
+          isValid = newIsValid;
+        });
+      }
     }
   }
 

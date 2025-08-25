@@ -17,6 +17,10 @@ class SignUpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final SignUpController controller = context.read();
 
+    controller.setContext(context);
+    controller.initializeEmailListener();
+    controller.initializeUsernameListener();
+
     return BlocListener<SignUpCubit, SignUpState>(
       listener: controller.handleListener,
       listenWhen: (previous, next) => previous.runtimeType != next.runtimeType,
@@ -44,12 +48,24 @@ class _SignUpContent extends StatelessWidget {
             children: [
               Text('sign_up.title'.tr(), style: AppTextStyles.textHeader1),
               AppGap.h100,
-              TextInputCustom(
-                label: 'sign_up.username'.tr(),
-                controller: controller.usernameController,
-                hintText: "sign_up.enter_username".tr(),
-                validator: (text) {
-                  return text.length >= 4;
+              BlocBuilder<SignUpCubit, SignUpState>(
+                buildWhen: (previous, current) {
+                  return current is CheckUsernameInProgress ||
+                      current is CheckUsernameSuccess ||
+                      current is CheckUsernameFailure;
+                },
+                builder: (context, state) {
+                  return TextInputCustom(
+                    label: 'sign_up.username'.tr(),
+                    controller: controller.usernameController,
+                    hintText: "sign_up.enter_username".tr(),
+                    validator: (text) {
+                      if (state is CheckUsernameSuccess) {
+                        return state.isAvailable;
+                      }
+                      return false;
+                    },
+                  );
                 },
               ),
               TextInputCustom(
@@ -58,24 +74,41 @@ class _SignUpContent extends StatelessWidget {
                 hintText: "sign_up.enter_password".tr(),
                 suffixIcon: Text(
                   "sign_up.strong".tr(),
-                  style: AppTextStyles.textContent3.copyWith(color: AppColors.limeGreen),
+                  style: AppTextStyles.textContent3.copyWith(
+                    color: AppColors.limeGreen,
+                  ),
                 ),
                 validator: (text) {
                   return text.length >= 8;
                 },
               ),
-              TextInputCustom(
-                label: 'Email',
-                controller: controller.emailController,
-                hintText: "sign_up.enter_email".tr(),
-                validator: (text) {
-                  return Validators.isValidEmail(text);
+              BlocBuilder<SignUpCubit, SignUpState>(
+                buildWhen: (previous, current) {
+                  return current is CheckEmailInProgress ||
+                      current is CheckEmailSuccess ||
+                      current is CheckEmailFailure;
+                },
+                builder: (context, state) {
+                  return TextInputCustom(
+                    label: 'Email',
+                    controller: controller.emailController,
+                    hintText: "sign_up.enter_email".tr(),
+                    validator: (text) {
+                      if (state is CheckEmailSuccess) {
+                        return state.isAvailable;
+                      }
+                      return false;
+                    },
+                  );
                 },
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("sign_up.remember_me".tr(), style: AppTextStyles.textContent3),
+                  Text(
+                    "sign_up.remember_me".tr(),
+                    style: AppTextStyles.textContent3,
+                  ),
                   SwitchBottomWidget(onChanged: (value) {}),
                 ],
               ),

@@ -21,7 +21,28 @@ class SignUpRepo {
         "verification": "4 digit OTP"
       },
     );
-     RegisterResponse registerResponse = RegisterResponse.fromJson(res.json);
+    return res.code == 200;
+  }
+
+  Future<bool> checkUserName({required String username}) async {
+    final res = await apiClient.fetch(
+      ApiPath.checkUserName,
+      RequestMethod.post,
+      rawData: {
+        "username": username,
+      },
+    );
+    return res.code == 200;
+  }
+
+  Future<bool> checkEmail({required String email}) async {
+    final res = await apiClient.fetch(
+      ApiPath.checkMail,
+      RequestMethod.post,
+      rawData: {
+        "email": email,
+      },
+    );
     return res.code == 200;
   }
 }

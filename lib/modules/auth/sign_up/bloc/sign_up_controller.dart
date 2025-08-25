@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:disposable_provider/disposable_provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -14,11 +15,54 @@ class SignUpController extends Disposable {
   TextEditingController emailController = TextEditingController();
   ValueNotifier<bool> isSwitched = ValueNotifier(false);
 
-  handleListener(BuildContext context , SignUpState state){
+  Timer? _emailDebounceTimer;
+  Timer? _usernameDebounceTimer;
+  BuildContext? _context;
+
+  void setContext(BuildContext context) {
+    _context = context;
+  }
+
+  void _onEmailChanged() {
+    final email = emailController.text.trim();
+
+    _emailDebounceTimer?.cancel();
+
+    if (email.length >= 3 && Validators.isValidEmail(email)) {
+      _emailDebounceTimer = Timer(const Duration(milliseconds: 500), () {
+        if (_context != null) {
+          _context!.read<SignUpCubit>().checkEmail(email: email);
+        } else {
+        }
+      });
+    }
+  }
+
+  void _onUsernameChanged() {
+    final username = usernameController.text.trim();
+
+    _usernameDebounceTimer?.cancel();
+
+    if (username.length >= 3) {
+      _usernameDebounceTimer = Timer(const Duration(milliseconds: 500), () {
+        if (_context != null) {
+          _context!.read<SignUpCubit>().checkUserName(username: username);
+        }
+      });
+    }
+  }
+
+  void initializeEmailListener() {
+    emailController.addListener(_onEmailChanged);
+  }
+
+  void initializeUsernameListener() {
+    usernameController.addListener(_onUsernameChanged);
+  }
+
+  handleListener(BuildContext context, SignUpState state) {
     if (state is SignUpSuccess) {
-      final prefillData = {
-        'username': usernameController.text,
-      };
+      final prefillData = {'username': usernameController.text};
 
       Navigator.pushNamed(
         context,
@@ -31,13 +75,10 @@ class SignUpController extends Disposable {
       showToastTop(message: 'sign_up.register_failure'.tr());
     }
 
-
-    if(state is SignUpError){
+    if (state is SignUpError) {
       showToastTop(message: state.message);
     }
   }
-
-
 
   onSignUp(BuildContext context) {
     if (!_isValidateForm()) return;
@@ -69,6 +110,8 @@ class SignUpController extends Disposable {
 
   @override
   void dispose() {
+    _emailDebounceTimer?.cancel();
+    _usernameDebounceTimer?.cancel();
     usernameController.dispose();
     passwordController.dispose();
     emailController.dispose();

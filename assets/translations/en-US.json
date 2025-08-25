@@ -40,7 +40,9 @@
     "register_failure": "Registration failed",
     "required_fields": "Please fill in all required fields",
     "password_length": "Password must be at least 8 characters",
-    "invalid_email": "Invalid email address"
+    "invalid_email": "Invalid email address",
+    "username_exists": "Username already exists",
+    "email_exists": "Email already exists"
   },
   "login": {
     "title": "Login",

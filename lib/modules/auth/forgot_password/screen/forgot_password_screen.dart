@@ -10,14 +10,27 @@ import 'package:shopping_app/modules/auth/forgot_password/bloc/forgot_pass_cubit
 import 'package:shopping_app/modules/auth/forgot_password/bloc/forgot_pass_state.dart';
 import 'package:shopping_app/utils/helpers/validators.dart';
 
-class ForgotPasswordScreen extends StatelessWidget {
+class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});
   static const String routeName = '/forgotPassword';
 
   @override
+  State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
+}
+
+class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
+  late ForgotPassController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = context.read<ForgotPassController>();
+    controller.setContext(context);
+    controller.initializeUsernameListener();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    // final ForgotPassController controller = DisposableProvider.of<ForgotPassController>(context,);
-    final ForgotPassController controller = context.read(); // TODO C2
     return BlocListener<ForgotPassCubit, ForgotPassState>(
       listener: controller.handleListener,
       listenWhen: (previous, next) => previous.runtimeType != next.runtimeType,
@@ -42,22 +55,39 @@ class _ForgotPasswordContent extends StatelessWidget {
           child: Column(
             spacing: height_30,
             children: [
-              Text("forgot_password.title".tr(), style: AppTextStyles.textHeader1),
+              Text(
+                "forgot_password.title".tr(),
+                style: AppTextStyles.textHeader1,
+              ),
               SvgPicture.asset(ImagePath.imgForgotPassword),
               AppGap.g2,
-              TextInputCustom(
-                label: 'sign_up.username'.tr(),
-                controller: controller.userNameController,
-                hintText: "sign_up.enter_username".tr(),
-                validator: (text) {
-                  return Validators.isValidEmail(text);
+              BlocBuilder<ForgotPassCubit, ForgotPassState>(
+                buildWhen: (previous, current) {
+                  return current is CheckUsernameInProgress ||
+                      current is CheckUsernameSuccess ||
+                      current is CheckUsernameFailure;
+                },
+                builder: (context, state) {
+                  return TextInputCustom(
+                    label: 'sign_up.username'.tr(),
+                    controller: controller.userNameController,
+                    hintText: "sign_up.enter_username".tr(),
+                    validator: (text) {
+                      if (state is CheckUsernameSuccess) {
+                        return state.isAvailable;
+                      }
+                      return false;
+                    },
+                  );
                 },
               ),
               AppGap.h100,
               Text(
                 'forgot_password.enter_email_for_confirmation'.tr(),
                 textAlign: TextAlign.center,
-                style: AppTextStyles.textContent3.copyWith(color: AppColors.coolGray),
+                style: AppTextStyles.textContent3.copyWith(
+                  color: AppColors.coolGray,
+                ),
               ),
               AppGap.g1,
             ],

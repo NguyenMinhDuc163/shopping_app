@@ -40,7 +40,9 @@
     "register_failure": "Đăng ký thất bại",
     "required_fields": "Vui lòng nhập đủ thông tin",
     "password_length": "Mật khẩu phải có ít nhất 8 ký tự",
-    "invalid_email": "Email không hợp lệ"
+    "invalid_email": "Email không hợp lệ",
+    "username_exists": "Tên người dùng đã tồn tại",
+    "email_exists": "Email đã tồn tại"
   },
   "login": {
     "title": "Đăng nhập",
