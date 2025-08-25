@@ -61,23 +61,19 @@ class _ForgotPasswordContent extends StatelessWidget {
               ),
               SvgPicture.asset(ImagePath.imgForgotPassword),
               AppGap.g2,
-              BlocBuilder<ForgotPassCubit, ForgotPassState>(
-                buildWhen: (previous, current) {
-                  return current is CheckUsernameInProgress ||
-                      current is CheckUsernameSuccess ||
-                      current is CheckUsernameFailure;
+              BlocSelector<ForgotPassCubit, ForgotPassState, bool>(
+                selector: (state) {
+                  if (state is CheckUsernameSuccess) {
+                    return state.isAvailable;
+                  }
+                  return false;
                 },
-                builder: (context, state) {
+                builder: (context, isAvailable) {
                   return TextInputCustom(
                     label: 'sign_up.username'.tr(),
                     controller: controller.userNameController,
                     hintText: "sign_up.enter_username".tr(),
-                    validator: (text) {
-                      if (state is CheckUsernameSuccess) {
-                        return state.isAvailable;
-                      }
-                      return false;
-                    },
+                    validator: (text) => isAvailable,
                   );
                 },
               ),
