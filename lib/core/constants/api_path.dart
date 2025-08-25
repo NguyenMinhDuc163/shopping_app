@@ -20,6 +20,8 @@ class ApiPath {
   static const String resetPassword = '/auth/reset-password';
   static const String forgotPassword = '/auth/forgot-password';
   static const String loginSocial = '/auth/login-social';
+  static const String checkUserName = '/auth/check-username-exist';
+  static const String checkMail = '/auth/check-email-exist';
 }
 
 // TODO trong intercepter => ds api can truyen id

@@ -22,4 +22,21 @@ class ForgotPassCubit extends Cubit<ForgotPassState> {
       throw Exception(e);
     }
   }
+
+  Future checkUserName({required String username}) async {
+    emit(CheckUsernameInProgress());
+
+    try {
+      final res = await repo.checkUserName(username: username);
+      if (res) {
+        emit(CheckUsernameSuccess(isAvailable: true));
+      } else {
+        emit(CheckUsernameSuccess(isAvailable: false));
+      }
+    } catch (e) {
+      emit(
+        CheckUsernameFailure(message: AppErrorState.getFriendlyErrorString(e)),
+      );
+    }
+  }
 }

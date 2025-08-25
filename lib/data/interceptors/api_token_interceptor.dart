@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:shopping_app/core/constants/api_path.dart';
 
 class ApiTokenInterceptor extends InterceptorsWrapper {
-   final List<String> _apisRequiringToken = [
+  final List<String> _apisRequiringToken = [
     '/refresh-token',
     '/auth/login-on-firebase',
     '/auth/register',
@@ -11,6 +11,8 @@ class ApiTokenInterceptor extends InterceptorsWrapper {
     '/auth/reset-password',
     '/auth/forgot-password',
     '/auth/login-social',
+    '/auth/check-username-exist',
+    '/auth/check-email-exist',
   ];
 
   bool shouldAddTokenToApi(String path) {
@@ -21,11 +23,9 @@ class ApiTokenInterceptor extends InterceptorsWrapper {
     }
     return false;
   }
+
   @override
-  void onRequest(
-    RequestOptions options,
-    RequestInterceptorHandler handler,
-  ) async {
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
     if (shouldAddTokenToApi(options.path)) {
       String updatedPath = options.path;
       final String urlToken = ApiPath.registerId;

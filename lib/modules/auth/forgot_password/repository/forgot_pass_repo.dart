@@ -11,18 +11,25 @@ class ForgotPassRepo {
     final res = await apiClient.fetch(
       ApiPath.forgotPassword,
       RequestMethod.post,
-      rawData: {
-        "username": username,
-        "verification": "4 digit OTP",
-      },
+      rawData: {"username": username, "verification": "4 digit OTP"},
     );
     String status = res.json['status'];
     return status == 'ok' && res.code == 200;
   }
 
+  Future<bool> checkUserName({required String username}) async {
+    final res = await apiClient.fetch(
+      ApiPath.checkUserName,
+      RequestMethod.post,
+      rawData: {"username": username},
+    );
+    return res.code == 200;
+  }
 
-
-  Future<bool> verifyOtp({required String otp, required String userName}) async {
+  Future<bool> verifyOtp({
+    required String otp,
+    required String userName,
+  }) async {
     final res = await apiClient.fetch(
       ApiPath.verifyOtp,
       RequestMethod.post,
@@ -31,7 +38,10 @@ class ForgotPassRepo {
     return res.code == 200;
   }
 
-  Future<bool> resetPassword({required String userName, required String password}) async {
+  Future<bool> resetPassword({
+    required String userName,
+    required String password,
+  }) async {
     final res = await apiClient.fetch(
       ApiPath.resetPassword,
       RequestMethod.post,
