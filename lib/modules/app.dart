@@ -9,6 +9,7 @@ import 'package:shopping_app/data/services/auth_service.dart';
 import 'package:shopping_app/modules/auth/initial/screen/splash_screen.dart';
 import 'package:shopping_app/modules/auth/sign_in/bloc/sign_in_cubit.dart';
 import 'package:shopping_app/modules/auth/sign_in/bloc/sign_in_state.dart';
+import 'package:shopping_app/modules/auth/sign_in/use_case/social_login.dart';
 
 import 'auth/sign_in/repository/sign_in_repo.dart';
 import 'home/screen/home_screen.dart';
@@ -26,7 +27,7 @@ class App extends StatelessWidget {
             authService: authService,
           ),
       child: BlocProvider(
-        create: (context) => SignInCubit(repo: context.read<SignInRepo>()),
+        create: (context) => SignInCubit(repo: context.read<SignInRepo>(), socialLogin: SocialLogin(repo: context.read<SignInRepo>())),
         child: MaterialApp(
           builder: (context, child) {
             return BlocListener<SignInCubit, SignInState>(

@@ -14,56 +14,18 @@ class SignInRepo {
 
   SignInRepo({required this.apiClient, required this.authService});
 
-  Future<bool> login({required String username, required String password}) async {
+  Future<void> login({required String username, required String password}) async {
     final res = await apiClient.fetch(
       ApiPath.login,
       RequestMethod.post,
       rawData: {"username":username, "password": password,},
     );
-    LoginResponse loginResponse = LoginResponse.fromJson(res.json);
-    authService.saveToken(accessToken: loginResponse.accessToken ?? "", refreshToken: loginResponse.refreshToken ?? "");
     if(res.code != 200){
       throw res.message;
     }
-    return res.code == 200;
-  }
 
-  Future<bool?> signInWithGoogle() async {
-    try {
-      final GoogleSignIn googleSignIn = GoogleSignIn(
-        scopes: ['email', 'profile'],
-      );
-      final FirebaseAuth auth = FirebaseAuth.instance;
-
-      final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
-
-      if (googleUser == null) {
-        return null;
-      }
-
-      final GoogleSignInAuthentication googleAuth =
-      await googleUser.authentication;
-
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
-
-      final UserCredential userCredential = await auth.signInWithCredential(
-        credential,
-      );
-
-      final String? firebaseIdToken = await userCredential.user?.getIdToken();
-
-      if (firebaseIdToken == null) {
-        throw Exception('Không thể lấy Firebase ID token');
-      }
-
-      final res = await loginSocial(token: firebaseIdToken);
-      return res;
-    } catch (e) {
-      throw Exception('Lỗi đăng nhập Google: $e');
-    }
+    LoginResponse loginResponse = LoginResponse.fromJson(res.json);
+    authService.saveToken(accessToken: loginResponse.accessToken!, refreshToken: loginResponse.refreshToken!);
   }
 
   Future<bool> loginSocial({required String token}) async {
@@ -77,14 +39,16 @@ class SignInRepo {
       res.json,
     );
 
-    final authService = AuthService.instance;
-    authService.saveToken(
-      accessToken: loginSocialResponse.accessToken ?? "",
-      refreshToken: loginSocialResponse.refreshToken ?? "",
-    );
     if (res.code != 200) {
       throw res.message;
     }
+    final authService = AuthService.instance;
+
+    authService.saveToken(
+      accessToken: loginSocialResponse.accessToken!,
+      refreshToken: loginSocialResponse.refreshToken!,
+    );
+
     return res.code == 200;
   }
 
@@ -97,7 +61,7 @@ class SignInRepo {
       await auth.signOut();
 
       final authService = AuthService.instance;
-      authService.clearToken();
+      authService.invalid();
 
     } catch (e) {
       throw Exception('Lỗi đăng xuất: $e');
