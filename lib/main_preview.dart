@@ -10,6 +10,7 @@ import 'package:shopping_app/data/api_client.dart';
 import 'package:shopping_app/firebase_options.dart';
 import 'package:shopping_app/modules/auth/initial/screen/splash_screen.dart';
 import 'package:shopping_app/modules/auth/sign_in/bloc/sign_in_cubit.dart';
+import 'package:shopping_app/modules/auth/sign_in/use_case/social_login.dart';
 
 import 'data/services/auth_service.dart';
 import 'modules/auth/sign_in/repository/sign_in_repo.dart';
@@ -45,7 +46,7 @@ class MyApp extends StatelessWidget {
     return RepositoryProvider(
       create: (context) => SignInRepo(apiClient: ApiClient(), authService: authService),
       child: BlocProvider(
-        create: (context) => SignInCubit(repo: context.read<SignInRepo>()),
+        create: (context) => SignInCubit(repo: context.read<SignInRepo>(), socialLogin: SocialLogin(repo: context.read<SignInRepo>())),
         child: MaterialApp(
           builder: (context, child) {
             return ResponsiveBreakpoints.builder(
