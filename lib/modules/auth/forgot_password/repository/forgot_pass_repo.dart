@@ -23,7 +23,7 @@ class ForgotPassRepo {
       RequestMethod.post,
       rawData: {"username": username},
     );
-    return res.code == 200;
+    return res.code == 200 && res.json["result"] == false;
   }
 
   Future<bool> verifyOtp({

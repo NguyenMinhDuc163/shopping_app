@@ -1,4 +1,3 @@
-import 'package:disposable_provider/disposable_provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopping_app/core/widgets/app_gap.dart';
@@ -8,7 +7,6 @@ import 'package:shopping_app/init.dart';
 import 'package:shopping_app/modules/auth/sign_up/bloc/sign_up_controller.dart';
 import 'package:shopping_app/modules/auth/sign_up/bloc/sign_up_cubit.dart';
 import 'package:shopping_app/modules/auth/sign_up/bloc/sign_up_state.dart';
-import 'package:shopping_app/utils/helpers/validators.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -16,10 +14,6 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final SignUpController controller = context.read();
-
-    controller.setContext(context);
-    controller.initializeEmailListener();
-    controller.initializeUsernameListener();
 
     return BlocListener<SignUpCubit, SignUpState>(
       listener: controller.handleListener,
@@ -65,6 +59,7 @@ class _SignUpContent extends StatelessWidget {
                       }
                       return false;
                     },
+                    onChanged: (text) => context.read<SignUpCubit>().onUsernameChanged(text),
                   );
                 },
               ),
@@ -74,9 +69,7 @@ class _SignUpContent extends StatelessWidget {
                 hintText: "sign_up.enter_password".tr(),
                 suffixIcon: Text(
                   "sign_up.strong".tr(),
-                  style: AppTextStyles.textContent3.copyWith(
-                    color: AppColors.limeGreen,
-                  ),
+                  style: AppTextStyles.textContent3.copyWith(color: AppColors.limeGreen),
                 ),
                 validator: (text) {
                   return text.length >= 8;
@@ -99,16 +92,14 @@ class _SignUpContent extends StatelessWidget {
                       }
                       return false;
                     },
+                    onChanged: (text) => context.read<SignUpCubit>().onEmailChanged(text),
                   );
                 },
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "sign_up.remember_me".tr(),
-                    style: AppTextStyles.textContent3,
-                  ),
+                  Text("sign_up.remember_me".tr(), style: AppTextStyles.textContent3),
                   SwitchBottomWidget(onChanged: (value) {}),
                 ],
               ),

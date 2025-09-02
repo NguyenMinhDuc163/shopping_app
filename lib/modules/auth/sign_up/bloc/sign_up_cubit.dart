@@ -1,8 +1,9 @@
-import 'package:easy_localization/easy_localization.dart';
+import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopping_app/core/error_handling/app_error_state.dart';
 import 'package:shopping_app/modules/auth/sign_up/bloc/sign_up_state.dart';
 import 'package:shopping_app/modules/auth/sign_up/repository/sign_up_repo.dart';
+import 'package:shopping_app/utils/helpers/validators.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
   SignUpCubit({required this.repo}) : super(SignUpInitial()) {
@@ -15,6 +16,8 @@ class SignUpCubit extends Cubit<SignUpState> {
   }
 
   final SignUpRepo repo;
+  Timer? _emailDebounceTimer;
+  Timer? _usernameDebounceTimer;
 
   Future onRegisterStarted({
     required String username,
@@ -24,24 +27,30 @@ class SignUpCubit extends Cubit<SignUpState> {
     emit(SignUpInProgress());
 
     try {
-      final res = await repo.register(
-        username: username,
-        password: password,
-        email: email,
-      );
+      final res = await repo.register(username: username, password: password, email: email);
       if (res) {
         emit(SignUpSuccess());
       } else {
-        emit(
-          SignUpFailure(
-            message: 'Thông tin đăng ký không hợp lệ hoặc tài khoản đã tồn tại',
-          ),
-        );
+        emit(SignUpFailure(message: 'Thông tin đăng ký không hợp lệ hoặc tài khoản đã tồn tại'));
       }
     } catch (e) {
       emit(SignUpError(message: AppErrorState.getFriendlyErrorString(e)));
       return;
     }
+  }
+
+  void onUsernameChanged(String username) {
+    final trimmed = username.trim();
+
+    _usernameDebounceTimer?.cancel();
+
+    if (trimmed.length < 3) {
+      return;
+    }
+
+    _usernameDebounceTimer = Timer(const Duration(milliseconds: 500), () async {
+      await checkUserName(username: trimmed);
+    });
   }
 
   Future checkUserName({required String username}) async {
@@ -55,11 +64,23 @@ class SignUpCubit extends Cubit<SignUpState> {
         emit(CheckUsernameSuccess(isAvailable: false));
       }
     } catch (e) {
-      emit(
-        CheckUsernameFailure(message: AppErrorState.getFriendlyErrorString(e)),
-      );
+      emit(CheckUsernameFailure(message: AppErrorState.getFriendlyErrorString(e)));
       return;
     }
+  }
+
+  void onEmailChanged(String email) {
+    final trimmed = email.trim();
+
+    _emailDebounceTimer?.cancel();
+
+    if (trimmed.length < 3 || !Validators.isValidEmail(trimmed)) {
+      return;
+    }
+
+    _emailDebounceTimer = Timer(const Duration(milliseconds: 500), () async {
+      await checkEmail(email: trimmed);
+    });
   }
 
   Future checkEmail({required String email}) async {

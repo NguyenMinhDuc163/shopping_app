@@ -32,7 +32,7 @@ class SignUpRepo {
         "username": username,
       },
     );
-    return res.code == 200;
+    return res.code == 200 && res.json["result"] == false;
   }
 
   Future<bool> checkEmail({required String email}) async {
@@ -43,6 +43,6 @@ class SignUpRepo {
         "email": email,
       },
     );
-    return res.code == 200;
+    return res.code == 200 && res.json["result"] == false;
   }
 }

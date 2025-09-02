@@ -24,8 +24,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   void initState() {
     super.initState();
     controller = context.read<ForgotPassController>();
-    controller.setContext(context);
-    controller.initializeUsernameListener();
   }
 
   @override
@@ -88,6 +86,7 @@ class _ForgotPasswordContent extends StatelessWidget {
                     controller: controller.userNameController,
                     hintText: "sign_up.enter_username".tr(),
                     validator: (text) => isAvailable,
+                    onChanged: (text) => context.read<ForgotPassCubit>().onUsernameChanged(text),
                   );
                 },
               ),

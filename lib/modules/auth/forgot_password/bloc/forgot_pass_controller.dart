@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:disposable_provider/disposable_provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -7,39 +6,12 @@ import 'package:shopping_app/core/widgets/toast.dart';
 import 'package:shopping_app/modules/auth/forgot_password/bloc/forgot_pass_cubit.dart';
 import 'package:shopping_app/modules/auth/forgot_password/bloc/forgot_pass_state.dart';
 import 'package:shopping_app/modules/auth/forgot_password/screen/verify_screen.dart';
-import 'package:shopping_app/utils/helpers/validators.dart';
 
 class ForgotPassController extends Disposable {
   TextEditingController userNameController = TextEditingController();
 
-  Timer? _usernameDebounceTimer;
-  BuildContext? _context;
-
-  void setContext(BuildContext context) {
-    _context = context;
-  }
-
-  void _onUsernameChanged() {
-    final username = userNameController.text.trim();
-
-    _usernameDebounceTimer?.cancel();
-
-    if (username.length >= 3) {
-      _usernameDebounceTimer = Timer(const Duration(milliseconds: 500), () {
-        if (_context != null) {
-          _context!.read<ForgotPassCubit>().checkUserName(username: username);
-        }
-      });
-    }
-  }
-
-  void initializeUsernameListener() {
-    userNameController.addListener(_onUsernameChanged);
-  }
-
   @override
   void dispose() {
-    _usernameDebounceTimer?.cancel();
     userNameController.dispose();
   }
 

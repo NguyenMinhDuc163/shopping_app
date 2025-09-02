@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopping_app/core/error_handling/app_error_state.dart';
 import 'package:shopping_app/modules/auth/forgot_password/bloc/forgot_pass_state.dart';
@@ -5,6 +6,7 @@ import 'package:shopping_app/modules/auth/forgot_password/repository/forgot_pass
 
 class ForgotPassCubit extends Cubit<ForgotPassState> {
   final ForgotPassRepo repo;
+  Timer? _usernameDebounceTimer;
 
   ForgotPassCubit({required this.repo}) : super(ForgotPassInitial());
 
@@ -23,6 +25,20 @@ class ForgotPassCubit extends Cubit<ForgotPassState> {
     }
   }
 
+  void onUsernameChanged(String username) {
+    final trimmed = username.trim();
+
+    _usernameDebounceTimer?.cancel();
+
+    if (trimmed.length < 3) {
+      return;
+    }
+
+    _usernameDebounceTimer = Timer(const Duration(milliseconds: 500), () async {
+      await checkUserName(username: trimmed);
+    });
+  }
+
   Future checkUserName({required String username}) async {
     emit(CheckUsernameInProgress());
 
@@ -34,9 +50,7 @@ class ForgotPassCubit extends Cubit<ForgotPassState> {
         emit(CheckUsernameSuccess(isAvailable: false));
       }
     } catch (e) {
-      emit(
-        CheckUsernameFailure(message: AppErrorState.getFriendlyErrorString(e)),
-      );
+      emit(CheckUsernameFailure(message: AppErrorState.getFriendlyErrorString(e)));
     }
   }
 }
