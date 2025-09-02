@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shopping_app/init.dart';
-import 'package:shopping_app/modules/auth/sign_in/repository/sign_in_repo.dart';
 import 'package:shopping_app/modules/cart/screen/cart_screen.dart';
+import 'package:shopping_app/modules/home/bloc/home_cubit.dart';
 import 'package:shopping_app/modules/home/widget/new_arrival_widget.dart';
 import 'package:shopping_app/modules/home/widget/search_bar_delegate.dart';
 import 'package:shopping_app/modules/home/widget/sliver_brand_widget.dart';
@@ -45,6 +45,14 @@ class _Main extends StatefulWidget {
 
 // TODO theme extention
 class _MainState extends State<_Main> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<HomeCubit>().getProduct();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(

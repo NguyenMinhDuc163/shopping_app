@@ -6,7 +6,6 @@ class ApiTokenInterceptor extends InterceptorsWrapper {
     '/refresh-token',
     '/auth/login-on-firebase',
     '/auth/register',
-    '/products',
     '/auth/verify-otp',
     '/auth/reset-password',
     '/auth/forgot-password',
